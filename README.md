@@ -1,4 +1,5 @@
 # SPL-Models
+Code and repository prepared by Tianxi Liang.
 
 Automatic Segmentation and Benign–Malignant Differentiation of Subpleural Pulmonary Lesions (SPLs) using grayscale ultrasound.  
 Manuscript under review.
