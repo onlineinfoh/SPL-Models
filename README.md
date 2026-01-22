@@ -70,6 +70,7 @@ Please cite the original methods:
 - DenseNet: Huang et al., *CVPR*, 2017.
 - EfficientNet: Tan & Le, *ICML*, 2019.
 - ResNet: He et al., *CVPR*, 2016.
+- Grad-CAM: Selvaraju et al., *ICCV*, 2017.
 
 ## License
 See individual submodules and `LICENSE` files.
