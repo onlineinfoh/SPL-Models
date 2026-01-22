@@ -1,0 +1,44 @@
+# data and labels
+data/*
+!data/README.md
+binary_classification/labels/*
+binary_classification/build_labels.py
+binary_classification/check_data.py
+binary_classification/infer_probs_tight.py
+binary_classification/run_tight_pipeline.sh
+
+# environments and caches
+nnunet-env/
+nnunet_v1/
+nnUNet/
+seg-model-training/UNetPlusPlus/
+__pycache__/
+*.pyc
+
+# generated outputs
+binary_classification/runs/*
+!binary_classification/runs/.gitkeep
+binary_classification/heatmaps_tight/
+binary_classification/predictions_tight/
+binary_classification/nnunet_benchmark_results/
+binary_classification/checkpoints/
+binary_classification/wandb/
+seg-model-training/benchmarking/wandb/
+seg-model-training/benchmarking/deeplab_benchmark.py
+seg-model-training/benchmarking/inspect_slice_loading.py
+seg-model-training/benchmarking/unet_benchmark.py
+seg-model-training/benchmarking/nnunet_benchmarking.py
+seg-model-training/benchmarking/visual_check_overlay.py
+seg-model-training/model_pipeline.sh
+!seg-model-training/Pytorch-UNet/README_SPL.md
+!seg-model-training/DeepLabV3Plus-Pytorch/README_SPL.md
+
+# checkpoints and weights
+**/checkpoints/
+**/*.pth
+**/*.pt
+**/*.ckpt
+
+# logs
+**/*.log
+log.txt
