@@ -5,7 +5,7 @@ Manuscript under review.
 
 ## Highlights
 - Two-stage pipeline: segmentation → classification.
-- Segmentation models: nnU-Net, U-Net, DeepLabv3, UNet++.
+- Segmentation models: nnU-Net, U-Net, DeepLabv3.
 - Classification models: DenseNet121/201, EfficientNet-b1/b2, ResNet18/50.
 - Grad-CAM visualization for interpretability.
 
@@ -20,7 +20,6 @@ Manuscript under review.
 ## Repository layout
 - `seg-model-training/DeepLabV3Plus-Pytorch` – DeepLabv3 training code.
 - `seg-model-training/Pytorch-UNet` – U-Net training code.
-- `seg-model-training/UNetPlusPlus` – UNet++ training code (nnU-Net style pipeline).
 - `seg-model-training/nnunet` – nnU-Net training pipeline and configs.
 - `binary_classification/train.py` – ROI-based classification training (all backbones).
 - `binary_classification/heatmap.py` – Grad-CAM visualization.
@@ -51,7 +50,6 @@ Run the training scripts inside each segmentation folder:
   - Training curve example: `seg-model-training/nnunet/nnUNet_results/Dataset000_lung/nnUNetTrainer__nnUNetPlans__2d/fold_all/progress.png`
 - **U-Net**: `seg-model-training/Pytorch-UNet` (see its README).
 - **DeepLabv3**: `seg-model-training/DeepLabV3Plus-Pytorch` (see its README).
-- **UNet++**: `seg-model-training/UNetPlusPlus` (see its README).
 
 ## Data and weights
 No clinical data or labels are included.
@@ -67,7 +65,6 @@ No clinical data or labels are included.
 Please cite the original methods:
 - nnU-Net: Isensee et al., *Nature Methods*, 2021.
 - U-Net: Ronneberger et al., *MICCAI*, 2015.
-- UNet++: Zhou et al., *TMI*, 2018.
 - DeepLabv3+: Chen et al., *ECCV*, 2018.
 - DenseNet: Huang et al., *CVPR*, 2017.
 - EfficientNet: Tan & Le, *ICML*, 2019.
