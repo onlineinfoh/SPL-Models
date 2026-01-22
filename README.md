@@ -45,11 +45,11 @@ Outputs go to `binary_classification/heatmaps_tight/`.
 We use Gradient-weighted Class Activation Mapping (Grad-CAM) on the last convolutional block of each classifier backbone to visualize discriminative regions. Heatmaps are overlaid on the cropped ROI and saved per cohort for qualitative inspection. The implementation is in `binary_classification/heatmap.py`.
 
 ## Segmentation training
-Run the training scripts inside each segmentation folder:
-- **nnU-Net**: use the standard nnU-Net v2 workflow in `seg-model-training/nnunet`.
+Run the training scripts inside each segmentation folder. Detailed parameters and commands are documented in `README_SPL.md` for each model:
+- **nnU-Net**: `seg-model-training/nnunet/README_SPL.md`
   - Training curve example: `seg-model-training/nnunet/nnUNet_results/Dataset000_lung/nnUNetTrainer__nnUNetPlans__2d/fold_all/progress.png`
-- **U-Net**: `seg-model-training/Pytorch-UNet` (see its README).
-- **DeepLabv3**: `seg-model-training/DeepLabV3Plus-Pytorch` (see its README).
+- **U-Net**: `seg-model-training/Pytorch-UNet/README_SPL.md`
+- **DeepLabv3**: `seg-model-training/DeepLabV3Plus-Pytorch/README_SPL.md`
 
 ## Data and weights
 No clinical data or labels are included.
