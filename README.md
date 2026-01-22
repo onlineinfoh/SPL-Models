@@ -9,7 +9,7 @@ Manuscript under review.
 - Classification models: DenseNet121/201, EfficientNet-b1/b2, ResNet18/50.
 - Grad-CAM visualization for interpretability.
 
-## Pipeline (order of paper results)
+## Pipeline
 1. **Data preparation**: ultrasound images + lesion masks; internal split and two external test sets.
 2. **Segmentation training**: nnU-Net, U-Net, DeepLabv3, UNet++ on lesion masks.
 3. **Segmentation evaluation**: Dice, mIoU, FPR, precision, recall.
@@ -39,6 +39,9 @@ Outputs go to `binary_classification/runs/`.
 python binary_classification/heatmap.py
 ```
 Outputs go to `binary_classification/heatmaps_tight/`.
+
+## Grad-CAM method
+We use Gradient-weighted Class Activation Mapping (Grad-CAM) on the last convolutional block of each classifier backbone to visualize discriminative regions. Heatmaps are overlaid on the cropped ROI and saved per cohort for qualitative inspection. The implementation is in `binary_classification/heatmap.py`.
 
 ## Segmentation training
 Run the training scripts inside each segmentation folder:
