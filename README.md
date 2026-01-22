@@ -28,6 +28,8 @@ Manuscript under review.
 - `data/` – placeholder only (no clinical data).
 
 ## Quickstart
+All paths below are relative to the repository root.
+
 ### Classification training
 ```bash
 python binary_classification/train.py --arches densenet121 resnet50 --epochs 40 --batch-size 16
