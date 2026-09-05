@@ -5,7 +5,7 @@ the same normalization as training, but with flexible mask naming
 (supports case_XXXXX and numeric *_seg masks).
 
 Checkpoint:
-  /home/tianxi-liang/TianxiLiang/research/china/seg-model-training/Pytorch-UNet/checkpoints/checkpoint_best.pth
+  seg-model-training/Pytorch-UNet/checkpoints/checkpoint_best.pth
 
 Datasets:
   val:   new_data/val/img_v       -> seg_v

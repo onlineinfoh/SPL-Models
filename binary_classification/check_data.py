@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick sanity checker for the new data at /home/tianxi-liang/TianxiLiang/research/china/new_data.
+Quick sanity checker for the new data at data/.
 
 What it does:
 - Walks all subdirectories under new_data

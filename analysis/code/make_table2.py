@@ -32,14 +32,6 @@ COHORT_LABEL = {
     "external_test2": "External Test 2 (Center 3)",
 }
 
-# DeepLabv3+ values as printed by the original benchmark, taken from
-# binary_classification/nnunet_benchmark_results/*.txt
-PUBLISHED_DEEPLAB = {
-    "train": dict(dice=0.8562, iou=0.8010, precision=0.9118, recall=0.8451, fpr=0.1549),
-    "internal_val": dict(dice=0.8784, iou=0.8231, precision=0.9342, recall=0.8633, fpr=0.1367),
-    "external_test1": dict(dice=0.8881, iou=0.8397, precision=0.9409, recall=0.8713, fpr=0.1287),
-    "external_test2": dict(dice=0.8619, iou=0.8076, precision=0.9320, recall=0.8454, fpr=0.1546),
-}
 
 
 def fmt(mean: float, lo: float, hi: float, nd: int = 3) -> str:

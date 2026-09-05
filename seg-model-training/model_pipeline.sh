@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 set -euo pipefail
 
 PYTHON="${PYTHON:-python3}"
 
-TRAIN_SCRIPT="/home/tianxi-liang/TianxiLiang/research/china/seg-model-training/Pytorch-UNet/train.py"
-BENCH_SCRIPT="/home/tianxi-liang/TianxiLiang/research/china/seg-model-training/benchmarking/unet_benchmark.py"
+TRAIN_SCRIPT="$REPO_ROOT/seg-model-training/Pytorch-UNet/train.py"
+BENCH_SCRIPT="$REPO_ROOT/seg-model-training/benchmarking/unet_benchmark.py"
 
 # "${PYTHON}" "${TRAIN_SCRIPT}" \
 #   --epochs 450 \
@@ -13,18 +14,18 @@ BENCH_SCRIPT="/home/tianxi-liang/TianxiLiang/research/china/seg-model-training/b
 #   --size 512 \
 #   --learning-rate 5e-4 \
 #   --validation 0 \
-#   --images /home/tianxi-liang/TianxiLiang/research/china/new_data/train/imagesTr \
-#   --masks /home/tianxi-liang/TianxiLiang/research/china/new_data/train/labelsTr
+#   --images $REPO_ROOT/data/train/imagesTr \
+#   --masks $REPO_ROOT/data/train/labelsTr
 
 "${PYTHON}" "${BENCH_SCRIPT}"
 
-# "${PYTHON}" /home/tianxi-liang/TianxiLiang/research/china/seg-model-training/DeepLabV3Plus-Pytorch/main.py \
+# "${PYTHON}" $REPO_ROOT/seg-model-training/DeepLabV3Plus-Pytorch/main.py \
 #   --dataset lung \
-#   --lung_img_dir /home/tianxi-liang/TianxiLiang/research/china/new_data/train/imagesTr \
-#   --lung_mask_dir /home/tianxi-liang/TianxiLiang/research/china/new_data/train/labelsTr \
+#   --lung_img_dir $REPO_ROOT/data/train/imagesTr \
+#   --lung_mask_dir $REPO_ROOT/data/train/labelsTr \
 #   --total_itrs 100000 \
 #   --crop_size 512 \
 #   --batch_size 8 \
 #   --val_batch_size 8
 
-"${PYTHON}" /home/tianxi-liang/TianxiLiang/research/china/seg-model-training/benchmarking/deeplab_benchmark.py
+"${PYTHON}" $REPO_ROOT/seg-model-training/benchmarking/deeplab_benchmark.py

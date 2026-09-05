@@ -32,7 +32,6 @@ Cohorts: 1059 patients, one image per patient. Training 600, tuning 257 (Center 
 | `analysis/figures/` | Calibration and decision-curve figures (PDF, PNG) |
 | `analysis/logs/training_logs/` | Every training log, both runs, unedited |
 | `analysis/runs_locked/` | Per-run logs from the multi-seed sweep |
-| `test/` | Standalone evaluation utilities |
 
 ## Scripts
 

@@ -49,3 +49,8 @@ __pycache__/
 
 # Local working notes
 _private_response/
+
+# Local working files
+_private_response/
+test/
+**/*.log

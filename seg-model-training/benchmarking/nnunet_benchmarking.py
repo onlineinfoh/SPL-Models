@@ -5,7 +5,7 @@ using nnU-Net's own preprocessing (dynamic resizing) and metrics aligned with th
 Pytorch-UNet evaluation (Dice, mIoU, Precision, Recall, FPR).
 
 Checkpoint:
-  /home/tianxi-liang/TianxiLiang/research/china/seg-model-training/nnunet/nnUNet_results/Dataset000_lung/nnUNetTrainer__nnUNetPlans__2d/fold_all/checkpoint_best.pth
+  seg-model-training/nnunet/nnUNet_results/Dataset000_lung/nnUNetTrainer__nnUNetPlans__2d/fold_all/checkpoint_best.pth
 
 Datasets:
   val:   new_data/val/img_v       -> seg_v

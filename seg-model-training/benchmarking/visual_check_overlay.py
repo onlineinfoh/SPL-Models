@@ -46,7 +46,7 @@ def align_mask_to_image(image: np.ndarray, mask: np.ndarray) -> np.ndarray:
 def main():
     # Pick one val case; change these if you want a different example.
     case_id = "18_seg"
-    data_root = Path("/home/tianxi-liang/TianxiLiang/research/china/new_data")
+    data_root = Path(__file__).resolve().parents[2] / "data"
     img_path = data_root / "test1/img_test1" / f"case_00018_0000.nii.gz"
     mask_path = data_root / "test1/seg_test1" / f"{case_id}.nii.gz"
 
