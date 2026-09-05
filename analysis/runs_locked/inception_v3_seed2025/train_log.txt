@@ -1,0 +1,22 @@
+=== inception_v3 seed=2025 (internal cohort only) ===
+[inception_v3 seed2025] epoch 01 val_acc=0.6848 val_auc=0.8033
+[inception_v3 seed2025] epoch 02 val_acc=0.6342 val_auc=0.7228
+[inception_v3 seed2025] epoch 03 val_acc=0.7276 val_auc=0.8273
+[inception_v3 seed2025] epoch 04 val_acc=0.6848 val_auc=0.7358
+[inception_v3 seed2025] epoch 05 val_acc=0.6809 val_auc=0.7476
+[inception_v3 seed2025] epoch 06 val_acc=0.7043 val_auc=0.7385
+[inception_v3 seed2025] epoch 07 val_acc=0.7276 val_auc=0.8114
+[inception_v3 seed2025] epoch 08 val_acc=0.7626 val_auc=0.8498
+[inception_v3 seed2025] epoch 09 val_acc=0.6693 val_auc=0.8104
+[inception_v3 seed2025] epoch 10 val_acc=0.7121 val_auc=0.7354
+[inception_v3 seed2025] epoch 11 val_acc=0.7821 val_auc=0.8512
+[inception_v3 seed2025] epoch 12 val_acc=0.7354 val_auc=0.7770
+[inception_v3 seed2025] epoch 13 val_acc=0.7665 val_auc=0.8545
+[inception_v3 seed2025] epoch 14 val_acc=0.7315 val_auc=0.8117
+[inception_v3 seed2025] epoch 15 val_acc=0.7704 val_auc=0.8270
+[inception_v3 seed2025] epoch 16 val_acc=0.7510 val_auc=0.8189
+[inception_v3 seed2025] epoch 17 val_acc=0.7510 val_auc=0.8176
+[inception_v3 seed2025] epoch 18 val_acc=0.7432 val_auc=0.8421
+[inception_v3 seed2025] epoch 19 val_acc=0.7510 val_auc=0.8431
+early stop at epoch 19
+BEST epoch=11 val_acc=0.7821 val_auc=0.8512

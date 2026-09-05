@@ -1,0 +1,100 @@
+Iter 100 (epoch 1) validation:
+
+Overall Acc: 0.954998
+Mean Acc: 0.502367
+FreqW Acc: 0.912147
+Mean IoU: 0.479923
+Mean Dice: 0.493322
+Mean Precision: 0.790028
+Mean Recall: 0.502367
+Mean FPR: 0.497633
+Iter 200 (epoch 2) validation:
+
+Overall Acc: 0.956572
+Mean Acc: 0.537052
+FreqW Acc: 0.916593
+Mean IoU: 0.514757
+Mean Dice: 0.556977
+Mean Precision: 0.809128
+Mean Recall: 0.537052
+Mean FPR: 0.462948
+Iter 300 (epoch 2) validation:
+
+Overall Acc: 0.958306
+Mean Acc: 0.556083
+FreqW Acc: 0.919839
+Mean IoU: 0.533919
+Mean Dice: 0.588193
+Mean Precision: 0.853214
+Mean Recall: 0.556083
+Mean FPR: 0.443917
+Iter 400 (epoch 3) validation:
+
+Overall Acc: 0.962644
+Mean Acc: 0.696818
+FreqW Acc: 0.933372
+Mean IoU: 0.645049
+Mean Dice: 0.737375
+Mean Precision: 0.803420
+Mean Recall: 0.696818
+Mean FPR: 0.303182
+Iter 500 (epoch 4) validation:
+
+Overall Acc: 0.958516
+Mean Acc: 0.548408
+FreqW Acc: 0.919448
+Mean IoU: 0.527143
+Mean Dice: 0.576914
+Mean Precision: 0.902902
+Mean Recall: 0.548408
+Mean FPR: 0.451592
+Iter 600 (epoch 4) validation:
+
+Overall Acc: 0.958522
+Mean Acc: 0.549763
+FreqW Acc: 0.919562
+Mean IoU: 0.528407
+Mean Dice: 0.579014
+Mean Precision: 0.895283
+Mean Recall: 0.549763
+Mean FPR: 0.450237
+Iter 700 (epoch 5) validation:
+
+Overall Acc: 0.956915
+Mean Acc: 0.772674
+FreqW Acc: 0.929533
+Mean IoU: 0.664745
+Mean Dice: 0.760740
+Mean Precision: 0.749951
+Mean Recall: 0.772674
+Mean FPR: 0.227326
+Iter 800 (epoch 6) validation:
+
+Overall Acc: 0.961557
+Mean Acc: 0.597505
+FreqW Acc: 0.926347
+Mean IoU: 0.574595
+Mean Dice: 0.648345
+Mean Precision: 0.880718
+Mean Recall: 0.597505
+Mean FPR: 0.402495
+Iter 900 (epoch 6) validation:
+
+Overall Acc: 0.962913
+Mean Acc: 0.657436
+FreqW Acc: 0.931650
+Mean IoU: 0.621754
+Mean Dice: 0.709857
+Mean Precision: 0.829620
+Mean Recall: 0.657436
+Mean FPR: 0.342564
+Iter 1000 (epoch 7) validation:
+
+Overall Acc: 0.964165
+Mean Acc: 0.617466
+FreqW Acc: 0.930660
+Mean IoU: 0.596521
+Mean Dice: 0.677282
+Mean Precision: 0.924376
+Mean Recall: 0.617466
+Mean FPR: 0.382534

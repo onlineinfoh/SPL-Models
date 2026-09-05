@@ -1,0 +1,125 @@
+Grand summary of accuracies (threshold optimized on internal_val)
+
+=== GT masks ===
+internal_val: best densenet121 (seed 67), thr=0.5483, acc=0.8599, auc=0.9027, ap=0.9269, prec=0.8480, recall=0.9355, spec=0.7451, sens_at_spec95=0.4452, n=257
+  all:
+    densenet121 (seed 67, thr=0.5483): acc=0.8599, auc=0.9027, ap=0.9269, prec=0.8480, recall=0.9355, spec=0.7451, sens_at_spec95=0.4452, n=257
+    efficientnet_b0 (seed 67, thr=0.4797): acc=0.8444, auc=0.9123, ap=0.9424, prec=0.8443, recall=0.9097, spec=0.7451, sens_at_spec95=0.6194, n=257
+    inception_v3 (seed 67, thr=0.6052): acc=0.8366, auc=0.8851, ap=0.9101, prec=0.8844, recall=0.8387, spec=0.8333, sens_at_spec95=0.5613, n=257
+    resnet101 (seed 67, thr=0.7037): acc=0.8366, auc=0.9145, ap=0.9458, prec=0.8343, recall=0.9097, spec=0.7255, sens_at_spec95=0.6774, n=257
+    densenet201 (seed 67, thr=0.6638): acc=0.8171, auc=0.8763, ap=0.9046, prec=0.8913, recall=0.7935, spec=0.8529, sens_at_spec95=0.5032, n=257
+    efficientnet_b4 (seed 67, thr=0.5026): acc=0.8171, auc=0.8744, ap=0.9140, prec=0.8418, recall=0.8581, spec=0.7549, sens_at_spec95=0.5871, n=257
+    resnet18 (seed 67, thr=0.4659): acc=0.8054, auc=0.8536, ap=0.8905, prec=0.7933, recall=0.9161, spec=0.6373, sens_at_spec95=0.4258, n=257
+    efficientnet_b3 (seed 67, thr=0.5005): acc=0.8016, auc=0.8597, ap=0.8763, prec=0.8133, recall=0.8710, spec=0.6961, sens_at_spec95=0.3032, n=257
+    efficientnet_b1 (seed 67, thr=0.4813): acc=0.7977, auc=0.8586, ap=0.8924, prec=0.8160, recall=0.8581, spec=0.7059, sens_at_spec95=0.4258, n=257
+    efficientnet_b2 (seed 67, thr=0.5069): acc=0.7977, auc=0.8639, ap=0.8969, prec=0.8456, recall=0.8129, spec=0.7745, sens_at_spec95=0.4258, n=257
+    efficientnet_b5 (seed 67, thr=0.5073): acc=0.7782, auc=0.8514, ap=0.9068, prec=0.8267, recall=0.8000, spec=0.7451, sens_at_spec95=0.5871, n=257
+    resnet50 (seed 67, thr=0.6779): acc=0.7626, auc=0.8351, ap=0.8939, prec=0.8615, recall=0.7226, spec=0.8235, sens_at_spec95=0.4516, n=257
+    vgg19 (seed 67, thr=0.5108): acc=0.6537, auc=0.5097, ap=0.5782, prec=0.6375, recall=0.9871, spec=0.1471, sens_at_spec95=0.0258, n=257
+train: best efficientnet_b1 (seed 67), thr=0.4813, acc=0.9350, auc=0.9783, ap=0.9852, prec=0.9384, recall=0.9517, spec=0.9113, sens_at_spec95=0.9091, n=600
+  all:
+    efficientnet_b1 (seed 67, thr=0.4813): acc=0.9350, auc=0.9783, ap=0.9852, prec=0.9384, recall=0.9517, spec=0.9113, sens_at_spec95=0.9091, n=600
+    efficientnet_b2 (seed 67, thr=0.5069): acc=0.9250, auc=0.9742, ap=0.9833, prec=0.9637, recall=0.9062, spec=0.9516, sens_at_spec95=0.9062, n=600
+    densenet201 (seed 67, thr=0.6638): acc=0.9217, auc=0.9764, ap=0.9838, prec=0.9420, recall=0.9233, spec=0.9194, sens_at_spec95=0.8864, n=600
+    efficientnet_b5 (seed 67, thr=0.5073): acc=0.8833, auc=0.9616, ap=0.9722, prec=0.9434, recall=0.8523, spec=0.9274, sens_at_spec95=0.8011, n=600
+    densenet121 (seed 67, thr=0.5483): acc=0.8667, auc=0.9402, ap=0.9587, prec=0.8487, recall=0.9403, spec=0.7621, sens_at_spec95=0.7045, n=600
+    resnet18 (seed 67, thr=0.4659): acc=0.8400, auc=0.9153, ap=0.9414, prec=0.8536, recall=0.8778, spec=0.7863, sens_at_spec95=0.6790, n=600
+    resnet50 (seed 67, thr=0.6779): acc=0.8383, auc=0.9198, ap=0.9402, prec=0.8875, recall=0.8295, spec=0.8508, sens_at_spec95=0.6705, n=600
+    resnet101 (seed 67, thr=0.7037): acc=0.8350, auc=0.9118, ap=0.9345, prec=0.8410, recall=0.8864, spec=0.7621, sens_at_spec95=0.6051, n=600
+    efficientnet_b3 (seed 67, thr=0.5005): acc=0.8300, auc=0.9184, ap=0.9440, prec=0.8397, recall=0.8778, spec=0.7621, sens_at_spec95=0.6960, n=600
+    efficientnet_b0 (seed 67, thr=0.4797): acc=0.7350, auc=0.8228, ap=0.8766, prec=0.7419, recall=0.8409, spec=0.5847, sens_at_spec95=0.4290, n=600
+    efficientnet_b4 (seed 67, thr=0.5026): acc=0.6600, auc=0.7209, ap=0.7951, prec=0.7044, recall=0.7244, spec=0.5685, sens_at_spec95=0.3097, n=600
+    inception_v3 (seed 67, thr=0.6052): acc=0.6533, auc=0.7263, ap=0.7873, prec=0.7182, recall=0.6733, spec=0.6250, sens_at_spec95=0.2330, n=600
+    vgg19 (seed 67, thr=0.5108): acc=0.5883, auc=0.5083, ap=0.5874, prec=0.6044, recall=0.8636, spec=0.1976, sens_at_spec95=0.0653, n=600
+external_test1: best efficientnet_b4 (seed 67), thr=0.5026, acc=0.8426, auc=0.8857, ap=0.9076, prec=0.8462, recall=0.8871, spec=0.7826, sens_at_spec95=0.4355, n=108
+  all:
+    efficientnet_b4 (seed 67, thr=0.5026): acc=0.8426, auc=0.8857, ap=0.9076, prec=0.8462, recall=0.8871, spec=0.7826, sens_at_spec95=0.4355, n=108
+    efficientnet_b0 (seed 67, thr=0.4797): acc=0.8333, auc=0.9032, ap=0.9291, prec=0.8143, recall=0.9194, spec=0.7174, sens_at_spec95=0.5806, n=108
+    densenet201 (seed 67, thr=0.6638): acc=0.8056, auc=0.8643, ap=0.8763, prec=0.8254, recall=0.8387, spec=0.7609, sens_at_spec95=0.3548, n=108
+    inception_v3 (seed 67, thr=0.6052): acc=0.8056, auc=0.8391, ap=0.8649, prec=0.8361, recall=0.8226, spec=0.7826, sens_at_spec95=0.3226, n=108
+    densenet121 (seed 67, thr=0.5483): acc=0.7870, auc=0.8783, ap=0.9076, prec=0.7671, recall=0.9032, spec=0.6304, sens_at_spec95=0.4677, n=108
+    resnet101 (seed 67, thr=0.7037): acc=0.7778, auc=0.8573, ap=0.8858, prec=0.7639, recall=0.8871, spec=0.6304, sens_at_spec95=0.5000, n=108
+    efficientnet_b1 (seed 67, thr=0.4813): acc=0.7685, auc=0.8296, ap=0.8599, prec=0.7681, recall=0.8548, spec=0.6522, sens_at_spec95=0.4194, n=108
+    efficientnet_b5 (seed 67, thr=0.5073): acc=0.7593, auc=0.8124, ap=0.8420, prec=0.8214, recall=0.7419, spec=0.7826, sens_at_spec95=0.2742, n=108
+    resnet50 (seed 67, thr=0.6779): acc=0.7593, auc=0.8384, ap=0.8749, prec=0.8214, recall=0.7419, spec=0.7826, sens_at_spec95=0.4516, n=108
+    efficientnet_b3 (seed 67, thr=0.5005): acc=0.7500, auc=0.8327, ap=0.8792, prec=0.7612, recall=0.8226, spec=0.6522, sens_at_spec95=0.4516, n=108
+    resnet18 (seed 67, thr=0.4659): acc=0.7500, auc=0.8513, ap=0.8936, prec=0.7333, recall=0.8871, spec=0.5652, sens_at_spec95=0.4677, n=108
+    efficientnet_b2 (seed 67, thr=0.5069): acc=0.7315, auc=0.8043, ap=0.8374, prec=0.7705, recall=0.7581, spec=0.6957, sens_at_spec95=0.2903, n=108
+    vgg19 (seed 67, thr=0.5108): acc=0.6759, auc=0.7023, ap=0.7274, prec=0.6392, recall=1.0000, spec=0.2391, sens_at_spec95=0.1129, n=108
+external_test2: best resnet18 (seed 67), thr=0.4659, acc=0.8404, auc=0.8673, ap=0.9447, prec=0.8611, recall=0.9254, spec=0.6296, sens_at_spec95=0.6269, n=94
+  all:
+    resnet18 (seed 67, thr=0.4659): acc=0.8404, auc=0.8673, ap=0.9447, prec=0.8611, recall=0.9254, spec=0.6296, sens_at_spec95=0.6269, n=94
+    densenet121 (seed 67, thr=0.5483): acc=0.8085, auc=0.8773, ap=0.9525, prec=0.8182, recall=0.9403, spec=0.4815, sens_at_spec95=0.6269, n=94
+    resnet101 (seed 67, thr=0.7037): acc=0.7660, auc=0.8253, ap=0.9183, prec=0.8462, recall=0.8209, spec=0.6296, sens_at_spec95=0.4478, n=94
+    densenet201 (seed 67, thr=0.6638): acc=0.7553, auc=0.8380, ap=0.9229, prec=0.8667, recall=0.7761, spec=0.7037, sens_at_spec95=0.3881, n=94
+    efficientnet_b2 (seed 67, thr=0.5069): acc=0.7553, auc=0.8303, ap=0.9273, prec=0.8437, recall=0.8060, spec=0.6296, sens_at_spec95=0.5522, n=94
+    inception_v3 (seed 67, thr=0.6052): acc=0.7553, auc=0.8264, ap=0.9294, prec=0.8333, recall=0.8209, spec=0.5926, sens_at_spec95=0.5373, n=94
+    efficientnet_b0 (seed 67, thr=0.4797): acc=0.7447, auc=0.8248, ap=0.9131, prec=0.8413, recall=0.7910, spec=0.6296, sens_at_spec95=0.2836, n=94
+    efficientnet_b1 (seed 67, thr=0.4813): acc=0.7447, auc=0.8756, ap=0.9538, prec=0.8525, recall=0.7761, spec=0.6667, sens_at_spec95=0.7164, n=94
+    vgg19 (seed 67, thr=0.5108): acc=0.7447, auc=0.5594, ap=0.7002, prec=0.7654, recall=0.9254, spec=0.2963, sens_at_spec95=0.0000, n=94
+    efficientnet_b3 (seed 67, thr=0.5005): acc=0.7128, auc=0.6965, ap=0.8298, prec=0.8030, recall=0.7910, spec=0.5185, sens_at_spec95=0.2687, n=94
+    efficientnet_b4 (seed 67, thr=0.5026): acc=0.7021, auc=0.7214, ap=0.8485, prec=0.7910, recall=0.7910, spec=0.4815, sens_at_spec95=0.1791, n=94
+    resnet50 (seed 67, thr=0.6779): acc=0.7021, auc=0.7811, ap=0.8902, prec=0.8197, recall=0.7463, spec=0.5926, sens_at_spec95=0.3881, n=94
+    efficientnet_b5 (seed 67, thr=0.5073): acc=0.6277, auc=0.7463, ap=0.8566, prec=0.7963, recall=0.6418, spec=0.5926, sens_at_spec95=0.3731, n=94
+
+=== MODEL masks ===
+internal_val: best densenet121 (seed 67), thr=0.5000, acc=0.8560, auc=0.9056, ap=0.9331, prec=0.8642, recall=0.9032, spec=0.7843, sens_at_spec95=0.6129, n=257
+  all:
+    densenet121 (seed 67, thr=0.5000): acc=0.8560, auc=0.9056, ap=0.9331, prec=0.8642, recall=0.9032, spec=0.7843, sens_at_spec95=0.6129, n=257
+    efficientnet_b0 (seed 67, thr=0.4980): acc=0.8366, auc=0.9077, ap=0.9376, prec=0.8424, recall=0.8968, spec=0.7451, sens_at_spec95=0.5806, n=257
+    resnet101 (seed 67, thr=0.8440): acc=0.8327, auc=0.8985, ap=0.9382, prec=0.9118, recall=0.8000, spec=0.8824, sens_at_spec95=0.6452, n=257
+    efficientnet_b4 (seed 67, thr=0.5095): acc=0.8249, auc=0.8749, ap=0.8993, prec=0.8819, recall=0.8194, spec=0.8333, sens_at_spec95=0.5290, n=257
+    efficientnet_b2 (seed 67, thr=0.4835): acc=0.8210, auc=0.8757, ap=0.9093, prec=0.8865, recall=0.8065, spec=0.8431, sens_at_spec95=0.5484, n=257
+    efficientnet_b3 (seed 67, thr=0.4884): acc=0.8210, auc=0.8318, ap=0.8677, prec=0.8562, recall=0.8452, spec=0.7843, sens_at_spec95=0.2968, n=257
+    densenet201 (seed 67, thr=0.5571): acc=0.8016, auc=0.8705, ap=0.9146, prec=0.8611, recall=0.8000, spec=0.8039, sens_at_spec95=0.5806, n=257
+    inception_v3 (seed 67, thr=0.6489): acc=0.8016, auc=0.8574, ap=0.8983, prec=0.8881, recall=0.7677, spec=0.8529, sens_at_spec95=0.4774, n=257
+    resnet18 (seed 67, thr=0.5510): acc=0.7938, auc=0.8586, ap=0.9051, prec=0.8806, recall=0.7613, spec=0.8431, sens_at_spec95=0.4839, n=257
+    efficientnet_b1 (seed 67, thr=0.4799): acc=0.7821, auc=0.8525, ap=0.8846, prec=0.8194, recall=0.8194, spec=0.7255, sens_at_spec95=0.5290, n=257
+    efficientnet_b5 (seed 67, thr=0.5377): acc=0.7704, auc=0.8247, ap=0.8885, prec=0.8692, recall=0.7290, spec=0.8333, sens_at_spec95=0.4258, n=257
+    resnet50 (seed 67, thr=0.2380): acc=0.7588, auc=0.8068, ap=0.8748, prec=0.7688, recall=0.8581, spec=0.6078, sens_at_spec95=0.4645, n=257
+    vgg19 (seed 67, thr=0.5100): acc=0.6420, auc=0.5092, ap=0.5818, prec=0.6275, recall=1.0000, spec=0.0980, sens_at_spec95=0.0323, n=257
+train: best efficientnet_b1 (seed 67), thr=0.4799, acc=0.8800, auc=0.9418, ap=0.9626, prec=0.9294, recall=0.8608, spec=0.9073, sens_at_spec95=0.7670, n=600
+  all:
+    efficientnet_b1 (seed 67, thr=0.4799): acc=0.8800, auc=0.9418, ap=0.9626, prec=0.9294, recall=0.8608, spec=0.9073, sens_at_spec95=0.7670, n=600
+    efficientnet_b2 (seed 67, thr=0.4835): acc=0.8750, auc=0.9468, ap=0.9655, prec=0.9262, recall=0.8551, spec=0.9032, sens_at_spec95=0.7614, n=600
+    densenet201 (seed 67, thr=0.5571): acc=0.8267, auc=0.9218, ap=0.9402, prec=0.8780, recall=0.8182, spec=0.8387, sens_at_spec95=0.7074, n=600
+    efficientnet_b3 (seed 67, thr=0.4884): acc=0.8050, auc=0.8858, ap=0.9271, prec=0.8466, recall=0.8153, spec=0.7903, sens_at_spec95=0.6222, n=600
+    efficientnet_b5 (seed 67, thr=0.5377): acc=0.8033, auc=0.9042, ap=0.9295, prec=0.8849, recall=0.7642, spec=0.8589, sens_at_spec95=0.5994, n=600
+    resnet18 (seed 67, thr=0.5510): acc=0.7967, auc=0.8848, ap=0.9194, prec=0.8859, recall=0.7500, spec=0.8629, sens_at_spec95=0.5795, n=600
+    densenet121 (seed 67, thr=0.5000): acc=0.7833, auc=0.8607, ap=0.8987, prec=0.7891, recall=0.8608, spec=0.6734, sens_at_spec95=0.5398, n=600
+    resnet50 (seed 67, thr=0.2380): acc=0.7600, auc=0.8441, ap=0.8842, prec=0.7524, recall=0.8807, spec=0.5887, sens_at_spec95=0.5227, n=600
+    resnet101 (seed 67, thr=0.8440): acc=0.7533, auc=0.8384, ap=0.8842, prec=0.8566, recall=0.6960, spec=0.8347, sens_at_spec95=0.4489, n=600
+    efficientnet_b0 (seed 67, thr=0.4980): acc=0.7250, auc=0.8063, ap=0.8625, prec=0.7320, recall=0.8381, spec=0.5645, sens_at_spec95=0.4062, n=600
+    efficientnet_b4 (seed 67, thr=0.5095): acc=0.6500, auc=0.7109, ap=0.7921, prec=0.7040, recall=0.6960, spec=0.5847, sens_at_spec95=0.3295, n=600
+    inception_v3 (seed 67, thr=0.6489): acc=0.6450, auc=0.6992, ap=0.7613, prec=0.7439, recall=0.6023, spec=0.7056, sens_at_spec95=0.1847, n=600
+    vgg19 (seed 67, thr=0.5100): acc=0.5833, auc=0.5030, ap=0.5705, prec=0.5977, recall=0.8864, spec=0.1532, sens_at_spec95=0.0341, n=600
+external_test1: best efficientnet_b0 (seed 67), thr=0.4980, acc=0.8426, auc=0.8920, ap=0.9115, prec=0.8082, recall=0.9516, spec=0.6957, sens_at_spec95=0.5000, n=108
+  all:
+    efficientnet_b0 (seed 67, thr=0.4980): acc=0.8426, auc=0.8920, ap=0.9115, prec=0.8082, recall=0.9516, spec=0.6957, sens_at_spec95=0.5000, n=108
+    efficientnet_b1 (seed 67, thr=0.4799): acc=0.8426, auc=0.8955, ap=0.9037, prec=0.8814, recall=0.8387, spec=0.8478, sens_at_spec95=0.5000, n=108
+    densenet121 (seed 67, thr=0.5000): acc=0.8148, auc=0.8892, ap=0.9096, prec=0.8182, recall=0.8710, spec=0.7391, sens_at_spec95=0.4516, n=108
+    efficientnet_b4 (seed 67, thr=0.5095): acc=0.8148, auc=0.8731, ap=0.8728, prec=0.8281, recall=0.8548, spec=0.7609, sens_at_spec95=0.2097, n=108
+    inception_v3 (seed 67, thr=0.6489): acc=0.8056, auc=0.8678, ap=0.8899, prec=0.8727, recall=0.7742, spec=0.8478, sens_at_spec95=0.4194, n=108
+    resnet101 (seed 67, thr=0.8440): acc=0.7963, auc=0.8601, ap=0.8962, prec=0.8571, recall=0.7742, spec=0.8261, sens_at_spec95=0.4516, n=108
+    densenet201 (seed 67, thr=0.5571): acc=0.7778, auc=0.8576, ap=0.8817, prec=0.8276, recall=0.7742, spec=0.7826, sens_at_spec95=0.3387, n=108
+    efficientnet_b2 (seed 67, thr=0.4835): acc=0.7593, auc=0.8349, ap=0.8069, prec=0.8214, recall=0.7419, spec=0.7826, sens_at_spec95=0.0645, n=108
+    resnet18 (seed 67, thr=0.5510): acc=0.7500, auc=0.8387, ap=0.8606, prec=0.8070, recall=0.7419, spec=0.7609, sens_at_spec95=0.4032, n=108
+    resnet50 (seed 67, thr=0.2380): acc=0.7315, auc=0.8022, ap=0.8636, prec=0.7324, recall=0.8387, spec=0.5870, sens_at_spec95=0.4516, n=108
+    efficientnet_b3 (seed 67, thr=0.4884): acc=0.6852, auc=0.7661, ap=0.8196, prec=0.7333, recall=0.7097, spec=0.6522, sens_at_spec95=0.3065, n=108
+    efficientnet_b5 (seed 67, thr=0.5377): acc=0.6852, auc=0.7637, ap=0.8093, prec=0.7692, recall=0.6452, spec=0.7391, sens_at_spec95=0.3710, n=108
+    vgg19 (seed 67, thr=0.5100): acc=0.6574, auc=0.6480, ap=0.6780, prec=0.6263, recall=1.0000, spec=0.1957, sens_at_spec95=0.0968, n=108
+external_test2: best densenet121 (seed 67), thr=0.5000, acc=0.8191, auc=0.8646, ap=0.9449, prec=0.8676, recall=0.8806, spec=0.6667, sens_at_spec95=0.5522, n=94
+  all:
+    densenet121 (seed 67, thr=0.5000): acc=0.8191, auc=0.8646, ap=0.9449, prec=0.8676, recall=0.8806, spec=0.6667, sens_at_spec95=0.5522, n=94
+    resnet101 (seed 67, thr=0.8440): acc=0.7447, auc=0.8049, ap=0.9084, prec=0.8772, recall=0.7463, spec=0.7407, sens_at_spec95=0.4179, n=94
+    efficientnet_b0 (seed 67, thr=0.4980): acc=0.7340, auc=0.8082, ap=0.9071, prec=0.8182, recall=0.8060, spec=0.5556, sens_at_spec95=0.3881, n=94
+    resnet18 (seed 67, thr=0.5510): acc=0.7340, auc=0.8491, ap=0.9378, prec=0.8889, recall=0.7164, spec=0.7778, sens_at_spec95=0.5821, n=94
+    densenet201 (seed 67, thr=0.5571): acc=0.7234, auc=0.7999, ap=0.8976, prec=0.8475, recall=0.7463, spec=0.6667, sens_at_spec95=0.2537, n=94
+    efficientnet_b1 (seed 67, thr=0.4799): acc=0.7234, auc=0.7955, ap=0.9135, prec=0.8596, recall=0.7313, spec=0.7037, sens_at_spec95=0.4776, n=94
+    efficientnet_b2 (seed 67, thr=0.4835): acc=0.7234, auc=0.7899, ap=0.9043, prec=0.8727, recall=0.7164, spec=0.7407, sens_at_spec95=0.3284, n=94
+    efficientnet_b4 (seed 67, thr=0.5095): acc=0.7128, auc=0.6750, ap=0.8128, prec=0.7941, recall=0.8060, spec=0.4815, sens_at_spec95=0.0597, n=94
+    vgg19 (seed 67, thr=0.5100): acc=0.7128, auc=0.5666, ap=0.7216, prec=0.7381, recall=0.9254, spec=0.1852, sens_at_spec95=0.0000, n=94
+    inception_v3 (seed 67, thr=0.6489): acc=0.7021, auc=0.7955, ap=0.9118, prec=0.8421, recall=0.7164, spec=0.6667, sens_at_spec95=0.3582, n=94
+    resnet50 (seed 67, thr=0.2380): acc=0.7021, auc=0.7253, ap=0.8729, prec=0.7746, recall=0.8209, spec=0.4074, sens_at_spec95=0.3134, n=94
+    efficientnet_b3 (seed 67, thr=0.4884): acc=0.6915, auc=0.7501, ap=0.8566, prec=0.8167, recall=0.7313, spec=0.5926, sens_at_spec95=0.1940, n=94
+    efficientnet_b5 (seed 67, thr=0.5377): acc=0.6915, auc=0.7142, ap=0.8786, prec=0.8800, recall=0.6567, spec=0.7778, sens_at_spec95=0.3284, n=94

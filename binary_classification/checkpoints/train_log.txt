@@ -1,0 +1,1 @@
+epoch	lr	train_dice	train_mIoU	train_precision	train_recall	train_fpr	val_dice(train)	val_mIoU(train)	val_precision(train)	val_recall(train)	val_fpr(train)

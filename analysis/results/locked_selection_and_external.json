@@ -1,0 +1,131 @@
+{
+  "environment": {
+    "timestamp_utc": "2026-09-04T21:26:39.499701+00:00",
+    "python": "3.11.14",
+    "platform": "Linux-6.17.0-29-generic-x86_64-with-glibc2.39",
+    "torch": "2.13.0+cu126",
+    "torchvision": "0.28.0+cu126",
+    "numpy": "1.26.4",
+    "sklearn": "1.9.0",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cudnn_deterministic": false
+  },
+  "arch_ranking_internal_only": [
+    {
+      "arch": "efficientnet_b0",
+      "mean_val_acc": 0.8404669260373359,
+      "sd": 0.022239206483547432,
+      "n_seeds": 3
+    },
+    {
+      "arch": "efficientnet_b1",
+      "mean_val_acc": 0.8378728923149984,
+      "sd": 0.015014055645058125,
+      "n_seeds": 3
+    },
+    {
+      "arch": "efficientnet_b2",
+      "mean_val_acc": 0.8365758754538297,
+      "sd": 0.013848350520902537,
+      "n_seeds": 3
+    },
+    {
+      "arch": "efficientnet_b4",
+      "mean_val_acc": 0.8365758754538297,
+      "sd": 0.008405629958697381,
+      "n_seeds": 3
+    },
+    {
+      "arch": "densenet121",
+      "mean_val_acc": 0.835278858592661,
+      "sd": 0.017497714089114262,
+      "n_seeds": 3
+    },
+    {
+      "arch": "efficientnet_b3",
+      "mean_val_acc": 0.8236057068421424,
+      "sd": 0.021153704837439027,
+      "n_seeds": 3
+    },
+    {
+      "arch": "resnet50",
+      "mean_val_acc": 0.8106355382304552,
+      "sd": 0.03843199063411825,
+      "n_seeds": 3
+    },
+    {
+      "arch": "inception_v3",
+      "mean_val_acc": 0.8028534370634427,
+      "sd": 0.017497714089114304,
+      "n_seeds": 3
+    },
+    {
+      "arch": "resnet18",
+      "mean_val_acc": 0.8002594033411053,
+      "sd": 0.006613514284558219,
+      "n_seeds": 3
+    },
+    {
+      "arch": "densenet201",
+      "mean_val_acc": 0.8002594033411053,
+      "sd": 0.029519602273147205,
+      "n_seeds": 3
+    },
+    {
+      "arch": "resnet101",
+      "mean_val_acc": 0.787289234729418,
+      "sd": 0.011157360916612073,
+      "n_seeds": 3
+    },
+    {
+      "arch": "efficientnet_b5",
+      "mean_val_acc": 0.7691309986730558,
+      "sd": 0.019411970877449294,
+      "n_seeds": 3
+    },
+    {
+      "arch": "vgg19",
+      "mean_val_acc": 0.7535667963390312,
+      "sd": 0.011157360916612073,
+      "n_seeds": 3
+    }
+  ],
+  "selected_arch": "efficientnet_b0",
+  "selected_seed": 67,
+  "external_evaluation_after_lock": {
+    "internal_val": {
+      "auc": 0.9205566097406703,
+      "ap": 0.9487367461355867,
+      "acc": 0.8599221789548668,
+      "prec": 0.8695652173372941,
+      "recall": 0.9032258063933403,
+      "spec": 0.7941176469809689,
+      "ppv": 0.8695652173372941,
+      "npv": 0.8437499999121094,
+      "sens_at_spec95": 0.6774193548387096
+    },
+    "external_test1": {
+      "auc": 0.8930575035063114,
+      "ap": 0.9251949743286343,
+      "acc": 0.7777777777057614,
+      "prec": 0.7714285713183674,
+      "recall": 0.8709677417950052,
+      "spec": 0.6521739129017013,
+      "ppv": 0.7714285713183674,
+      "npv": 0.7894736840027701,
+      "sens_at_spec95": 0.6612903225806451
+    },
+    "external_test2": {
+      "auc": 0.8717523493642897,
+      "ap": 0.9451339382789191,
+      "acc": 0.7872340424694433,
+      "prec": 0.8405797100231045,
+      "recall": 0.8656716416618402,
+      "spec": 0.5925925923731138,
+      "ppv": 0.8405797100231045,
+      "npv": 0.639999999744,
+      "sens_at_spec95": 0.5970149253731343
+    }
+  }
+}

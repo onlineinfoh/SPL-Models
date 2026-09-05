@@ -1,0 +1,10 @@
+{
+  "n_architectures": 13,
+  "retained_equals_internal_argmax": 13,
+  "retained_equals_ext1_argmax": 3,
+  "retained_equals_ext2_argmax": 3,
+  "mean_ext1_auc_forgone": 0.04483076923076923,
+  "mean_ext2_auc_forgone": 0.05275384615384615,
+  "sweep_logs_scanned": 39,
+  "external_metric_mentions": 0
+}

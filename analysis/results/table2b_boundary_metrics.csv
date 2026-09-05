@@ -1,0 +1,25 @@
+Cohort,Model,Metric,n_evaluable,n_undefined,Median,IQR,Mean,Mean_95CI_bootstrap,p95,Max
+Development/tuning (Center 1),nnU-Net,HD95,257,0,23.0,14.87-39.18,35.65,31.01-40.91,110.89,465.92
+Development/tuning (Center 1),nnU-Net,ASSD,257,0,6.89,5.01-10.41,9.81,8.47-11.67,22.28,199.45
+Development/tuning (Center 1),DeepLabv3+,HD95,250,7,55.47,29.90-96.97,75.23,67.50-83.75,205.7,449.79
+Development/tuning (Center 1),DeepLabv3+,ASSD,250,7,17.08,10.41-28.20,24.44,21.55-28.04,62.42,251.87
+Development/tuning (Center 1),U-Net,HD95,257,0,83.1,43.84-142.39,100.93,92.32-109.60,236.9,415.77
+Development/tuning (Center 1),U-Net,ASSD,257,0,23.27,14.70-41.64,30.85,27.98-33.67,73.62,183.74
+External Test 1 (Center 2),nnU-Net,HD95,108,0,18.53,12.30-32.90,30.35,23.98-38.70,98.85,300.83
+External Test 1 (Center 2),nnU-Net,ASSD,108,0,5.85,4.14-9.13,8.25,6.78-10.20,19.95,78.78
+External Test 1 (Center 2),DeepLabv3+,HD95,105,3,34.21,22.83-58.73,52.75,42.85-63.99,156.14,328.39
+External Test 1 (Center 2),DeepLabv3+,ASSD,105,3,10.9,7.28-19.05,17.81,14.21-22.11,57.92,129.78
+External Test 1 (Center 2),U-Net,HD95,107,1,75.2,32.54-130.74,91.87,79.41-105.64,216.2,341.46
+External Test 1 (Center 2),U-Net,ASSD,107,1,23.88,12.48-36.22,28.93,24.47-34.22,65.25,158.79
+External Test 2 (Center 3),nnU-Net,HD95,94,0,25.89,16.54-42.42,35.0,29.87-40.47,94.93,117.67
+External Test 2 (Center 3),nnU-Net,ASSD,94,0,7.72,5.48-11.24,10.2,8.85-11.68,24.79,32.72
+External Test 2 (Center 3),DeepLabv3+,HD95,92,2,55.72,31.75-89.91,81.92,65.50-100.26,250.14,554.0
+External Test 2 (Center 3),DeepLabv3+,ASSD,92,2,19.25,10.32-31.87,34.51,23.72-48.08,115.11,494.65
+External Test 2 (Center 3),U-Net,HD95,94,0,99.08,59.27-143.80,109.24,97.13-123.45,225.77,403.2
+External Test 2 (Center 3),U-Net,ASSD,94,0,28.2,18.16-43.14,33.99,29.51-39.67,75.02,207.0
+Training (model fit),nnU-Net,HD95,600,0,4.0,3.16-5.00,5.76,4.65-7.42,9.15,390.85
+Training (model fit),nnU-Net,ASSD,600,0,1.46,1.19-1.84,1.73,1.62-1.87,3.03,25.94
+Training (model fit),DeepLabv3+,HD95,573,27,49.4,30.02-89.01,70.3,65.23-75.54,183.59,554.81
+Training (model fit),DeepLabv3+,ASSD,573,27,17.08,10.02-28.51,24.46,22.30-26.85,69.64,330.56
+Training (model fit),U-Net,HD95,597,3,83.23,46.56-137.28,100.63,95.38-106.29,244.02,454.57
+Training (model fit),U-Net,ASSD,597,3,25.83,15.36-42.85,32.88,30.86-35.09,80.32,256.95

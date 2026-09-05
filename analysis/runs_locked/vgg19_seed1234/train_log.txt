@@ -1,0 +1,13 @@
+=== vgg19 seed=1234 (internal cohort only) ===
+[vgg19 seed1234] epoch 01 val_acc=0.6031 val_auc=0.8342
+[vgg19 seed1234] epoch 02 val_acc=0.7665 val_auc=0.8343
+[vgg19 seed1234] epoch 03 val_acc=0.4553 val_auc=0.8460
+[vgg19 seed1234] epoch 04 val_acc=0.3969 val_auc=0.7734
+[vgg19 seed1234] epoch 05 val_acc=0.6965 val_auc=0.8545
+[vgg19 seed1234] epoch 06 val_acc=0.6031 val_auc=0.7743
+[vgg19 seed1234] epoch 07 val_acc=0.3969 val_auc=0.7523
+[vgg19 seed1234] epoch 08 val_acc=0.6031 val_auc=0.8238
+[vgg19 seed1234] epoch 09 val_acc=0.6031 val_auc=0.2898
+[vgg19 seed1234] epoch 10 val_acc=0.6031 val_auc=0.3625
+early stop at epoch 10
+BEST epoch=2 val_acc=0.7665 val_auc=0.8343

@@ -1,0 +1,4 @@
+cohort,n,n_malignant,n_benign,AUC,AUC_95CI,AUC_half_width,sensitivity,sens_95CI,sens_half_width,specificity,spec_95CI,spec_half_width,n_malignant_needed_for_sens_hw_0.05,n_benign_needed_for_spec_hw_0.05,n_benign_needed_for_spec_hw_0.10
+Development/tuning (Center 1),257,155,102,0.9056,0.866-0.940,0.0367,0.9032,0.846-0.940,0.047,0.7843,0.695-0.853,0.079,135,260,65
+External Test 1 (Center 2),108,62,46,0.8892,0.820-0.944,0.0619,0.871,0.766-0.933,0.0838,0.7391,0.597-0.844,0.1233,173,297,75
+External Test 2 (Center 3),94,67,27,0.8646,0.782-0.933,0.0757,0.8806,0.782-0.938,0.0783,0.6667,0.478-0.814,0.1677,162,342,86

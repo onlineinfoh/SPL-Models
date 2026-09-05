@@ -1,0 +1,12 @@
+=== densenet121 seed=67 (internal cohort only) ===
+[densenet121 seed67] epoch 01 val_acc=0.8599 val_auc=0.9274
+[densenet121 seed67] epoch 02 val_acc=0.7043 val_auc=0.7963
+[densenet121 seed67] epoch 03 val_acc=0.5603 val_auc=0.7220
+[densenet121 seed67] epoch 04 val_acc=0.7198 val_auc=0.7987
+[densenet121 seed67] epoch 05 val_acc=0.7354 val_auc=0.7963
+[densenet121 seed67] epoch 06 val_acc=0.7276 val_auc=0.8114
+[densenet121 seed67] epoch 07 val_acc=0.6926 val_auc=0.8270
+[densenet121 seed67] epoch 08 val_acc=0.7354 val_auc=0.8049
+[densenet121 seed67] epoch 09 val_acc=0.7082 val_auc=0.8021
+early stop at epoch 9
+BEST epoch=1 val_acc=0.8599 val_auc=0.9274

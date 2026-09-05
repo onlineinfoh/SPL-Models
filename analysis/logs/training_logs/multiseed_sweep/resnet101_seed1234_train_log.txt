@@ -1,0 +1,21 @@
+=== resnet101 seed=1234 (internal cohort only) ===
+[resnet101 seed1234] epoch 01 val_acc=0.7043 val_auc=0.8809
+[resnet101 seed1234] epoch 02 val_acc=0.7665 val_auc=0.8651
+[resnet101 seed1234] epoch 03 val_acc=0.6187 val_auc=0.6995
+[resnet101 seed1234] epoch 04 val_acc=0.6887 val_auc=0.9037
+[resnet101 seed1234] epoch 05 val_acc=0.5409 val_auc=0.7051
+[resnet101 seed1234] epoch 06 val_acc=0.7160 val_auc=0.8066
+[resnet101 seed1234] epoch 07 val_acc=0.7315 val_auc=0.8359
+[resnet101 seed1234] epoch 08 val_acc=0.7237 val_auc=0.7915
+[resnet101 seed1234] epoch 09 val_acc=0.7198 val_auc=0.7876
+[resnet101 seed1234] epoch 10 val_acc=0.7860 val_auc=0.8720
+[resnet101 seed1234] epoch 11 val_acc=0.6420 val_auc=0.7147
+[resnet101 seed1234] epoch 12 val_acc=0.7432 val_auc=0.8126
+[resnet101 seed1234] epoch 13 val_acc=0.7198 val_auc=0.7195
+[resnet101 seed1234] epoch 14 val_acc=0.7160 val_auc=0.8120
+[resnet101 seed1234] epoch 15 val_acc=0.6615 val_auc=0.7842
+[resnet101 seed1234] epoch 16 val_acc=0.7510 val_auc=0.8190
+[resnet101 seed1234] epoch 17 val_acc=0.7004 val_auc=0.7824
+[resnet101 seed1234] epoch 18 val_acc=0.7004 val_auc=0.7710
+early stop at epoch 18
+BEST epoch=10 val_acc=0.7860 val_auc=0.8720

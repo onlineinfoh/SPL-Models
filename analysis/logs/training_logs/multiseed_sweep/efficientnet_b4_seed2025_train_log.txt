@@ -1,0 +1,17 @@
+=== efficientnet_b4 seed=2025 (internal cohort only) ===
+[efficientnet_b4 seed2025] epoch 01 val_acc=0.6381 val_auc=0.6247
+[efficientnet_b4 seed2025] epoch 02 val_acc=0.6848 val_auc=0.8164
+[efficientnet_b4 seed2025] epoch 03 val_acc=0.7860 val_auc=0.8778
+[efficientnet_b4 seed2025] epoch 04 val_acc=0.8132 val_auc=0.8878
+[efficientnet_b4 seed2025] epoch 05 val_acc=0.8249 val_auc=0.8984
+[efficientnet_b4 seed2025] epoch 06 val_acc=0.8405 val_auc=0.9089
+[efficientnet_b4 seed2025] epoch 07 val_acc=0.8171 val_auc=0.9151
+[efficientnet_b4 seed2025] epoch 08 val_acc=0.8132 val_auc=0.9102
+[efficientnet_b4 seed2025] epoch 09 val_acc=0.7432 val_auc=0.8541
+[efficientnet_b4 seed2025] epoch 10 val_acc=0.7588 val_auc=0.8655
+[efficientnet_b4 seed2025] epoch 11 val_acc=0.8016 val_auc=0.9073
+[efficientnet_b4 seed2025] epoch 12 val_acc=0.8210 val_auc=0.9075
+[efficientnet_b4 seed2025] epoch 13 val_acc=0.7782 val_auc=0.8854
+[efficientnet_b4 seed2025] epoch 14 val_acc=0.7510 val_auc=0.8508
+early stop at epoch 14
+BEST epoch=6 val_acc=0.8405 val_auc=0.9089

@@ -1,0 +1,16 @@
+=== resnet101 seed=2025 (internal cohort only) ===
+[resnet101 seed2025] epoch 01 val_acc=0.5837 val_auc=0.7839
+[resnet101 seed2025] epoch 02 val_acc=0.7121 val_auc=0.8360
+[resnet101 seed2025] epoch 03 val_acc=0.6732 val_auc=0.7873
+[resnet101 seed2025] epoch 04 val_acc=0.6070 val_auc=0.6576
+[resnet101 seed2025] epoch 05 val_acc=0.8016 val_auc=0.8794
+[resnet101 seed2025] epoch 06 val_acc=0.5486 val_auc=0.8058
+[resnet101 seed2025] epoch 07 val_acc=0.7121 val_auc=0.7679
+[resnet101 seed2025] epoch 08 val_acc=0.6537 val_auc=0.7834
+[resnet101 seed2025] epoch 09 val_acc=0.7315 val_auc=0.8073
+[resnet101 seed2025] epoch 10 val_acc=0.7082 val_auc=0.7154
+[resnet101 seed2025] epoch 11 val_acc=0.6848 val_auc=0.7934
+[resnet101 seed2025] epoch 12 val_acc=0.7043 val_auc=0.7825
+[resnet101 seed2025] epoch 13 val_acc=0.7821 val_auc=0.8366
+early stop at epoch 13
+BEST epoch=5 val_acc=0.8016 val_auc=0.8794

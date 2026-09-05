@@ -1,0 +1,20 @@
+=== vgg19 seed=67 (internal cohort only) ===
+[vgg19 seed67] epoch 01 val_acc=0.7276 val_auc=0.7825
+[vgg19 seed67] epoch 02 val_acc=0.6031 val_auc=0.3987
+[vgg19 seed67] epoch 03 val_acc=0.6031 val_auc=0.8385
+[vgg19 seed67] epoch 04 val_acc=0.6031 val_auc=0.8345
+[vgg19 seed67] epoch 05 val_acc=0.6420 val_auc=0.6192
+[vgg19 seed67] epoch 06 val_acc=0.6031 val_auc=0.5590
+[vgg19 seed67] epoch 07 val_acc=0.6031 val_auc=0.5348
+[vgg19 seed67] epoch 08 val_acc=0.3969 val_auc=0.5287
+[vgg19 seed67] epoch 09 val_acc=0.7393 val_auc=0.8261
+[vgg19 seed67] epoch 10 val_acc=0.6615 val_auc=0.6403
+[vgg19 seed67] epoch 11 val_acc=0.6031 val_auc=0.7536
+[vgg19 seed67] epoch 12 val_acc=0.6031 val_auc=0.5295
+[vgg19 seed67] epoch 13 val_acc=0.6031 val_auc=0.6744
+[vgg19 seed67] epoch 14 val_acc=0.6031 val_auc=0.5334
+[vgg19 seed67] epoch 15 val_acc=0.6031 val_auc=0.5500
+[vgg19 seed67] epoch 16 val_acc=0.6031 val_auc=0.6082
+[vgg19 seed67] epoch 17 val_acc=0.6031 val_auc=0.5384
+early stop at epoch 17
+BEST epoch=9 val_acc=0.7393 val_auc=0.8261

@@ -1,0 +1,1 @@
+NONE - all cohort sizes, class counts, and integrity checks passed.

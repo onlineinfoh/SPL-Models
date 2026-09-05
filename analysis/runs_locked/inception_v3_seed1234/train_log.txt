@@ -1,0 +1,13 @@
+=== inception_v3 seed=1234 (internal cohort only) ===
+[inception_v3 seed1234] epoch 01 val_acc=0.6576 val_auc=0.7776
+[inception_v3 seed1234] epoch 02 val_acc=0.8249 val_auc=0.9097
+[inception_v3 seed1234] epoch 03 val_acc=0.7121 val_auc=0.7886
+[inception_v3 seed1234] epoch 04 val_acc=0.7782 val_auc=0.8551
+[inception_v3 seed1234] epoch 05 val_acc=0.7938 val_auc=0.8786
+[inception_v3 seed1234] epoch 06 val_acc=0.7588 val_auc=0.8421
+[inception_v3 seed1234] epoch 07 val_acc=0.6576 val_auc=0.6855
+[inception_v3 seed1234] epoch 08 val_acc=0.7743 val_auc=0.8546
+[inception_v3 seed1234] epoch 09 val_acc=0.7393 val_auc=0.8128
+[inception_v3 seed1234] epoch 10 val_acc=0.7432 val_auc=0.8091
+early stop at epoch 10
+BEST epoch=2 val_acc=0.8249 val_auc=0.9097

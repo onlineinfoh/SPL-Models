@@ -1,42 +1,51 @@
-# data and labels
+# Patient data. Available on reasonable request, see data/README.md
 data/*
 !data/README.md
 binary_classification/labels/*
-binary_classification/build_labels.py
-binary_classification/check_data.py
-binary_classification/infer_probs_tight.py
-binary_classification/run_tight_pipeline.sh
+tmp_test_latest_external/
+test/tmp_in/
+test/tmp_out/
+test/gt/
+test/benign/
+test/malignant/
+.tmp/
 
-# environments and caches
-nnunet-env/
-nnunet_v1/
-nnUNet/
-seg-model-training/UNetPlusPlus/
-__pycache__/
-*.pyc
-
-# generated outputs
-binary_classification/runs/*
-!binary_classification/runs/.gitkeep
-binary_classification/heatmaps_tight/
-binary_classification/predictions_tight/
-binary_classification/nnunet_benchmark_results/
-binary_classification/checkpoints/
-binary_classification/wandb/
-seg-model-training/benchmarking/wandb/
-seg-model-training/benchmarking/deeplab_benchmark.py
-seg-model-training/benchmarking/inspect_slice_loading.py
-seg-model-training/benchmarking/unet_benchmark.py
-seg-model-training/benchmarking/nnunet_benchmarking.py
-seg-model-training/benchmarking/visual_check_overlay.py
-seg-model-training/model_pipeline.sh
-
-# checkpoints and weights
-**/checkpoints/
+# Model weights. Distributed as release assets; SHA256 in
+# analysis/checkpoint_manifest.json
 **/*.pth
 **/*.pt
 **/*.ckpt
+release_assets/
 
-# logs
-**/*.log
-log.txt
+# Generated image outputs and intermediate arrays, regenerable from the scripts
+analysis/masks_locked/
+binary_classification/heatmaps_tight/
+seg-model-training/nnunet/nnUNet_raw*/
+seg-model-training/nnunet/nnUNet_preprocessed/
+seg-model-training/nnunet/nnUNet_cropped_data/
+
+# nnU-Net training output: keep the configuration, training log and progress
+# curve; exclude the per-case validation predictions (1.5 GB)
+seg-model-training/nnunet/nnUNet_results/**/validation/
+seg-model-training/nnunet/nnUNet_results/**/*.npz
+seg-model-training/nnunet/nnUNet_results/**/*.npy
+seg-model-training/nnunet/nnUNet_results/**/*.nii.gz
+seg-model-training/nnunet/nnUNet_results/**/*.pkl
+
+# Third-party framework source trees. Versions pinned in
+# analysis/environment_lock.txt
+nnUNet/
+seg-model-training/UNetPlusPlus/
+seg-model-training/Pytorch-UNet/
+seg-model-training/DeepLabV3Plus-Pytorch/
+!seg-model-training/*/README_SPL.md
+
+# Environments and caches
+nnunet-env/
+nnunet_v1/
+__pycache__/
+*.pyc
+**/wandb/
+
+# Local working notes
+_private_response/
