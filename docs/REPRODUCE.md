@@ -100,6 +100,14 @@ invalid; what was flawed is the checkpoint selection behind them.
 
 ## Stage 2: classification
 
+**Reported automatic-mask results use the retrained nnU-Net masks.** Table 3's
+automatic-mask rows are computed with `predicted_masks_v2/`, the same masks
+behind the revised Table 2, so the two tables describe one segmentation model.
+Center 3 automatic-mask AUC moves from 0.865 to 0.826 as a result; the other two
+cohorts are unchanged to three decimal places. The manual-mask rows are
+unaffected, since manual masks do not depend on the segmentation model.
+
+
 | Reported artifact | Script | Inputs | Output | Status |
 |---|---|---|---|---|
 | Architecture sweep, 13 x 3 seeds | `protocol/run_protocol.py train` | train 600, internal_val 257 | `protocol/results/internal_sweep.json` | **CURRENT** |
