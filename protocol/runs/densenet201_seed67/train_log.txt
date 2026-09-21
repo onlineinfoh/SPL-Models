@@ -1,0 +1,20 @@
+=== densenet201 seed=67 :: training + internal_val ONLY ===
+=== external cohorts gated; see protocol/gate_audit.jsonl ===
+[densenet201 seed67] epoch 01 val_acc=0.7198 val_auc=0.8701
+[densenet201 seed67] epoch 02 val_acc=0.6420 val_auc=0.7438
+[densenet201 seed67] epoch 03 val_acc=0.7471 val_auc=0.8223
+[densenet201 seed67] epoch 04 val_acc=0.7471 val_auc=0.7858
+[densenet201 seed67] epoch 05 val_acc=0.6732 val_auc=0.7653
+[densenet201 seed67] epoch 06 val_acc=0.7432 val_auc=0.8119
+[densenet201 seed67] epoch 07 val_acc=0.7121 val_auc=0.8973
+[densenet201 seed67] epoch 08 val_acc=0.7276 val_auc=0.8808
+[densenet201 seed67] epoch 09 val_acc=0.6304 val_auc=0.7165
+[densenet201 seed67] epoch 10 val_acc=0.7276 val_auc=0.8150
+[densenet201 seed67] epoch 11 val_acc=0.7899 val_auc=0.8541
+[densenet201 seed67] epoch 12 val_acc=0.7588 val_auc=0.7948
+[densenet201 seed67] epoch 13 val_acc=0.6887 val_auc=0.7719
+[densenet201 seed67] epoch 14 val_acc=0.7082 val_auc=0.7846
+[densenet201 seed67] epoch 15 val_acc=0.7198 val_auc=0.7682
+early stop at epoch 15
+BEST epoch=7 val_acc=0.7121 val_auc=0.8973
+SELECTION_STAT auc=0.897343 acc_at_opt_thr=0.824903 opt_thr=0.842790 acc_at_0.5=0.712062

@@ -20,7 +20,7 @@ import pandas as pd
 
 import common as C
 
-ARCH = "densenet121"
+ARCH = C.ARCH   # SPL_ARCH env var; defaults to densenet121 (superseded run)
 POLICIES = ["fixed_0.5", "max_accuracy", "youden_J"]
 
 
@@ -107,6 +107,13 @@ def main():
     arch_rows = []
     for variant in C.VARIANTS:
         for a in C.ARCHS:
+            # The locked prediction source contains only the selected model:
+            # under the hold-out protocol no other architecture is scored
+            # outside the internal sweep. Skip what is not present rather than
+            # failing, so this runs against both the superseded and the locked
+            # sources.
+            if not C.pred_path(a, "internal_val", variant).exists():
+                continue
             y, p = C.get_y_p(a, "internal_val", variant)
             ta = C.threshold_max_accuracy(y, p, prefer=0.5)
             ty = C.threshold_youden(y, p, prefer=0.5)

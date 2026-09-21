@@ -1,4 +1,15 @@
 #!/usr/bin/env python3
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# The 224 px inference path. The locked pipeline runs 300 px at both training
+# and inference. Replaced by analysis/code/export_locked_predictions.py.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 """
 Run inference with the tight ROI 2-channel ResNet-18 model and dump probabilities.
 
@@ -22,7 +33,14 @@ import nibabel as nib
 from sklearn.metrics import roc_auc_score, average_precision_score, roc_curve
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_CROP = ROOT / "new_data"
+# Was ROOT / "new_data", a directory that no longer exists, so this script could
+# not run as deposited. The cohort was renamed to data/; the two are the same
+# images. Verified by reloading runs/densenet121/best.pth and re-running this
+# inference path against data/: all 918 predictions across internal_val,
+# external_test1 and external_test2 reproduce the committed files in
+# predictions_tight/ to within 2.3e-4 (mean 2e-6), i.e. GPU non-determinism.
+# See analysis/code/verify_predictions_reproduce.py.
+DATA_CROP = ROOT / "data"
 LABEL_DIR = ROOT / "binary_classification" / "labels"
 ARCHES = [
     "inception_v3", "vgg19",

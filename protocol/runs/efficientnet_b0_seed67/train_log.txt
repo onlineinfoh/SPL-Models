@@ -1,0 +1,17 @@
+=== efficientnet_b0 seed=67 :: training + internal_val ONLY ===
+=== external cohorts gated; see protocol/gate_audit.jsonl ===
+[efficientnet_b0 seed67] epoch 01 val_acc=0.6732 val_auc=0.6986
+[efficientnet_b0 seed67] epoch 02 val_acc=0.7899 val_auc=0.8786
+[efficientnet_b0 seed67] epoch 03 val_acc=0.8560 val_auc=0.9356
+[efficientnet_b0 seed67] epoch 04 val_acc=0.8716 val_auc=0.9454
+[efficientnet_b0 seed67] epoch 05 val_acc=0.8249 val_auc=0.8987
+[efficientnet_b0 seed67] epoch 06 val_acc=0.8171 val_auc=0.9261
+[efficientnet_b0 seed67] epoch 07 val_acc=0.7665 val_auc=0.8532
+[efficientnet_b0 seed67] epoch 08 val_acc=0.7821 val_auc=0.8777
+[efficientnet_b0 seed67] epoch 09 val_acc=0.8405 val_auc=0.9120
+[efficientnet_b0 seed67] epoch 10 val_acc=0.7315 val_auc=0.8313
+[efficientnet_b0 seed67] epoch 11 val_acc=0.7977 val_auc=0.8972
+[efficientnet_b0 seed67] epoch 12 val_acc=0.7977 val_auc=0.8685
+early stop at epoch 12
+BEST epoch=4 val_acc=0.8716 val_auc=0.9454
+SELECTION_STAT auc=0.945414 acc_at_opt_thr=0.887160 opt_thr=0.426287 acc_at_0.5=0.871595

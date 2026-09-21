@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# One of three per-model benchmark scripts that do not share a metric
+# definition. Its metrics are macro-averaged over background and lesion, so its
+# FPR column is not a false positive rate. Replaced by seg_metrics_engine.py.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 """
 Benchmark trained DeepLabV3+ (mobilenet) checkpoint on the lung dataset splits.
 

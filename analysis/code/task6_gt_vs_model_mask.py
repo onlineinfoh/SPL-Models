@@ -20,7 +20,7 @@ from sklearn.metrics import roc_auc_score, average_precision_score
 
 import common as C
 
-ARCH = "densenet121"
+ARCH = C.ARCH   # SPL_ARCH env var; defaults to densenet121 (superseded run)
 
 
 def main():

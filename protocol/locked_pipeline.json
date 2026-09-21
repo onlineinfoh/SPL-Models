@@ -1,0 +1,177 @@
+{
+  "protocol": "protocol/analysis_plan_v1.yaml",
+  "protocol_sha256": "63f754cfa9379cb927cc4c230f68a4b86398f85c4d4653cac6e8afad2e8516a5",
+  "selection_rule": "argmax internal_val AUC, all 13 architectures, primary seed; ties broken by accuracy at the architecture's own accuracy-maximising threshold, then alphabetically",
+  "selected_architecture": "efficientnet_b0",
+  "selected_seed": 67,
+  "selected_epoch": 4,
+  "internal_val_accuracy": 0.8871595330739299,
+  "internal_val_auc": 0.9454142947501581,
+  "threshold": 0.5054240822792053,
+  "threshold_rule": "Youden J on internal_val",
+  "ranking_internal_only": [
+    {
+      "rank": 1,
+      "arch": "efficientnet_b0",
+      "internal_val_accuracy": 0.8871595330739299,
+      "internal_val_auc": 0.9454142947501581
+    },
+    {
+      "rank": 2,
+      "arch": "densenet121",
+      "internal_val_accuracy": 0.8443579766536965,
+      "internal_val_auc": 0.9118912080961418
+    },
+    {
+      "rank": 3,
+      "arch": "efficientnet_b1",
+      "internal_val_accuracy": 0.8365758754863813,
+      "internal_val_auc": 0.903415559772296
+    },
+    {
+      "rank": 4,
+      "arch": "efficientnet_b2",
+      "internal_val_accuracy": 0.8249027237354085,
+      "internal_val_auc": 0.8978494623655914
+    },
+    {
+      "rank": 5,
+      "arch": "densenet201",
+      "internal_val_accuracy": 0.8249027237354085,
+      "internal_val_auc": 0.8973434535104364
+    },
+    {
+      "rank": 6,
+      "arch": "efficientnet_b3",
+      "internal_val_accuracy": 0.8132295719844358,
+      "internal_val_auc": 0.889943074003795
+    },
+    {
+      "rank": 7,
+      "arch": "resnet18",
+      "internal_val_accuracy": 0.8287937743190662,
+      "internal_val_auc": 0.8896268184693231
+    },
+    {
+      "rank": 8,
+      "arch": "efficientnet_b4",
+      "internal_val_accuracy": 0.8404669260700389,
+      "internal_val_auc": 0.8881720430107525
+    },
+    {
+      "rank": 9,
+      "arch": "efficientnet_b5",
+      "internal_val_accuracy": 0.7859922178988327,
+      "internal_val_auc": 0.855471220746363
+    },
+    {
+      "rank": 10,
+      "arch": "inception_v3",
+      "internal_val_accuracy": 0.7898832684824902,
+      "internal_val_auc": 0.8514231499051234
+    },
+    {
+      "rank": 11,
+      "arch": "resnet101",
+      "internal_val_accuracy": 0.7821011673151751,
+      "internal_val_auc": 0.8431372549019609
+    },
+    {
+      "rank": 12,
+      "arch": "resnet50",
+      "internal_val_accuracy": 0.7859922178988327,
+      "internal_val_auc": 0.8403542061986086
+    },
+    {
+      "rank": 13,
+      "arch": "vgg19",
+      "internal_val_accuracy": 0.7392996108949417,
+      "internal_val_auc": 0.7380455407969639
+    }
+  ],
+  "robustness_seeds_internal_accuracy": {
+    "1234": {
+      "inception_v3": 0.8093385214007782,
+      "vgg19": 0.8093385214007782,
+      "resnet18": 0.8015564202334631,
+      "resnet50": 0.7976653696498055,
+      "resnet101": 0.7782101167315175,
+      "efficientnet_b0": 0.8599221789883269,
+      "efficientnet_b1": 0.867704280155642,
+      "efficientnet_b2": 0.8365758754863813,
+      "efficientnet_b3": 0.8560311284046692,
+      "efficientnet_b4": 0.8482490272373541,
+      "efficientnet_b5": 0.7665369649805448,
+      "densenet121": 0.8249027237354085,
+      "densenet201": 0.8171206225680934
+    },
+    "2025": {
+      "inception_v3": 0.8560311284046692,
+      "vgg19": 0.8054474708171206,
+      "resnet18": 0.7782101167315175,
+      "resnet50": 0.7859922178988327,
+      "resnet101": 0.7976653696498055,
+      "efficientnet_b0": 0.8482490272373541,
+      "efficientnet_b1": 0.8249027237354085,
+      "efficientnet_b2": 0.8715953307392996,
+      "efficientnet_b3": 0.8210116731517509,
+      "efficientnet_b4": 0.8443579766536965,
+      "efficientnet_b5": 0.7937743190661478,
+      "densenet121": 0.8093385214007782,
+      "densenet201": 0.8210116731517509
+    }
+  },
+  "weights_sha256": {
+    "inception_v3_seed67": "dbe3bc75081ba56b57e77a411e494eb7fce8c6743f1451012b0222ccadb07d6f",
+    "inception_v3_seed1234": "7a1722e6b01292de4ffdfbe1736cb21d1a38c939fb73411b72780f6289579151",
+    "inception_v3_seed2025": "0af81589d6ce5b1df3aa4256694daf48c205a428856c4a3f27e284823ec50f6b",
+    "vgg19_seed67": "3bf43a7f670f0ddf020b58cac0015d03f076a07776a73604f95f7b6819b7e2eb",
+    "vgg19_seed1234": "aad4b80ea9875b51f4b9c836be61457c06e284b7545dcab2d290c7b302018297",
+    "vgg19_seed2025": "b222793591d6fb99c0490783cf481386f5626b14432849712cc209387cc6e689",
+    "resnet18_seed67": "f6a0a46e6232a2af9bc97918dc64e077618d8b757ad9fbcaf0a23b60b4aed02f",
+    "resnet18_seed1234": "0f30a322121cb3f738441de2fcbc0a99ba95bf44bfed28ca7a96d78b1d7cf224",
+    "resnet18_seed2025": "673fa838252880043869de33e7a1d8f9956372ddf040e332456761f7990f1aca",
+    "resnet50_seed67": "0f0c2ced0b588dcfb3365fa8a6a41bc7f6a058e6dd6a283b22abcdb7c8fc011f",
+    "resnet50_seed1234": "c028c4783e3101eb063093ff4e711acb72f0d6971437108cc874d6ad6e8eb0b6",
+    "resnet50_seed2025": "484565f133cad5792055643de937d3709f2305be0c30ea97537ce4c2b88fa9f0",
+    "resnet101_seed67": "c0f39c46c2e9d2590a3919a03663311da701acc242604be21f40add9dd7589bf",
+    "resnet101_seed1234": "ba5b2b4281563cc29ef159c96025d996831ac71121942dbb56a28af682957c63",
+    "resnet101_seed2025": "e8d09c9376f49ea50842117546c5b8968e6ebf1a0fb08bf6396b64ab38e8913a",
+    "efficientnet_b0_seed67": "45971359df71fbc4ee004dd8d40eae40802e6828289c9bdd34cd16a84c058d1e",
+    "efficientnet_b0_seed1234": "925034b1509f47cf4eb9d4c2119d51e580a50db1bc902b7885267bfdb6daa973",
+    "efficientnet_b0_seed2025": "358854d446e009ef6d1b5674483f5a301c0e5ae9884d1ba961d0e7331b04f929",
+    "efficientnet_b1_seed67": "5a71b39858b0222d60f5a73ccd21b078548066f0b23e33d411165c0e7d395589",
+    "efficientnet_b1_seed1234": "20e26065e20a2a59471b6cdc533a56aee83b0e17ff3947de297b215fcb603c2c",
+    "efficientnet_b1_seed2025": "db6c63d11e3f3edcfdabc653774fa69d17e8588d385caa22b5ddbcfcfa59d554",
+    "efficientnet_b2_seed67": "9d63bdfea85f3dc01b49c0ca772cdce3a667466292ef12203b675c05f39bee39",
+    "efficientnet_b2_seed1234": "8937d5cd98b468787777d7a6ba5ff86509df1e21009047530c2faee4fa292b7a",
+    "efficientnet_b2_seed2025": "6c82e9d1b225ec5be4e3084de697746ccb24b1b8427a5c740f972d06612ee4ef",
+    "efficientnet_b3_seed67": "d636f4836957b49f21caa2585b63313730245617dc6153062a4a8ce9ca0e03f8",
+    "efficientnet_b3_seed1234": "56764c787f5fec3858cd5158cbb11118ba59efaf04b8618987420ef0951391ae",
+    "efficientnet_b3_seed2025": "d7d36cd122623e4b725af51086f730869ed4909e02eddb6f3b561076ec7b8eae",
+    "efficientnet_b4_seed67": "ea227375d2a3d1a9ea7c5c16c5192a4b8f963b92f9a0a6c2f44ca0726a9bfe9c",
+    "efficientnet_b4_seed1234": "bd0cd9137d89568a7408661c43105d29462c6aab1f561bf4a4e644f8dcdf7685",
+    "efficientnet_b4_seed2025": "bbe020875f406caf77719729474a4170385852484fcd8db4329d76d4af0e36bf",
+    "efficientnet_b5_seed67": "02e3fa9c2efb89203b70758bf3202dad04c1d4469ef246536c9827ee4e43fbba",
+    "efficientnet_b5_seed1234": "923c956672b6fa7a5b7a7bce3efb8e521eec737b3abd39e9cb997a2b74856533",
+    "efficientnet_b5_seed2025": "745d1c1f92014e6027ff0a914267997f11eff04d8256d5e084708420e4b9c08b",
+    "densenet121_seed67": "4de3f51a0b1cb4acfce4e72faf6109036e7b0556594032d777cacc56914f1b37",
+    "densenet121_seed1234": "aa223f2b1bab592fbb78168fc9ef48550cd343042f2de921d30ade2549c0eb00",
+    "densenet121_seed2025": "c9b8d79d91173568b7555aeedb17efe85237b18103629970568ce0f26dd22786",
+    "densenet201_seed67": "52f468a0d3d043bb727e814525a8740ae148bd1596ac918b171cc497c22009b1",
+    "densenet201_seed1234": "51889ffe29d4e91f1feef0bd026189a91286fd7dcbacbfbc23e275451d024a1b",
+    "densenet201_seed2025": "cdb036d511b2e95d0a05428b616650ac669967214552aebde13343c4f707d651"
+  },
+  "git_commit": "6475d0740e60753bba9ac25f948f74c5f55e0a1e (WORKING TREE DIRTY)",
+  "environment": {
+    "python": "3.11.14",
+    "platform": "Linux-6.17.0-29-generic-x86_64-with-glibc2.39",
+    "torch": "2.13.0+cu126",
+    "torchvision": "0.28.0+cu126",
+    "numpy": "1.26.4",
+    "sklearn": "1.9.0",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cudnn_deterministic": false,
+    "git_commit": "6475d0740e60753bba9ac25f948f74c5f55e0a1e (WORKING TREE DIRTY)"
+  }
+}

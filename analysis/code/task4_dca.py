@@ -20,7 +20,7 @@ import pandas as pd
 
 import common as C
 
-ARCH = "densenet121"
+ARCH = C.ARCH   # SPL_ARCH env var; defaults to densenet121 (superseded run)
 FIG_SPLITS = ["internal_val", "external_test1", "external_test2"]
 PT_GRID = np.round(np.arange(0.01, 0.8001, 0.01), 4)
 

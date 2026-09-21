@@ -1,0 +1,14 @@
+arch,weights,auc,average_precision,accuracy_at_0.5
+densenet121,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/densenet121/best.pth,0.614624,0.641547,0.545455
+densenet201,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/densenet201/best.pth,0.607997,0.653500,0.579221
+efficientnet_b0,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b0/best.pth,0.635539,0.657296,0.589610
+efficientnet_b1,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b1/best.pth,0.600554,0.669286,0.571429
+efficientnet_b2,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b2/best.pth,0.635186,0.683990,0.594805
+efficientnet_b3,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b3/best.pth,0.570078,0.615048,0.574026
+efficientnet_b4,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b4/best.pth,0.608621,0.630814,0.587013
+efficientnet_b5,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/efficientnet_b5/best.pth,0.567715,0.613122,0.537662
+inception_v3,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/inception_v3/best.pth,0.579585,0.616856,0.524675
+resnet101,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/resnet101/best.pth,0.576814,0.634042,0.524675
+resnet18,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/resnet18/best.pth,0.603569,0.637707,0.561039
+resnet50,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/resnet50/best.pth,0.596262,0.640311,0.558442
+vgg19,/home/tianxi-liang/TianxiLiang/research/china/SPL-Models/binary_classification/runs/vgg19/best.pth,0.392520,0.459560,0.535065

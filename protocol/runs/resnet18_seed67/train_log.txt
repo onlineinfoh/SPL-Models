@@ -1,0 +1,15 @@
+=== resnet18 seed=67 :: training + internal_val ONLY ===
+=== external cohorts gated; see protocol/gate_audit.jsonl ===
+[resnet18 seed67] epoch 01 val_acc=0.7121 val_auc=0.8222
+[resnet18 seed67] epoch 02 val_acc=0.7977 val_auc=0.8896
+[resnet18 seed67] epoch 03 val_acc=0.5759 val_auc=0.7905
+[resnet18 seed67] epoch 04 val_acc=0.6459 val_auc=0.6899
+[resnet18 seed67] epoch 05 val_acc=0.7004 val_auc=0.7689
+[resnet18 seed67] epoch 06 val_acc=0.7354 val_auc=0.8090
+[resnet18 seed67] epoch 07 val_acc=0.7082 val_auc=0.7469
+[resnet18 seed67] epoch 08 val_acc=0.6809 val_auc=0.7072
+[resnet18 seed67] epoch 09 val_acc=0.6654 val_auc=0.6443
+[resnet18 seed67] epoch 10 val_acc=0.7315 val_auc=0.8254
+early stop at epoch 10
+BEST epoch=2 val_acc=0.7977 val_auc=0.8896
+SELECTION_STAT auc=0.889627 acc_at_opt_thr=0.828794 opt_thr=0.443330 acc_at_0.5=0.797665

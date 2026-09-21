@@ -20,7 +20,8 @@ import pandas as pd
 from scipy import stats
 
 REPO = Path(__file__).resolve().parents[2]
-RES = REPO / "analysis" / "results"
+import os
+RES = Path(os.environ.get("SPL_RESULTS", REPO / "analysis" / "results"))   # avoids clobbering the superseded Table 2
 
 MODELS = ["nnUNet", "DeepLabv3plus", "UNet"]
 MODEL_LABEL = {"nnUNet": "nnU-Net", "DeepLabv3plus": "DeepLabv3+", "UNet": "U-Net"}

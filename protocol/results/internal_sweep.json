@@ -1,0 +1,405 @@
+{
+  "environment": {
+    "python": "3.11.14",
+    "platform": "Linux-6.17.0-29-generic-x86_64-with-glibc2.39",
+    "torch": "2.13.0+cu126",
+    "torchvision": "0.28.0+cu126",
+    "numpy": "1.26.4",
+    "sklearn": "1.9.0",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cudnn_deterministic": false,
+    "git_commit": "6475d0740e60753bba9ac25f948f74c5f55e0a1e (WORKING TREE DIRTY)"
+  },
+  "runs": [
+    {
+      "arch": "inception_v3",
+      "seed": 67,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8514231499051234,
+      "internal_val_accuracy_at_half": 0.7315175097276264,
+      "internal_val_threshold_max_acc": 0.4597640633583069,
+      "internal_val_accuracy": 0.7898832684824902,
+      "ckpt": "protocol/runs/inception_v3_seed67/best.pth"
+    },
+    {
+      "arch": "inception_v3",
+      "seed": 1234,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8700189753320684,
+      "internal_val_accuracy_at_half": 0.77431906614786,
+      "internal_val_threshold_max_acc": 0.7247374057769775,
+      "internal_val_accuracy": 0.8093385214007782,
+      "ckpt": "protocol/runs/inception_v3_seed1234/best.pth"
+    },
+    {
+      "arch": "inception_v3",
+      "seed": 2025,
+      "best_epoch": 3,
+      "internal_val_auc": 0.9196710942441493,
+      "internal_val_accuracy_at_half": 0.8249027237354085,
+      "internal_val_threshold_max_acc": 0.6402603387832642,
+      "internal_val_accuracy": 0.8560311284046692,
+      "ckpt": "protocol/runs/inception_v3_seed2025/best.pth"
+    },
+    {
+      "arch": "vgg19",
+      "seed": 67,
+      "best_epoch": 1,
+      "internal_val_auc": 0.7380455407969639,
+      "internal_val_accuracy_at_half": 0.39299610894941633,
+      "internal_val_threshold_max_acc": 0.4385819435119629,
+      "internal_val_accuracy": 0.7392996108949417,
+      "ckpt": "protocol/runs/vgg19_seed67/best.pth"
+    },
+    {
+      "arch": "vgg19",
+      "seed": 1234,
+      "best_epoch": 19,
+      "internal_val_auc": 0.8815306767868437,
+      "internal_val_accuracy_at_half": 0.7315175097276264,
+      "internal_val_threshold_max_acc": 0.6347259283065796,
+      "internal_val_accuracy": 0.8093385214007782,
+      "ckpt": "protocol/runs/vgg19_seed1234/best.pth"
+    },
+    {
+      "arch": "vgg19",
+      "seed": 2025,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8624288425047439,
+      "internal_val_accuracy_at_half": 0.7392996108949417,
+      "internal_val_threshold_max_acc": 0.7603930830955505,
+      "internal_val_accuracy": 0.8054474708171206,
+      "ckpt": "protocol/runs/vgg19_seed2025/best.pth"
+    },
+    {
+      "arch": "resnet18",
+      "seed": 67,
+      "best_epoch": 2,
+      "internal_val_auc": 0.8896268184693231,
+      "internal_val_accuracy_at_half": 0.7976653696498055,
+      "internal_val_threshold_max_acc": 0.44332969188690186,
+      "internal_val_accuracy": 0.8287937743190662,
+      "ckpt": "protocol/runs/resnet18_seed67/best.pth"
+    },
+    {
+      "arch": "resnet18",
+      "seed": 1234,
+      "best_epoch": 2,
+      "internal_val_auc": 0.8773561037318153,
+      "internal_val_accuracy_at_half": 0.7898832684824902,
+      "internal_val_threshold_max_acc": 0.44720277190208435,
+      "internal_val_accuracy": 0.8015564202334631,
+      "ckpt": "protocol/runs/resnet18_seed1234/best.pth"
+    },
+    {
+      "arch": "resnet18",
+      "seed": 2025,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8475015812776723,
+      "internal_val_accuracy_at_half": 0.6498054474708171,
+      "internal_val_threshold_max_acc": 0.37362900376319885,
+      "internal_val_accuracy": 0.7782101167315175,
+      "ckpt": "protocol/runs/resnet18_seed2025/best.pth"
+    },
+    {
+      "arch": "resnet50",
+      "seed": 67,
+      "best_epoch": 2,
+      "internal_val_auc": 0.8403542061986086,
+      "internal_val_accuracy_at_half": 0.7431906614785992,
+      "internal_val_threshold_max_acc": 0.43396610021591187,
+      "internal_val_accuracy": 0.7859922178988327,
+      "ckpt": "protocol/runs/resnet50_seed67/best.pth"
+    },
+    {
+      "arch": "resnet50",
+      "seed": 1234,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8638836179633144,
+      "internal_val_accuracy_at_half": 0.7898832684824902,
+      "internal_val_threshold_max_acc": 0.5205893516540527,
+      "internal_val_accuracy": 0.7976653696498055,
+      "ckpt": "protocol/runs/resnet50_seed1234/best.pth"
+    },
+    {
+      "arch": "resnet50",
+      "seed": 2025,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8473750790638837,
+      "internal_val_accuracy_at_half": 0.7237354085603113,
+      "internal_val_threshold_max_acc": 0.5378850698471069,
+      "internal_val_accuracy": 0.7859922178988327,
+      "ckpt": "protocol/runs/resnet50_seed2025/best.pth"
+    },
+    {
+      "arch": "resnet101",
+      "seed": 67,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8431372549019609,
+      "internal_val_accuracy_at_half": 0.603112840466926,
+      "internal_val_threshold_max_acc": 0.3241371512413025,
+      "internal_val_accuracy": 0.7821011673151751,
+      "ckpt": "protocol/runs/resnet101_seed67/best.pth"
+    },
+    {
+      "arch": "resnet101",
+      "seed": 1234,
+      "best_epoch": 1,
+      "internal_val_auc": 0.8306135357368754,
+      "internal_val_accuracy_at_half": 0.4085603112840467,
+      "internal_val_threshold_max_acc": 0.19690828025341034,
+      "internal_val_accuracy": 0.7782101167315175,
+      "ckpt": "protocol/runs/resnet101_seed1234/best.pth"
+    },
+    {
+      "arch": "resnet101",
+      "seed": 2025,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8692599620493359,
+      "internal_val_accuracy_at_half": 0.7821011673151751,
+      "internal_val_threshold_max_acc": 0.522604763507843,
+      "internal_val_accuracy": 0.7976653696498055,
+      "ckpt": "protocol/runs/resnet101_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b0",
+      "seed": 67,
+      "best_epoch": 4,
+      "internal_val_auc": 0.9454142947501581,
+      "internal_val_accuracy_at_half": 0.8715953307392996,
+      "internal_val_threshold_max_acc": 0.4262874126434326,
+      "internal_val_accuracy": 0.8871595330739299,
+      "ckpt": "protocol/runs/efficientnet_b0_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b0",
+      "seed": 1234,
+      "best_epoch": 3,
+      "internal_val_auc": 0.9137254901960784,
+      "internal_val_accuracy_at_half": 0.8365758754863813,
+      "internal_val_threshold_max_acc": 0.4643017649650574,
+      "internal_val_accuracy": 0.8599221789883269,
+      "ckpt": "protocol/runs/efficientnet_b0_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b0",
+      "seed": 2025,
+      "best_epoch": 10,
+      "internal_val_auc": 0.910752688172043,
+      "internal_val_accuracy_at_half": 0.8287937743190662,
+      "internal_val_threshold_max_acc": 0.4588787257671356,
+      "internal_val_accuracy": 0.8482490272373541,
+      "ckpt": "protocol/runs/efficientnet_b0_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b1",
+      "seed": 67,
+      "best_epoch": 4,
+      "internal_val_auc": 0.903415559772296,
+      "internal_val_accuracy_at_half": 0.8171206225680934,
+      "internal_val_threshold_max_acc": 0.44269153475761414,
+      "internal_val_accuracy": 0.8365758754863813,
+      "ckpt": "protocol/runs/efficientnet_b1_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b1",
+      "seed": 1234,
+      "best_epoch": 5,
+      "internal_val_auc": 0.9384566729917774,
+      "internal_val_accuracy_at_half": 0.8599221789883269,
+      "internal_val_threshold_max_acc": 0.46942421793937683,
+      "internal_val_accuracy": 0.867704280155642,
+      "ckpt": "protocol/runs/efficientnet_b1_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b1",
+      "seed": 2025,
+      "best_epoch": 2,
+      "internal_val_auc": 0.8915876027830487,
+      "internal_val_accuracy_at_half": 0.8249027237354085,
+      "internal_val_threshold_max_acc": 0.5,
+      "internal_val_accuracy": 0.8249027237354085,
+      "ckpt": "protocol/runs/efficientnet_b1_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b2",
+      "seed": 67,
+      "best_epoch": 3,
+      "internal_val_auc": 0.8978494623655914,
+      "internal_val_accuracy_at_half": 0.8054474708171206,
+      "internal_val_threshold_max_acc": 0.4843752980232239,
+      "internal_val_accuracy": 0.8249027237354085,
+      "ckpt": "protocol/runs/efficientnet_b2_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b2",
+      "seed": 1234,
+      "best_epoch": 5,
+      "internal_val_auc": 0.9098671726755218,
+      "internal_val_accuracy_at_half": 0.8054474708171206,
+      "internal_val_threshold_max_acc": 0.4033322334289551,
+      "internal_val_accuracy": 0.8365758754863813,
+      "ckpt": "protocol/runs/efficientnet_b2_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b2",
+      "seed": 2025,
+      "best_epoch": 2,
+      "internal_val_auc": 0.9384566729917774,
+      "internal_val_accuracy_at_half": 0.8443579766536965,
+      "internal_val_threshold_max_acc": 0.5464714765548706,
+      "internal_val_accuracy": 0.8715953307392996,
+      "ckpt": "protocol/runs/efficientnet_b2_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b3",
+      "seed": 67,
+      "best_epoch": 3,
+      "internal_val_auc": 0.889943074003795,
+      "internal_val_accuracy_at_half": 0.7509727626459144,
+      "internal_val_threshold_max_acc": 0.6027401089668274,
+      "internal_val_accuracy": 0.8132295719844358,
+      "ckpt": "protocol/runs/efficientnet_b3_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b3",
+      "seed": 1234,
+      "best_epoch": 3,
+      "internal_val_auc": 0.9194180898165718,
+      "internal_val_accuracy_at_half": 0.8210116731517509,
+      "internal_val_threshold_max_acc": 0.5518215894699097,
+      "internal_val_accuracy": 0.8560311284046692,
+      "ckpt": "protocol/runs/efficientnet_b3_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b3",
+      "seed": 2025,
+      "best_epoch": 4,
+      "internal_val_auc": 0.8991777356103731,
+      "internal_val_accuracy_at_half": 0.8210116731517509,
+      "internal_val_threshold_max_acc": 0.5,
+      "internal_val_accuracy": 0.8210116731517509,
+      "ckpt": "protocol/runs/efficientnet_b3_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b4",
+      "seed": 67,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8881720430107525,
+      "internal_val_accuracy_at_half": 0.8365758754863813,
+      "internal_val_threshold_max_acc": 0.5157954096794128,
+      "internal_val_accuracy": 0.8404669260700389,
+      "ckpt": "protocol/runs/efficientnet_b4_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b4",
+      "seed": 1234,
+      "best_epoch": 6,
+      "internal_val_auc": 0.9101201771030993,
+      "internal_val_accuracy_at_half": 0.8054474708171206,
+      "internal_val_threshold_max_acc": 0.5415185689926147,
+      "internal_val_accuracy": 0.8482490272373541,
+      "ckpt": "protocol/runs/efficientnet_b4_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b4",
+      "seed": 2025,
+      "best_epoch": 9,
+      "internal_val_auc": 0.9079696394686908,
+      "internal_val_accuracy_at_half": 0.8365758754863813,
+      "internal_val_threshold_max_acc": 0.4779339134693146,
+      "internal_val_accuracy": 0.8443579766536965,
+      "ckpt": "protocol/runs/efficientnet_b4_seed2025/best.pth"
+    },
+    {
+      "arch": "efficientnet_b5",
+      "seed": 67,
+      "best_epoch": 16,
+      "internal_val_auc": 0.855471220746363,
+      "internal_val_accuracy_at_half": 0.7665369649805448,
+      "internal_val_threshold_max_acc": 0.4368809163570404,
+      "internal_val_accuracy": 0.7859922178988327,
+      "ckpt": "protocol/runs/efficientnet_b5_seed67/best.pth"
+    },
+    {
+      "arch": "efficientnet_b5",
+      "seed": 1234,
+      "best_epoch": 19,
+      "internal_val_auc": 0.8232131562302339,
+      "internal_val_accuracy_at_half": 0.7587548638132295,
+      "internal_val_threshold_max_acc": 0.6665834784507751,
+      "internal_val_accuracy": 0.7665369649805448,
+      "ckpt": "protocol/runs/efficientnet_b5_seed1234/best.pth"
+    },
+    {
+      "arch": "efficientnet_b5",
+      "seed": 2025,
+      "best_epoch": 6,
+      "internal_val_auc": 0.8638836179633144,
+      "internal_val_accuracy_at_half": 0.7392996108949417,
+      "internal_val_threshold_max_acc": 0.6214102506637573,
+      "internal_val_accuracy": 0.7937743190661478,
+      "ckpt": "protocol/runs/efficientnet_b5_seed2025/best.pth"
+    },
+    {
+      "arch": "densenet121",
+      "seed": 67,
+      "best_epoch": 9,
+      "internal_val_auc": 0.9118912080961418,
+      "internal_val_accuracy_at_half": 0.8249027237354085,
+      "internal_val_threshold_max_acc": 0.3827771842479706,
+      "internal_val_accuracy": 0.8443579766536965,
+      "ckpt": "protocol/runs/densenet121_seed67/best.pth"
+    },
+    {
+      "arch": "densenet121",
+      "seed": 1234,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8829854522454142,
+      "internal_val_accuracy_at_half": 0.7859922178988327,
+      "internal_val_threshold_max_acc": 0.5640755891799927,
+      "internal_val_accuracy": 0.8249027237354085,
+      "ckpt": "protocol/runs/densenet121_seed1234/best.pth"
+    },
+    {
+      "arch": "densenet121",
+      "seed": 2025,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8702719797596458,
+      "internal_val_accuracy_at_half": 0.7509727626459144,
+      "internal_val_threshold_max_acc": 0.5623857378959656,
+      "internal_val_accuracy": 0.8093385214007782,
+      "ckpt": "protocol/runs/densenet121_seed2025/best.pth"
+    },
+    {
+      "arch": "densenet201",
+      "seed": 67,
+      "best_epoch": 7,
+      "internal_val_auc": 0.8973434535104364,
+      "internal_val_accuracy_at_half": 0.7120622568093385,
+      "internal_val_threshold_max_acc": 0.8427901268005371,
+      "internal_val_accuracy": 0.8249027237354085,
+      "ckpt": "protocol/runs/densenet201_seed67/best.pth"
+    },
+    {
+      "arch": "densenet201",
+      "seed": 1234,
+      "best_epoch": 4,
+      "internal_val_auc": 0.8959519291587602,
+      "internal_val_accuracy_at_half": 0.7626459143968871,
+      "internal_val_threshold_max_acc": 0.652288019657135,
+      "internal_val_accuracy": 0.8171206225680934,
+      "ckpt": "protocol/runs/densenet201_seed1234/best.pth"
+    },
+    {
+      "arch": "densenet201",
+      "seed": 2025,
+      "best_epoch": 5,
+      "internal_val_auc": 0.8824794433902593,
+      "internal_val_accuracy_at_half": 0.7782101167315175,
+      "internal_val_threshold_max_acc": 0.6629921197891235,
+      "internal_val_accuracy": 0.8210116731517509,
+      "ckpt": "protocol/runs/densenet201_seed2025/best.pth"
+    }
+  ]
+}

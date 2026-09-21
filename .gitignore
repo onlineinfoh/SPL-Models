@@ -50,7 +50,38 @@ __pycache__/
 # Local working notes
 _private_response/
 
-# Local working files
-_private_response/
-test/
-**/*.log
+# Scratch environment logs only. This rule was previously `**/*.log`, which
+# also excluded analysis/logs/train_locked_sweep.log, the console record of the
+# internal-only architecture sweep. That file is tracked; see DISCLOSURE.md.
+nnunet-env/**/*.log
+**/wandb/**/*.log
+
+# ---------------------------------------------------------------------------
+# Locked re-analysis: derived artifacts, regenerable from the deposited code
+# ---------------------------------------------------------------------------
+# Predicted masks are derived from patient images and are treated like the
+# source data. Regenerate with predict_all_cohorts.sh and run_seg_inference.py.
+analysis/masks_locked_v2/
+seg-model-training/nnunet/predicted_masks_v2/
+
+# nnU-Net working directories for the retrained dataset
+seg-model-training/nnunet/nnUNet_raw/Dataset001_lungval/
+seg-model-training/nnunet/nnUNet_preprocessed/Dataset001_lungval/
+seg-model-training/nnunet/nnUNet_results/**/validation/
+
+# Grad-CAM overlays: 2118 images, regenerable with binary_classification/heatmap.py
+protocol/results/heatmaps/
+
+# Model weights for the locked runs (see also the **/*.pth rule above)
+protocol/runs/**/*.pth
+seg-model-training/unet_locked/*.pth
+
+# Console transcripts. The structured training logs ARE tracked.
+seg-model-training/unet_locked/console.log
+seg-model-training/deeplab_locked/console.log
+seg-model-training/nnunet/predict.log
+seg-model-training/nnunet/rebuild.log
+protocol/finalize.log
+protocol/watchdog.log
+protocol/sweep_console.log
+protocol/results/heatmap.log

@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# Its U-Net and DeepLab hyperparameters contradict the README_SPL.md files, and
+# both training invocations are commented out. Replaced by
+# seg-model-training/unet_train_with_validation.py and the documented
+# DeepLabv3+ invocation in README.md.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 set -euo pipefail
 

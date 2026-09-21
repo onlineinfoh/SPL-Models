@@ -1,4 +1,15 @@
 #!/usr/bin/env python3
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# One of three per-model benchmark scripts that do not share a metric
+# definition. Replaced by analysis/code/seg_metrics_engine.py.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 """
 Run Pytorch-UNet checkpoint inference on multiple NIfTI splits using
 the same normalization as training, but with flexible mask naming

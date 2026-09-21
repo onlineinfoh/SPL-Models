@@ -1,0 +1,3 @@
+mask_variant,arch,thr_max_accuracy,thr_youden,thresholds_identical,internal_val_acc_at_max_acc_thr,internal_val_acc_at_youden_thr,internal_val_sens_at_max_acc_thr,internal_val_sens_at_youden_thr,internal_val_spec_at_max_acc_thr,internal_val_spec_at_youden_thr
+gt,efficientnet_b0,0.426287,0.505424,False,0.8871595330739299,0.8754863813229572,0.9419354838709677,0.8451612903225807,0.803921568627451,0.9215686274509803
+model,efficientnet_b0,0.467051,0.5,False,0.8832684824902723,0.8754863813229572,0.8838709677419355,0.8451612903225807,0.8823529411764706,0.9215686274509803

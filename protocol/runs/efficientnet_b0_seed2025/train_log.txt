@@ -1,0 +1,23 @@
+=== efficientnet_b0 seed=2025 :: training + internal_val ONLY ===
+=== external cohorts gated; see protocol/gate_audit.jsonl ===
+[efficientnet_b0 seed2025] epoch 01 val_acc=0.6381 val_auc=0.8166
+[efficientnet_b0 seed2025] epoch 02 val_acc=0.8327 val_auc=0.8996
+[efficientnet_b0 seed2025] epoch 03 val_acc=0.8249 val_auc=0.8989
+[efficientnet_b0 seed2025] epoch 04 val_acc=0.7626 val_auc=0.8460
+[efficientnet_b0 seed2025] epoch 05 val_acc=0.8132 val_auc=0.9001
+[efficientnet_b0 seed2025] epoch 06 val_acc=0.7821 val_auc=0.8813
+[efficientnet_b0 seed2025] epoch 07 val_acc=0.8093 val_auc=0.8778
+[efficientnet_b0 seed2025] epoch 08 val_acc=0.8132 val_auc=0.8930
+[efficientnet_b0 seed2025] epoch 09 val_acc=0.7549 val_auc=0.8450
+[efficientnet_b0 seed2025] epoch 10 val_acc=0.8288 val_auc=0.9108
+[efficientnet_b0 seed2025] epoch 11 val_acc=0.7665 val_auc=0.8590
+[efficientnet_b0 seed2025] epoch 12 val_acc=0.7938 val_auc=0.8845
+[efficientnet_b0 seed2025] epoch 13 val_acc=0.7899 val_auc=0.8545
+[efficientnet_b0 seed2025] epoch 14 val_acc=0.8093 val_auc=0.8809
+[efficientnet_b0 seed2025] epoch 15 val_acc=0.7510 val_auc=0.8126
+[efficientnet_b0 seed2025] epoch 16 val_acc=0.8016 val_auc=0.8596
+[efficientnet_b0 seed2025] epoch 17 val_acc=0.8132 val_auc=0.8793
+[efficientnet_b0 seed2025] epoch 18 val_acc=0.7704 val_auc=0.8296
+early stop at epoch 18
+BEST epoch=10 val_acc=0.8288 val_auc=0.9108
+SELECTION_STAT auc=0.910753 acc_at_opt_thr=0.848249 opt_thr=0.458879 acc_at_0.5=0.828794

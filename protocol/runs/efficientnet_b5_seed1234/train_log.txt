@@ -1,0 +1,32 @@
+=== efficientnet_b5 seed=1234 :: training + internal_val ONLY ===
+=== external cohorts gated; see protocol/gate_audit.jsonl ===
+[efficientnet_b5 seed1234] epoch 01 val_acc=0.5564 val_auc=0.6267
+[efficientnet_b5 seed1234] epoch 02 val_acc=0.7121 val_auc=0.7705
+[efficientnet_b5 seed1234] epoch 03 val_acc=0.7121 val_auc=0.7651
+[efficientnet_b5 seed1234] epoch 04 val_acc=0.7237 val_auc=0.7853
+[efficientnet_b5 seed1234] epoch 05 val_acc=0.7276 val_auc=0.7585
+[efficientnet_b5 seed1234] epoch 06 val_acc=0.6770 val_auc=0.7114
+[efficientnet_b5 seed1234] epoch 07 val_acc=0.6926 val_auc=0.7891
+[efficientnet_b5 seed1234] epoch 08 val_acc=0.7121 val_auc=0.7870
+[efficientnet_b5 seed1234] epoch 09 val_acc=0.7276 val_auc=0.8023
+[efficientnet_b5 seed1234] epoch 10 val_acc=0.6732 val_auc=0.7454
+[efficientnet_b5 seed1234] epoch 11 val_acc=0.6926 val_auc=0.7468
+[efficientnet_b5 seed1234] epoch 12 val_acc=0.7160 val_auc=0.7719
+[efficientnet_b5 seed1234] epoch 13 val_acc=0.7198 val_auc=0.7727
+[efficientnet_b5 seed1234] epoch 14 val_acc=0.6459 val_auc=0.6849
+[efficientnet_b5 seed1234] epoch 15 val_acc=0.7198 val_auc=0.7946
+[efficientnet_b5 seed1234] epoch 16 val_acc=0.7510 val_auc=0.8154
+[efficientnet_b5 seed1234] epoch 17 val_acc=0.7276 val_auc=0.7858
+[efficientnet_b5 seed1234] epoch 18 val_acc=0.7237 val_auc=0.8000
+[efficientnet_b5 seed1234] epoch 19 val_acc=0.7588 val_auc=0.8232
+[efficientnet_b5 seed1234] epoch 20 val_acc=0.7354 val_auc=0.8113
+[efficientnet_b5 seed1234] epoch 21 val_acc=0.6848 val_auc=0.7584
+[efficientnet_b5 seed1234] epoch 22 val_acc=0.7354 val_auc=0.7949
+[efficientnet_b5 seed1234] epoch 23 val_acc=0.7121 val_auc=0.7579
+[efficientnet_b5 seed1234] epoch 24 val_acc=0.7237 val_auc=0.7896
+[efficientnet_b5 seed1234] epoch 25 val_acc=0.7082 val_auc=0.7722
+[efficientnet_b5 seed1234] epoch 26 val_acc=0.7043 val_auc=0.7859
+[efficientnet_b5 seed1234] epoch 27 val_acc=0.7393 val_auc=0.8056
+early stop at epoch 27
+BEST epoch=19 val_acc=0.7588 val_auc=0.8232
+SELECTION_STAT auc=0.823213 acc_at_opt_thr=0.766537 opt_thr=0.666583 acc_at_0.5=0.758755

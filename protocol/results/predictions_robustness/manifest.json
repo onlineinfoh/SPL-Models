@@ -1,0 +1,50 @@
+{
+  "source": "protocol/locked_pipeline.json",
+  "architecture": "efficientnet_b0",
+  "seed": 2025,
+  "threshold": 0.5054240822792053,
+  "git_commit": "6475d0740e60753bba9ac25f948f74c5f55e0a1e (WORKING TREE DIRTY)",
+  "preprocessing": "protocol/run_protocol.py::LockedDataset, 300x300",
+  "files": [
+    {
+      "split": "train",
+      "variant": "gt",
+      "n": 600,
+      "n_pos": 352,
+      "n_neg": 248,
+      "file": "protocol/results/predictions_robustness/efficientnet_b0/train_seed2025_probs.txt",
+      "prob_min": 0.037048,
+      "prob_max": 0.997183
+    },
+    {
+      "split": "internal_val",
+      "variant": "gt",
+      "n": 257,
+      "n_pos": 155,
+      "n_neg": 102,
+      "file": "protocol/results/predictions_robustness/efficientnet_b0/internal_val_seed2025_probs.txt",
+      "prob_min": 0.100044,
+      "prob_max": 0.993298
+    },
+    {
+      "split": "external_test1",
+      "variant": "gt",
+      "n": 108,
+      "n_pos": 62,
+      "n_neg": 46,
+      "file": "protocol/results/predictions_robustness/efficientnet_b0/external_test1_seed2025_probs.txt",
+      "prob_min": 0.091223,
+      "prob_max": 0.998344
+    },
+    {
+      "split": "external_test2",
+      "variant": "gt",
+      "n": 94,
+      "n_pos": 67,
+      "n_neg": 27,
+      "file": "protocol/results/predictions_robustness/efficientnet_b0/external_test2_seed2025_probs.txt",
+      "prob_min": 0.059962,
+      "prob_max": 0.989874
+    }
+  ]
+}

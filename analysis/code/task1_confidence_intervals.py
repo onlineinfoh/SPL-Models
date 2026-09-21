@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score, average_precision_score
 
 import common as C
 
-ARCH = "densenet121"
+ARCH = C.ARCH   # SPL_ARCH env var; defaults to densenet121 (superseded run)
 
 # Operating thresholds used by the pipeline: selected on internal_val by maximum
 # accuracy, then applied unchanged to every other split. Taken from
@@ -207,7 +207,7 @@ def part_b():
     df["metric"] = pd.Categorical(df["metric"], order_metric, ordered=True)
     df["split"] = pd.Categorical(df["split"], C.SPLITS, ordered=True)
     df = df.sort_values(["mask_variant", "split", "metric"]).reset_index(drop=True)
-    df.to_csv(C.RESULTS / "task1b_densenet121_corrected_metrics_with_ci.csv", index=False)
+    df.to_csv(C.RESULTS / f"task1b_{ARCH}_corrected_metrics_with_ci.csv", index=False)
 
     print("\n=== Task 1B: corrected densenet121 metrics (locked operating threshold) ===")
     show = df[df.split != "train"].copy()

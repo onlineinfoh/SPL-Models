@@ -1,0 +1,25 @@
+00:24:04 re-export classification against RETRAINED nnU-Net masks
+locked model : efficientnet_b0 seed 67 epoch 4
+threshold    : 0.5054 (Youden J on internal_val)
+output       : protocol/results/predictions_locked/efficientnet_b0
+
+  train           gt    n= 600 (352 malignant / 248 benign) -> train_seed67_probs.txt
+  train           model n= 600 (352 malignant / 248 benign) -> train_model_seed67_probs.txt
+  internal_val    gt    n= 257 (155 malignant / 102 benign) -> internal_val_seed67_probs.txt
+  internal_val    model n= 257 (155 malignant / 102 benign) -> internal_val_model_seed67_probs.txt
+  external_test1  gt    n= 108 (62 malignant / 46 benign) -> external_test1_seed67_probs.txt
+  external_test1  model n= 108 (62 malignant / 46 benign) -> external_test1_model_seed67_probs.txt
+  external_test2  gt    n=  94 (67 malignant / 27 benign) -> external_test2_seed67_probs.txt
+  external_test2  model n=  94 (67 malignant / 27 benign) -> external_test2_model_seed67_probs.txt
+
+wrote 8 files + manifest.json
+00:25:08 ok task1_confidence_intervals
+00:25:08 ok task2_threshold_policy
+00:25:13 ok task3_calibration
+00:25:15 ok task4_dca
+00:25:28 ok task6_gt_vs_model_mask
+00:25:46 ok subgroup_and_precision
+00:25:47 ok calibration
+00:25:52 ok task3_calibration (calibrated)
+00:25:53 ok task4_dca (calibrated)
+00:25:53 RE-EXPORT COMPLETE

@@ -1,3 +1,15 @@
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# Computed and logged External Test 1 and 2 AUC at every epoch for all 13
+# architectures. This is the code underlying Reviewer Comment 1. Replaced by
+# protocol/run_protocol.py, which cannot read external data before the lock.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 from __future__ import annotations
 
 import argparse
