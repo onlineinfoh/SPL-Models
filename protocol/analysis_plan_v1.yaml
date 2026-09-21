@@ -2,18 +2,24 @@
 # SPL-Models: pre-committed analysis plan
 # =============================================================================
 #
-# This file fixes every decision in the two-stage pipeline BEFORE any external
-# cohort is loaded, evaluated or inspected. It is registered publicly and tagged
-# in git prior to the first training run of the locked re-analysis.
+# This file fixes every decision in the two-stage pipeline before the locked
+# re-analysis loads, evaluates or inspects any external cohort. Enforcement is
+# by protocol/gate.py at runtime, with an audit trail in gate_audit.jsonl.
+# It is NOT externally registered; see the registration status below.
 #
 # Any deviation from this file after registration must be recorded in
 # protocol/DEVIATIONS.md with the reason and the date. Silent deviation
 # invalidates the lock.
 #
-# Registration:
-#   osf_registration_url: TBD          # completed at Phase B, before Phase C
-#   git_tag:              protocol-v1
-#   registered_utc:       TBD
+# Registration status, stated accurately:
+#   This plan was NOT registered with a third party and NOT tagged before the
+#   run. It was written immediately before the locked re-analysis and committed
+#   afterwards, in the same commit as the results. There is therefore no
+#   external timestamp establishing that it preceded the analysis, and no claim
+#   to that effect should be made from it.
+#   osf_registration_url: none
+#   git_tag:              none
+#   first_committed:      2026-09-21, commit ccdf241
 #
 # -----------------------------------------------------------------------------
 

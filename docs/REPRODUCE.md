@@ -137,21 +137,26 @@ DenseNet121 ranks 2nd at the primary seed and 7th averaged across seeds. It is
 
 ## Statistics and figures
 
-All of the following were computed on **DenseNet121** and must be regenerated on
-the locked model.
+The reported model is DenseNet121, so the statistics under `analysis/results/`
+are the reported ones and are CURRENT. The parallel set under
+`protocol/results/analysis*/` belongs to the EfficientNet-B0 sensitivity
+analysis. The same scripts produce both; the source is selected with
+`SPL_PRED_DIR` and `SPL_ARCH`, and with no environment set they produce the
+DenseNet121 results.
 
-| Reported artifact | Script | Output | Status |
+| Reported artifact | Script | Output (reported, DenseNet121) | Status |
 |---|---|---|---|
-| Cohort integrity | `task0_data_check.py` | `task0_data_integrity_check.csv` | CURRENT but incomplete — within-split only, see below |
-| Cross-cohort overlap | `task0b_cohort_overlap.py` | `task0b_cohort_overlap.{json,md}` | **CURRENT** |
-| Metrics with CIs | `task1_confidence_intervals.py` | `task1b_*_metrics_with_ci.csv` | **SUPERSEDED** |
-| Threshold policy | `task2_threshold_policy.py` | `task2_*.csv` | **SUPERSEDED** |
-| Calibration + Figure | `task3_calibration.py` | `task3_*.csv`, `figures/task3_*.{pdf,png}` | **SUPERSEDED** |
-| Decision curves + Figure | `task4_dca.py` | `task4_*.csv`, `figures/task4_*.{pdf,png}` | **SUPERSEDED** |
-| Architecture ranking, DeLong | `task5_model_selection.py` | `task5_*.csv` | **SUPERSEDED** |
-| Manual vs automatic mask | `task6_gt_vs_model_mask.py` | `task6_gt_vs_automatic_mask.csv` | **SUPERSEDED** |
-| Subgroup by lesion size | `subgroup_and_precision.py` | `subgroup_by_lesion_size.csv` | **SUPERSEDED** |
-| Checkpoint-selection audit | `summarize_training_logs.py` | `checkpoint_selection_summary.csv` | **CURRENT** — evidence about the original run, still valid as such |
+| Cohort integrity | `task0_data_check.py` | `analysis/results/task0_data_integrity_check.csv` | CURRENT but incomplete — within-split only, see below |
+| Cross-cohort overlap | `task0b_cohort_overlap.py` | `analysis/results/task0b_cohort_overlap.{json,md}` | **CURRENT** |
+| Metrics with CIs | `task1_confidence_intervals.py` | `analysis/results/task1b_*_metrics_with_ci.csv` | **CURRENT** |
+| Threshold policy | `task2_threshold_policy.py` | `analysis/results/task2_*.csv` | **CURRENT** |
+| Calibration + Figure | `task3_calibration.py` | `analysis/results/task3_*.csv`, `analysis/figures/task3_*` | **CURRENT** |
+| Decision curves + Figure | `task4_dca.py` | `analysis/results/task4_*.csv`, `analysis/figures/task4_*` | **CURRENT** |
+| Architecture ranking, DeLong | `task5_model_selection.py` | `analysis/results/task5_*.csv` | **CURRENT** for the reported model. Cannot be re-run under the hold-out protocol, which scores only the selected model externally |
+| Manual vs automatic mask | `task6_gt_vs_model_mask.py` | `analysis/results/task6_gt_vs_automatic_mask.csv` | **CURRENT** |
+| Subgroup by lesion size | `subgroup_and_precision.py` | `analysis/results/subgroup_by_lesion_size.csv` | **CURRENT** |
+| Checkpoint-selection audit | `summarize_training_logs.py` | `analysis/results/checkpoint_selection_summary.csv` | **CURRENT** |
+| *Sensitivity analysis, all of the above* | same scripts, `SPL_ARCH=efficientnet_b0` | `protocol/results/analysis*/` | **CURRENT** as a sensitivity analysis, not as reported results |
 
 `task0_data_check.py` reports "all integrity checks passed", but it only tests
 `case_id.duplicated()` *within* each split. It never compared cohorts.

@@ -18,8 +18,8 @@ Re-examining the pipeline surfaced more defects than the reviewers identified, i
 A revision that arrives claiming everything is clean, when the repository shows otherwise, is not survivable.
 Leading with our own findings is the only posture that remains credible.
 
-**We follow our own pre-declared rule even though it changes the reported model.**
-This is the strongest single fact in the letter: we committed to a selection rule, the rule returned a different architecture, and we report that architecture.
+**We keep the reported model and record the override.**
+The revision requested is minor; Comment 1 does not ask for re-selection. The pre-declared rule returned a different architecture, and that fact, together with our decision not to adopt it, is recorded in DEVIATIONS D5 rather than omitted.
 
 ---
 
@@ -33,7 +33,7 @@ All are reported below.
 The substantive changes are:
 
 1. The Center 2 and Center 3 results are now described as post-selection multicentre performance evaluation rather than independent external validation, with corresponding revisions throughout the Abstract, Discussion and Conclusion.
-2. The classification architecture is re-selected under a pre-declared, internal-data-only rule. That rule returns **EfficientNet-B0**, not DenseNet121, and we report EfficientNet-B0.
+2. The classification architecture is re-selected under a pre-declared, internal-data-only rule. That rule returns **EfficientNet-B0**, not DenseNet121, and we retain DenseNet121.
 3. All three segmentation arms are retrained after we found that each had selected its checkpoint on training data.
 4. A single version-locked pipeline is deposited, with every reported number mapped to the code and configuration that produced it.
 
@@ -75,7 +75,7 @@ Applying an internal-data-only rule does not return DenseNet121.
 Across seeds DenseNet121 ranks seventh of thirteen, and its rank varies from second to eighth depending on the seed.
 Every per-seed winner is an EfficientNet variant.
 
-In accordance with the outcome contract we declared in advance, we report **EfficientNet-B0** (seed 67, epoch 4, threshold 0.5054 derived by Youden's J on the tuning cohort alone).
+**The reported model remains DenseNet121.** The internal-only analysis is presented as a sensitivity analysis supporting the post-selection framing, not as a change to the reported model: it shows that internal validation on 257 cases does not by itself identify DenseNet121, which is precisely why Centers 2 and 3 are described as post-selection evaluation. The departure from our pre-declared outcome contract is recorded in `protocol/DEVIATIONS.md` D5.
 
 | Cohort | n | AUC | Sensitivity | Specificity |
 |---|---|---|---|---|
