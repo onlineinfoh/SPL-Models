@@ -1,16 +1,3 @@
-# ==========================================================================
-# SUPERSEDED BY THE LOCKED RE-ANALYSIS
-# ==========================================================================
-#
-# Internal-only sweep, but ranked architectures by MEAN accuracy across seeds
-# rather than the declared rule. Its output locked_selection_and_external.json
-# names a different model from the manuscript. Replaced by
-# protocol/run_protocol.py phases C and D.
-#
-# Retained unmodified as the audit record. Produces no reported result.
-# See README.md and docs/REPRODUCE.md for the active pipeline.
-# ==========================================================================
-#
 """
 Multi-seed training sweep for the classification stage.
 

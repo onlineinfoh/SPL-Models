@@ -29,7 +29,6 @@ Usage
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
@@ -38,8 +37,7 @@ import nibabel as nib
 from scipy import ndimage
 
 REPO = Path(__file__).resolve().parents[2]
-# Honours SPL_RESULTS so a rebuild does not overwrite the superseded Table 2.
-OUT_RESULTS = Path(os.environ.get("SPL_RESULTS", REPO / "analysis" / "results"))
+OUT_RESULTS = REPO / "analysis" / "results"
 OUT_RESULTS.mkdir(parents=True, exist_ok=True)
 
 BOOTSTRAP_N = 2000
@@ -53,45 +51,12 @@ COHORTS = {
     "external_test2": ("data/test2/img_test2", "data/test2/seg_test2"),
 }
 
-# cohort -> directory holding the nnU-Net predicted masks.
-#
-# Defaults to the published *_model directories so this script still reproduces
-# the superseded Table 2. Set SPL_NNUNET_PRED to a root containing one
-# subdirectory per cohort to evaluate a retrained model instead, for example
-# seg-model-training/nnunet/predicted_masks_v2 produced by predict_all_cohorts.sh.
-_NNUNET_ROOT = os.environ.get("SPL_NNUNET_PRED")
-if _NNUNET_ROOT:
-    NNUNET_PRED = {c: f"{_NNUNET_ROOT.rstrip('/')}/{c}"
-                   for c in ("train", "internal_val", "external_test1", "external_test2")}
-else:
-    NNUNET_PRED = {
-        "train": "data/train/imagesTr_model",
-        "internal_val": "data/val/img_v_model",
-        "external_test1": "data/test1/img_test1_model",
-        "external_test2": "data/test2/img_test2_model",
-    }
-
-# Root for the U-Net and DeepLabv3+ predicted masks. Same rationale.
-MASKS_LOCKED_ROOT = Path(os.environ.get(
-    "SPL_MASKS_LOCKED", REPO / "analysis" / "masks_locked"))
-
-# Per-model override. U-Net needs one because its arm is not retrained:
-# the checkpoint-selection defect is INERT for U-Net. Its learning rate reached
-# zero at epoch 45 of 350, so 306 epochs ran with a frozen model and train Dice
-# drifted only 0.0119 (sd 0.002) across all of them. Every candidate checkpoint
-# in that window is effectively the same weights, so selecting on training Dice
-# versus held-out Dice cannot change the result. Retraining instead introduces a
-# confound: the optimiser configuration (RMSprop, momentum 0.999, lr 5e-4,
-# batch 1) is unstable on this data and three retrain attempts each collapsed,
-# producing a weaker baseline for reasons unrelated to the defect. A weakened
-# baseline would bias the three-model comparison toward nnU-Net, the selected
-# model. See protocol/DEVIATIONS.md D6.
-#
-# nnU-Net and DeepLabv3+ ARE retrained: their schedules were live throughout, so
-# for those two arms the defect was real.
-MODEL_MASK_ROOT = {
-    "UNet": Path(os.environ["SPL_UNET_MASKS"]) if os.environ.get("SPL_UNET_MASKS") else None,
-    "DeepLabv3plus": Path(os.environ["SPL_DEEPLAB_MASKS"]) if os.environ.get("SPL_DEEPLAB_MASKS") else None,
+# cohort -> directory holding the nnU-Net predicted masks
+NNUNET_PRED = {
+    "train": "data/train/imagesTr_model",
+    "internal_val": "data/val/img_v_model",
+    "external_test1": "data/test1/img_test1_model",
+    "external_test2": "data/test2/img_test2_model",
 }
 
 
@@ -392,12 +357,11 @@ def main() -> None:
 
     # The other two models are evaluated once run_seg_inference.py has written
     # their masks into analysis/masks_locked/.
-    locked_root = MASKS_LOCKED_ROOT
+    locked_root = REPO / "analysis" / "masks_locked"
     for model_name in ("DeepLabv3plus", "UNet"):
         dirs = {}
-        root = MODEL_MASK_ROOT.get(model_name) or locked_root
         for cohort in COHORTS:
-            d = root / model_name / cohort
+            d = locked_root / model_name / cohort
             if d.exists() and any(d.glob("*.nii.gz")):
                 dirs[cohort] = str(d.relative_to(REPO))
         if dirs:

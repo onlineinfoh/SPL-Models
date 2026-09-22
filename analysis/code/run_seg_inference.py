@@ -29,21 +29,9 @@ REPO = Path(__file__).resolve().parents[2]
 SEG_ROOT = REPO / "seg-model-training"
 DL_ROOT = SEG_ROOT / "DeepLabV3Plus-Pytorch"
 UNET_ROOT = SEG_ROOT / "Pytorch-UNet"
-import os
-# Output root and checkpoints are overridable so a retrained model can be
-# written to a NEW directory. Defaults reproduce the superseded masks, which
-# are the only remaining record of the original DeepLabv3+ weights (the
-# retrain overwrote best_deeplabv3plus_mobilenet_lung_os16.pth in place).
-OUT_ROOT = Path(os.environ.get("SPL_MASKS_OUT", REPO / "analysis" / "masks_locked"))
+OUT_ROOT = REPO / "analysis" / "masks_locked"
 
-# DeepLabv3+ was trained with an explicit --crop_size 512, so it must be scored
-# at 512. U-Net was NOT: Pytorch-UNet's --size defaults to None and the
-# published training command omits it, so U-Net trained at native resolution.
-# Scoring the U-Net at 512 produces near-empty masks (verified: Dice 0.7400 at
-# native versus 0.0001 with 38/40 empty at 512 on the same checkpoint).
-DEEPLAB_CROP_SIZE = 512
-UNET_CROP_SIZE = None            # None = native resolution
-CROP_SIZE = DEEPLAB_CROP_SIZE    # retained for the DeepLabv3+ path
+CROP_SIZE = 512  # both non-nnU-Net models were run at 512x512
 
 COHORTS = {
     "train": ("data/train/imagesTr", "data/train/labelsTr"),
@@ -111,8 +99,7 @@ def run_deeplab(device: torch.device) -> None:
     sys.path.extend([str(SEG_ROOT), str(DL_ROOT), str(DL_ROOT / "utils")])
     import network.modeling as modeling  # type: ignore
 
-    ckpt_path = Path(os.environ.get("SPL_DEEPLAB_CKPT",
-        DL_ROOT / "checkpoints" / "best_deeplabv3plus_mobilenet_lung_os16.pth"))
+    ckpt_path = DL_ROOT / "checkpoints" / "best_deeplabv3plus_mobilenet_lung_os16.pth"
     ckpt = torch.load(str(ckpt_path), map_location=device, weights_only=False)
     model = modeling.deeplabv3plus_mobilenet(num_classes=2, output_stride=16,
                                              pretrained_backbone=False)
@@ -166,8 +153,7 @@ def run_unet(device: torch.device) -> None:
     sys.path.append(str(UNET_ROOT))
     from unet import UNet  # type: ignore
 
-    ckpt_path = Path(os.environ.get("SPL_UNET_CKPT",
-        UNET_ROOT / "checkpoints" / "checkpoint_best.pth"))
+    ckpt_path = UNET_ROOT / "checkpoints" / "checkpoint_best.pth"
     state = torch.load(str(ckpt_path), map_location=device, weights_only=False)
     if isinstance(state, dict) and "model_state_dict" in state:
         state = state["model_state_dict"]
@@ -197,12 +183,9 @@ def run_unet(device: torch.device) -> None:
             arr = load_nifti_2d(img_path)
             if arr.max() > 0:
                 arr = arr / arr.max()
-            if UNET_CROP_SIZE is None:
-                x = arr.astype(np.float32)[None, None]
-            else:
-                pil = Image.fromarray(arr.astype(np.float32))
-                rs = pil.resize((UNET_CROP_SIZE, UNET_CROP_SIZE), resample=Image.BICUBIC)
-                x = np.asarray(rs, dtype=np.float32)[None, None]
+            pil = Image.fromarray(arr.astype(np.float32))
+            rs = pil.resize((CROP_SIZE, CROP_SIZE), resample=Image.BICUBIC)
+            x = np.asarray(rs, dtype=np.float32)[None, None]
             t = torch.from_numpy(np.ascontiguousarray(x)).float().to(device)
 
             with torch.no_grad():
@@ -220,19 +203,10 @@ def run_unet(device: torch.device) -> None:
 
 
 def main() -> None:
-    import argparse
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--models", nargs="+", default=["deeplab", "unet"],
-                    choices=["deeplab", "unet"],
-                    help="which baselines to predict; lets DeepLab run while "
-                         "U-Net is still training")
-    args = ap.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device = {device}")
-    if "deeplab" in args.models:
-        run_deeplab(device)
-    if "unet" in args.models:
-        run_unet(device)
+    run_deeplab(device)
+    run_unet(device)
     print("\nLocked masks written under", OUT_ROOT)
 
 

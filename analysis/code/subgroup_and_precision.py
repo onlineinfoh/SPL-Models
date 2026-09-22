@@ -24,21 +24,8 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 REPO = Path(__file__).resolve().parents[2]
-import os, sys  # noqa: E402
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import common as C  # noqa: E402
-
-# Honours SPL_PRED_DIR / SPL_ARCH / SPL_RESULTS like the other analysis scripts.
-PRED = C.PRED_DIR / C.ARCH
-RES = C.RESULTS   # SPL_RESULTS env var; defaults to analysis/results
-
-# Lesion-size tertiles come from the GROUND-TRUTH area fraction, which does not
-# depend on which segmentation model produced the predicted masks. This input is
-# therefore read from the segmentation metrics location rather than from the
-# active results directory, so the classification analysis can be regenerated
-# independently of the segmentation rebuild.
-SEG_METRICS = Path(os.environ.get(
-    "SPL_SEG_METRICS", REPO / "analysis" / "results" / "seg_metrics_per_case.csv"))
+PRED = REPO / "binary_classification" / "predictions_tight" / "densenet121"
+RES = REPO / "analysis" / "results"
 
 COHORTS = {"internal_val": "Development/tuning (Center 1)",
            "external_test1": "External Test 1 (Center 2)",
@@ -71,7 +58,7 @@ def boot_auc_ci(y, p, n_boot=2000, seed=20260904):
 
 
 def main() -> None:
-    per_case = pd.read_csv(SEG_METRICS)
+    per_case = pd.read_csv(RES / "seg_metrics_per_case.csv")
     area = (per_case[per_case.model == "nnUNet"]
             .set_index(["cohort", "case_id"])["gt_area_frac"])
 

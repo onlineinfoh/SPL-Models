@@ -22,33 +22,10 @@ ARCHES = [
     "densenet121", "densenet201",
 ]
 SEEDS = [67]
-
-# Defaults match corrected 300 px inference using the original checkpoints.
-# Prior 224 px code is preserved in docs/history/; outputs stay separate.
-#
-#   SPL_HEATMAP_ARCH   restrict to one architecture
-#   SPL_HEATMAP_CKPT   explicit checkpoint path (the protocol run uses a
-#                      different directory layout from binary_classification/runs)
-#   SPL_HEATMAP_OUT    output root
-#   SPL_PRED_DIR       per-case probability files used to rank cases
-#   SPL_IMG_SIZE       input resolution
-#   SPL_THRESHOLD      fixed operating point. The locked threshold comes from
-#                      protocol/locked_pipeline.json and must NOT be re-derived
-#                      here; re-deriving it would be a second, undeclared
-#                      selection step on the tuning cohort.
-import os
-_one = os.environ.get("SPL_HEATMAP_ARCH")
-if _one:
-    ARCHES = [_one]
-OUT_ROOT = Path(os.environ.get("SPL_HEATMAP_OUT",
-                               ROOT / "binary_classification" / "heatmaps_tight_300"))
+OUT_ROOT = ROOT / "binary_classification" / "heatmaps_tight"
 CKPT_ROOT = ROOT / "binary_classification" / "runs"
-CKPT_OVERRIDE = os.environ.get("SPL_HEATMAP_CKPT")
-PRED_ROOT = Path(os.environ.get("SPL_PRED_DIR",
-                                ROOT / "binary_classification" / "predictions_tight_300"))
-THRESHOLD_OVERRIDE = os.environ.get("SPL_THRESHOLD")
 
-IMG_SIZE = int(os.environ.get("SPL_IMG_SIZE", "300"))
+IMG_SIZE = 224
 HALO_FRAC = 0.10
 
 SPLITS = {
@@ -98,7 +75,7 @@ def load_labels(path: Path) -> dict[str, int]:
 
 def load_predictions(arch: str, split: str, seed: int, variant: str = "gt") -> dict[str, float]:
     suffix = "" if variant == "gt" else f"_{variant}"
-    pred_file = PRED_ROOT / arch / f"{split}{suffix}_seed{seed}_probs.txt"
+    pred_file = ROOT / "binary_classification" / "predictions_tight" / arch / f"{split}{suffix}_seed{seed}_probs.txt"
     if not pred_file.exists():
         return {}
     df = pd.read_csv(pred_file, comment="#")
@@ -519,7 +496,7 @@ def main():
 
     for arch in ARCHES:
         for seed in SEEDS:
-            ckpt = Path(CKPT_OVERRIDE) if CKPT_OVERRIDE else CKPT_ROOT / arch / "best.pth"
+            ckpt = CKPT_ROOT / arch / "best.pth"
             if not ckpt.exists():
                 print(f"Skipping {arch}: checkpoint not found.")
                 continue
@@ -535,11 +512,7 @@ def main():
             thresholds = {}
             for variant, _ in iter_mask_variants(val_img_dir, val_mask_dir):
                 val_preds = load_predictions(arch, "internal_val", seed, variant=variant)
-                if THRESHOLD_OVERRIDE is not None:
-                    # Locked operating point, carried in rather than re-derived.
-                    thr, thr_acc = float(THRESHOLD_OVERRIDE), float("nan")
-                else:
-                    thr, thr_acc = best_threshold_from_preds(val_labels, val_preds)
+                thr, thr_acc = best_threshold_from_preds(val_labels, val_preds)
                 thresholds[variant] = thr
                 if np.isnan(thr_acc):
                     print(f"[WARN] {arch} seed {seed} {variant}: no val preds; using thr={thr:.3f}")

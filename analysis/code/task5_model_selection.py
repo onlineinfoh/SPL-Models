@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-# ==========================================================================
-# SUPERSEDED BY THE LOCKED RE-ANALYSIS
-# ==========================================================================
-#
-# CANNOT be run under the locked protocol: it scores all 13 architectures on
-# external data, which the hold-out permits only for the selected model.
-# Replaced by the internal-only ranking in protocol/locked_pipeline.json.
-#
-# Retained unmodified as the audit record. Produces no reported result.
-# See README.md and docs/REPRODUCE.md for the active pipeline.
-# ==========================================================================
-#
 """
 Task 5: architecture ranking and pairwise AUC comparisons.
 

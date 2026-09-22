@@ -1,8 +1,0 @@
-device = cuda
-[DeepLabv3+] loaded best_deeplabv3plus_mobilenet_lung_os16.pth
-  train           wrote 600 masks -> /home/tianxi-liang/TianxiLiang/research/china/SPL-Models/analysis/masks_locked_v2/DeepLabv3plus/train
-  internal_val    wrote 257 masks -> /home/tianxi-liang/TianxiLiang/research/china/SPL-Models/analysis/masks_locked_v2/DeepLabv3plus/internal_val
-  external_test1  wrote 108 masks -> /home/tianxi-liang/TianxiLiang/research/china/SPL-Models/analysis/masks_locked_v2/DeepLabv3plus/external_test1
-  external_test2  wrote 94 masks -> /home/tianxi-liang/TianxiLiang/research/china/SPL-Models/analysis/masks_locked_v2/DeepLabv3plus/external_test2
-
-Locked masks written under /home/tianxi-liang/TianxiLiang/research/china/SPL-Models/analysis/masks_locked_v2

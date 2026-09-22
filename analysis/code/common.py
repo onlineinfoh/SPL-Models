@@ -22,24 +22,10 @@ from sklearn.metrics import roc_auc_score, average_precision_score
 # ----------------------------------------------------------------------------
 
 REPO = Path(__file__).resolve().parents[2]
-
-# Source and destination are overridable so the same analysis code can produce
-# both the superseded DenseNet121 results and the locked EfficientNet-B0 ones,
-# without duplicating any statistics. Defaults reproduce the original run
-# exactly, so scripts invoked with no environment set behave as before.
-#
-#   SPL_PRED_DIR   directory of per-case probability files
-#   SPL_ARCH       architecture whose files to read
-#   SPL_RESULTS    directory for generated tables
-#   SPL_FIGURES    directory for generated figures
-#
-# See docs/REPRODUCE.md for which artifact each combination produces.
-PRED_DIR = Path(os.environ.get(
-    "SPL_PRED_DIR", REPO / "binary_classification" / "predictions_tight"))
-ARCH = os.environ.get("SPL_ARCH", "densenet121")
+PRED_DIR = REPO / "binary_classification" / "predictions_tight"
 OUT = REPO / "analysis"
-RESULTS = Path(os.environ.get("SPL_RESULTS", OUT / "results"))
-FIGURES = Path(os.environ.get("SPL_FIGURES", OUT / "figures"))
+RESULTS = OUT / "results"
+FIGURES = OUT / "figures"
 REPORT = OUT / "report"
 
 BOOT_SEED = 20260904

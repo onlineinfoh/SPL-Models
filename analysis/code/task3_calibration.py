@@ -18,7 +18,7 @@ import pandas as pd
 
 import common as C
 
-ARCH = C.ARCH   # SPL_ARCH env var; defaults to densenet121 (superseded run)
+ARCH = "densenet121"
 FIG_SPLITS = ["internal_val", "external_test1", "external_test2"]
 
 

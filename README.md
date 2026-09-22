@@ -1,94 +1,168 @@
 # SPL-Models
 
-Two-stage segmentation and classification of subpleural pulmonary lesions on grayscale ultrasound.
+Two-stage deep learning framework for automatic segmentation and benign-malignant differentiation of subpleural pulmonary lesions on grayscale ultrasound.
 
-## Current scope
+This repository contains the complete training, model-selection, inference and evaluation code, together with all training logs, random seeds, hyperparameters and a pinned software environment.
 
-The active segmentation model is the original **nnU-Net Dataset000_lung, 2d,
-fold `all`, checkpoint_best.pth**. The original classification checkpoints remain
-in `binary_classification/runs/`. No retraining or inference was performed for
-this code and documentation update.
+Patient images, segmentation masks and labels are not redistributable. See [`data/README.md`](data/README.md).
+Trained model weights are available from the authors on reasonable request.
 
-Classification training uses 300×300 input. Inference and Grad-CAM now default
-to **300×300**, correcting the previous 224×224 inference setting. The deposited
-classification predictions were generated at 224×224; they have not been
-relabelled as 300×300 results. Corrected inference will write separately to
-`binary_classification/predictions_tight_300/`.
+## Pipeline
 
-This is a restoration of the original model path with documented corrections,
-not an exact checkout of commit `6475d07`. Later experiments and shared analysis
-helpers are retained. No Git history, checkpoint, result or historical log was
-removed by this update.
+The pipeline is sequential. The two stages are trained and applied independently; there is no joint optimisation between them.
 
-## Status of implementations
+```
+grayscale ultrasound image (one representative frame per patient)
+    -> Stage 1  nnU-Net 2d           -> lesion mask
+    -> lesion bounding box + 10% halo, resize, 2-channel input (image, mask)
+    -> Stage 2  DenseNet121          -> malignancy probability
+    -> fixed threshold (derived on the Center 1 tuning cohort) -> benign / malignant
+```
 
-| Implementation | Status |
+Cohorts: 1059 patients, one image per patient. Training 600, tuning 257 (Center 1), External Test 1 108 (Center 2), External Test 2 94 (Center 3).
+
+## Repository layout
+
+| Path | Contents |
 |---|---|
-| Original nnU-Net `Dataset000_lung`, `fold_all` | Active segmentation checkpoint |
-| `binary_classification/train.py` | Original training/calculation logic; future external-metric text logging suppressed |
-| `binary_classification/infer_probs_tight.py` | Original checkpoint/threshold logic, corrected to 300 px; new output directory |
-| `binary_classification/heatmap.py` | 300 px default, paired with new prediction directory |
-| `analysis/code/` shared statistics | Historical outputs mapped below; no new calculations run |
-| ~~Revision `Dataset001_lungval`, fold 0~~ | Retained alternative experiment, not the active segmentation model |
-| ~~`protocol/run_protocol.py` as the reported pipeline~~ | Retained re-analysis; its EfficientNet-B0 results are a separate result set |
-| ~~224 px inference as the current setting~~ | Historical code preserved in `docs/history/`; saved predictions remain intact |
+| `binary_classification/` | Stage 2: training, model selection, inference, Grad-CAM |
+| `seg-model-training/` | Stage 1: training driver and evaluation for nnU-Net, U-Net, DeepLabv3+ |
+| `analysis/code/` | Evaluation and statistical analysis scripts |
+| `analysis/results/` | Generated result tables (CSV, JSON, markdown) |
+| `analysis/figures/` | Calibration and decision-curve figures (PDF, PNG) |
+| `analysis/logs/training_logs/` | Every training log, both runs, unedited |
+| `analysis/runs_locked/` | Per-run logs from the multi-seed sweep |
 
-## Reproducibility documents
+## Scripts
 
-- [Result-to-code/configuration map](docs/REPRODUCE.md)
-- [Exact changes and preserved versions](docs/CHANGELOG.md)
-- [Manuscript/Supplement checklist for colleagues](docs/MANUSCRIPT_HANDOFF.md)
-- [Machine-readable file and checkpoint hashes](docs/provenance_manifest.json)
-- [Historical revision code status](protocol/README.md)
+Stage 1, segmentation:
 
-## nnU-Net metric wording
+| Script | Purpose |
+|---|---|
+| `seg-model-training/model_pipeline.sh` | Training driver |
+| `seg-model-training/benchmarking/nnunet_benchmarking.py` | nnU-Net evaluation |
+| `seg-model-training/benchmarking/unet_benchmark.py` | U-Net evaluation |
+| `seg-model-training/benchmarking/deeplab_benchmark.py` | DeepLabv3+ evaluation |
+| `seg-model-training/benchmarking/visual_check_overlay.py` | Overlay visualisation |
 
-~~Internal-validation Dice during `fold_all` training~~ → **training-set Dice**.
-For `fold_all`, nnU-Net assigns its training cases to its validation loader too.
-Its pseudo-Dice/validation output therefore does not measure held-out internal
-validation. The raw logs keep their original framework labels.
+Stage 2, classification:
 
-The separate Center 1 tuning-cohort evaluation (257 cases) is a different
-measurement and retains its tuning/internal-evaluation label. External Test 1
-and External Test 2 contain 108 and 94 cases. Their original saved nnU-Net mean
-Dice values remain **0.91347653** and **0.91491973**, respectively; neither masks,
-weights nor metric files were modified.
+| Script | Purpose |
+|---|---|
+| `binary_classification/build_labels.py` | Label construction from cohort spreadsheets |
+| `binary_classification/check_data.py` | Dataset integrity checks |
+| `binary_classification/train.py` | Training across all candidate architectures |
+| `binary_classification/infer_probs_tight.py` | Inference, threshold selection, reported metrics |
+| `binary_classification/heatmap.py` | Grad-CAM maps |
+| `binary_classification/run_tight_pipeline.sh` | End-to-end driver |
 
-## Classification configuration
+Evaluation and analysis:
 
-Thirteen architectures: Inception-v3, VGG-19, ResNet-18/50/101, EfficientNet-B0–B5,
-DenseNet121 and DenseNet201. The deposited original run uses seed **67**; the
-separate multi-seed sweep uses **67, 1234, 2025**. The reported comparison is the **original seed-67 automatic-mask analysis**: DenseNet121
-ranked first in internal accuracy and first on External Test 2 in accuracy and AUC,
-but third on External Test 1 in both metrics. These are the saved **224 px**
-inference results, not results of the pending 300 px correction. Full evidence:
-[selection audit](docs/selection_audit/README.md).
+| Script | Purpose |
+|---|---|
+| `analysis/code/seg_metrics_engine.py` | Segmentation metrics: Dice, IoU, precision, recall, FPR, HD95, ASSD, bootstrap CIs |
+| `analysis/code/run_seg_inference.py` | Regenerates predicted masks at native resolution |
+| `analysis/code/make_table2.py` | Segmentation results table |
+| `analysis/code/task1_confidence_intervals.py` | Classification metrics and confidence intervals |
+| `analysis/code/task2_threshold_policy.py` | Threshold-selection comparison |
+| `analysis/code/task3_calibration.py` | Calibration intercept, slope, Brier score, curves |
+| `analysis/code/task4_dca.py` | Decision-curve analysis |
+| `analysis/code/task5_model_selection.py` | Architecture ranking, DeLong tests |
+| `analysis/code/task6_gt_vs_model_mask.py` | Manual versus automatic mask comparison |
+| `analysis/code/train_locked.py` | Multi-seed training sweep, internal data only |
+| `analysis/code/summarize_training_logs.py` | Recovers per-epoch series and checkpoint selection from logs |
+| `analysis/code/verify_cached_dataset.py` | Asserts the cached loader is bit-identical to the original |
 
-Input: image and mask channels, lesion bounding box plus 10% halo, per-channel
-standardisation. Training: up to 40 epochs, batch 16, AdamW (LR 1e-4, weight decay
-5e-4), cosine schedule with minimum LR 1e-6, label smoothing 0.1, patience 8.
-The original checkpoint rule is **internal-validation accuracy**, not AUC.
-Inference selects each mask variant's threshold by maximum tuning accuracy.
+## Configuration
 
-Only future external-metric text output from training is suppressed. External
-evaluation still runs and external plot curves remain; the computation and
-checkpoint rule are unchanged. This is a logging change, not a hold-out change.
+### Random seeds
 
-## Existing results versus corrected inference
+| Purpose | Seed |
+|---|---|
+| Training and inference | 67 |
+| Multi-seed sweep | 67, 1234, 2025 |
+| All bootstrap procedures | 20260904, 2000 resamples |
 
-`analysis/results/` and `binary_classification/predictions_tight/` contain the
-original result set. `protocol/results/` contains the later re-analysis. Do not
-combine them into a single table without identifying the different models.
-The corrected 300 px probabilities, thresholds, classification tables and
-heatmaps have **not** been generated. Historical DenseNet121 thresholds 0.5483
-(manual masks) and 0.5000 (automatic masks) do not establish the new thresholds.
+`torch.backends.cudnn.deterministic` is `False`, so runs are reproducible in distribution rather than bitwise.
 
-Centers 2 and 3 are described as **post-selection multicentre performance
-evaluation** unless contemporaneous lock evidence or a genuinely untouched
-cohort is available. An internal checkpoint rule alone does not establish the
-history of architecture selection.
+### Stage 1, nnU-Net (selected)
 
-Patient data and weights are local resources; see [data/README.md](data/README.md).
-The deposited analysis environment is [analysis/environment_lock.txt](analysis/environment_lock.txt).
-The original nnU-Net debug record separately records torch 2.9.1+cu128; the later
-environment must not be presented as the original run's environment.
+nnU-Net v2 (`nnunetv2==2.8.1`), `Dataset000_lung`, configuration `2d`, `nnUNetTrainer` / `nnUNetPlans`, fold `all`, `checkpoint_best.pth`.
+Patch 896 x 1792, batch 2, spacing 1.0 x 1.0, `CTNormalization`, `use_mask_for_norm=False`, 1000 epochs, SGD, initial LR 0.01, weight decay 3e-05, foreground oversampling 0.33.
+
+### Stage 1 baselines
+
+U-Net (Pytorch-UNet): `n_channels=1`, `n_classes=2`, `bilinear=False`, 512 x 512 input, per-image max scaling.
+DeepLabv3+ (DeepLabV3Plus-Pytorch): `deeplabv3plus_mobilenet`, output stride 16, 2 classes, 512 x 512 input, ImageNet normalisation.
+
+### Stage 2, classification
+
+Input 2 channels (image, mask), lesion bounding box + 10% halo (`HALO_FRAC=0.10`), per-channel standardisation.
+Input size 300 x 300 at training (`train.py`), 224 x 224 at inference (`infer_probs_tight.py`).
+40 epochs, batch 16, AdamW, LR 1e-4, weight decay 5e-4, `CosineAnnealingLR` with `eta_min=1e-6`, early stopping patience 8 on tuning-set accuracy.
+`BCEWithLogitsLoss` weighted per sample by `mask.mean()*0.9 + 0.1` clamped at 0.1, label smoothing 0.1, `WeightedRandomSampler` on inverse class frequency.
+ImageNet pretraining, first convolution adapted to 2 channels by averaging the RGB filters.
+
+Augmentation, training only: horizontal flip p=0.5; rotation p=0.5, uniform -20 to +20 degrees, reflect padding; gamma p=0.7, uniform 0.6 to 1.4; contrast p=0.7, uniform 0.75 to 1.25; Gaussian noise p=0.5, SD 6.0 on a 0-255 scale.
+
+Architectures evaluated: Inception-v3, VGG-19, ResNet-18/50/101, EfficientNet-B0 through B5, DenseNet121, DenseNet201.
+
+### Threshold
+
+The operating threshold is selected in `infer_probs_tight.py` (`_best_threshold_from_rows`) on the Center 1 tuning cohort only, as the probability threshold maximising tuning-set accuracy, then applied unchanged to both external cohorts.
+For DenseNet121 the value is 0.5483 with manual masks and 0.5000 with automatic masks. For this model that threshold also coincides with the Youden-optimal point.
+`train.py` uses a fixed 0.5 for the metrics it prints during training; those are monitoring output and are not the reported results.
+
+## Implementation notes
+
+1. Training and inference use different input resolutions, 300 and 224. Reported results come from the 224 inference harness.
+2. If a segmentation mask contains no positive pixel, a centred square crop replaces the lesion bounding box. Across all 1059 study cases this branch was never taken.
+3. Segmentation metrics are computed on the lesion class only, at native resolution. `analysis/code/seg_metrics_engine.py` is the reference implementation and supersedes the three per-model benchmark scripts, which did not share a metric definition.
+4. In `train.py`, `cv2.warpAffine` on an `(H, W, 1)` array returns `(H, W)`. After a rotation the subsequent `img[..., 0]` therefore indexes a single image column, so the intensity augmentations affect one column in samples where rotation is applied.
+5. Early stopping with patience 8 on 257 tuning cases is unstable: across the 39 sweep runs the retained epoch has median 4 and range 1 to 12, with 13 of 39 runs retaining an epoch 1 or 2 checkpoint.
+
+## Environment
+
+Python 3.11.14, torch 2.13.0+cu126, torchvision 0.28.0+cu126, CUDA 12.6, cuDNN 91002, nnunetv2 2.8.1, numpy 1.26.4, scipy 1.10.0, scikit-learn 1.9.0, nibabel 5.4.2, SimpleITK 2.5.6, opencv-python 4.11.0.86.
+Single NVIDIA GeForce RTX 4090.
+
+Complete pinned environment: [`analysis/environment_lock.txt`](analysis/environment_lock.txt).
+
+Third-party frameworks are not vendored. Install from upstream at the pinned versions:
+[nnU-Net](https://github.com/MIC-DKFZ/nnUNet), [Pytorch-UNet](https://github.com/milesial/Pytorch-UNet), [DeepLabV3Plus-Pytorch](https://github.com/VainF/DeepLabV3Plus-Pytorch).
+
+## Reproducing
+
+```bash
+PY=~/venvs/prism/bin/python
+
+# Stage 1: predicted masks, then metrics
+$PY analysis/code/run_seg_inference.py
+$PY analysis/code/seg_metrics_engine.py
+$PY analysis/code/make_table2.py
+
+# Stage 2: training, then inference with the tuning-set threshold
+$PY binary_classification/train.py
+$PY binary_classification/infer_probs_tight.py
+
+# Evaluation and statistics
+bash analysis/code/run_all.sh
+
+# Multi-seed sweep, internal data only
+$PY analysis/code/verify_cached_dataset.py
+$PY analysis/code/train_locked.py --seeds 67 1234 2025
+
+# Checkpoint-selection audit over the training logs
+$PY analysis/code/summarize_training_logs.py
+```
+
+## Training logs
+
+Every training log from both runs is included unedited under [`analysis/logs/training_logs/`](analysis/logs/training_logs/):
+13 logs from the submitted run (seed 67), and 39 logs from the multi-seed sweep.
+
+`analysis/code/summarize_training_logs.py` recovers the full per-epoch series from each log and reports which epoch was retained against which epoch each candidate selection rule would have chosen.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).

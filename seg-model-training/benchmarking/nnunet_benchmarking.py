@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-# Original Dataset000_lung/fold_all benchmark and metric definitions.
-# Shared Table 2 metrics are produced by analysis/code/seg_metrics_engine.py.
-# Training-time Dice for fold_all is training-set Dice, not held-out Dice.
 """
 Benchmark nnU-Net checkpoint on the same datasets as benchmarking/unet_benchmark.py,
 using nnU-Net's own preprocessing (dynamic resizing) and metrics aligned with the

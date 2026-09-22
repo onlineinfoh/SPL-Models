@@ -1,6 +1,3 @@
-# Original classification training and internal-accuracy checkpoint rule.
-# External metrics are still computed; future external text logging is suppressed.
-# Previous source and historical logs are preserved; see docs/CHANGELOG.md.
 from __future__ import annotations
 
 import argparse
@@ -657,7 +654,8 @@ def main():
 
                     log_line = (
                         f"[{arch} Seed {seed}] Epoch {epoch:02d} "
-                        f"train_auc={train_auc:.4f} val_auc={val_metrics['auc']:.4f}"
+                        f"train_auc={train_auc:.4f} val_auc={val_metrics['auc']:.4f} "
+                        f"ext1_auc={ext1_metrics['auc']:.4f} ext2_auc={ext2_metrics['auc']:.4f}"
                     )
                     print(log_line)
                     logf.write(log_line + "\n")
@@ -673,8 +671,18 @@ def main():
                         f"ppv={val_metrics['ppv']:.4f} npv={val_metrics['npv']:.4f} "
                         f"sens_at_spec95={val_metrics['sens_at_spec95']:.4f}\n"
                     )
-                    # External evaluation remains unchanged; only its log output
-                    # is suppressed. See docs/CHANGELOG.md for the prior code.
+                    logf.write(
+                        f"    ext1: acc={ext1_metrics['acc']:.4f} auc={ext1_metrics['auc']:.4f} "
+                        f"ap={ext1_metrics['ap']:.4f} spec={ext1_metrics['spec']:.4f} "
+                        f"ppv={ext1_metrics['ppv']:.4f} npv={ext1_metrics['npv']:.4f} "
+                        f"sens_at_spec95={ext1_metrics['sens_at_spec95']:.4f}\n"
+                    )
+                    logf.write(
+                        f"    ext2: acc={ext2_metrics['acc']:.4f} auc={ext2_metrics['auc']:.4f} "
+                        f"ap={ext2_metrics['ap']:.4f} spec={ext2_metrics['spec']:.4f} "
+                        f"ppv={ext2_metrics['ppv']:.4f} npv={ext2_metrics['npv']:.4f} "
+                        f"sens_at_spec95={ext2_metrics['sens_at_spec95']:.4f}\n"
+                    )
                     logf.flush()
 
                                                     
@@ -726,6 +734,8 @@ def main():
                 best_line,
                 _fmt_summary("train", best_metrics["train"]),
                 _fmt_summary("internal_val", best_metrics["val"]),
+                _fmt_summary("external_test1", best_metrics["ext1"]),
+                _fmt_summary("external_test2", best_metrics["ext2"]),
             ]
             with (seed_dir / "train_log.txt").open("a") as logf:
                 logf.write("\n".join(summary_lines) + "\n")

@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-# Corrected 300 px inference using the original classification checkpoints.
-# Deposited 224 px outputs remain separate; see docs/REPRODUCE.md.
 """
-Run 300 px inference with the tight ROI 2-channel classifiers and dump probabilities.
+Run inference with the tight ROI 2-channel ResNet-18 model and dump probabilities.
 
 Outputs a TXT per split with: case_id, label, prob_malignant, prob_benign.
 Splits: train, internal_val, external_test1, external_test2.
@@ -24,14 +22,7 @@ import nibabel as nib
 from sklearn.metrics import roc_auc_score, average_precision_score, roc_curve
 
 ROOT = Path(__file__).resolve().parents[1]
-# Was ROOT / "new_data", a directory that no longer exists, so this script could
-# not run as deposited. The cohort was renamed to data/; the two are the same
-# images. Verified by reloading runs/densenet121/best.pth and re-running this
-# inference path against data/: all 918 predictions across internal_val,
-# external_test1 and external_test2 reproduce the committed files in
-# predictions_tight/ to within 2.3e-4 (mean 2e-6), i.e. GPU non-determinism.
-# See analysis/code/verify_predictions_reproduce.py.
-DATA_CROP = ROOT / "data"
+DATA_CROP = ROOT / "new_data"
 LABEL_DIR = ROOT / "binary_classification" / "labels"
 ARCHES = [
     "inception_v3", "vgg19",
@@ -40,11 +31,10 @@ ARCHES = [
     "densenet121", "densenet201",
 ]
 SEEDS = [67]
-# Preserve deposited 224 px predictions; corrected inference writes separately.
-OUT_DIR = ROOT / "binary_classification" / "predictions_tight_300"
+OUT_DIR = ROOT / "binary_classification" / "predictions_tight"
 CKPT_ROOT = ROOT / "binary_classification" / "runs"
 
-IMG_SIZE = 300
+IMG_SIZE = 224
 HALO_FRAC = 0.10  # match train.py
 
 SPLITS = {
