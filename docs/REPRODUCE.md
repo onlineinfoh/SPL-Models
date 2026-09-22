@@ -111,6 +111,9 @@ Run from `analysis/code/`. Outputs land in `analysis/results/`.
 
 Shared helpers: `common.py` (paths, cohorts, mask variants, metrics, DeLong), `cached_dataset.py`, `run_all.sh`.
 
+All three segmentation models are scored by one engine, `seg_metrics_engine.py`, on the lesion class only, at native resolution.
+The derivation of the corrected Table 2 false-positive rates, including the macro-averaging defect in the original DeepLabv3+ evaluation, is in [`table2_fpr_artifact_proof.md`](table2_fpr_artifact_proof.md).
+
 ### Architecture selection
 
 DenseNet121 was selected on **internal-validation accuracy**, the rule implemented at `train.py:690`.
