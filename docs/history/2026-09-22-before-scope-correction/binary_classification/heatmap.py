@@ -23,8 +23,9 @@ ARCHES = [
 ]
 SEEDS = [67]
 
-# Defaults match corrected 300 px inference using the original checkpoints.
-# Prior 224 px code is preserved in docs/history/; outputs stay separate.
+# Overrides so this script serves both the superseded DenseNet121 run at 224 px
+# and the locked EfficientNet-B0 run at 300 px. With no environment set it
+# reproduces the superseded heatmaps exactly.
 #
 #   SPL_HEATMAP_ARCH   restrict to one architecture
 #   SPL_HEATMAP_CKPT   explicit checkpoint path (the protocol run uses a
@@ -41,14 +42,14 @@ _one = os.environ.get("SPL_HEATMAP_ARCH")
 if _one:
     ARCHES = [_one]
 OUT_ROOT = Path(os.environ.get("SPL_HEATMAP_OUT",
-                               ROOT / "binary_classification" / "heatmaps_tight_300"))
+                               ROOT / "binary_classification" / "heatmaps_tight"))
 CKPT_ROOT = ROOT / "binary_classification" / "runs"
 CKPT_OVERRIDE = os.environ.get("SPL_HEATMAP_CKPT")
 PRED_ROOT = Path(os.environ.get("SPL_PRED_DIR",
-                                ROOT / "binary_classification" / "predictions_tight_300"))
+                                ROOT / "binary_classification" / "predictions_tight"))
 THRESHOLD_OVERRIDE = os.environ.get("SPL_THRESHOLD")
 
-IMG_SIZE = int(os.environ.get("SPL_IMG_SIZE", "300"))
+IMG_SIZE = int(os.environ.get("SPL_IMG_SIZE", "224"))
 HALO_FRAC = 0.10
 
 SPLITS = {

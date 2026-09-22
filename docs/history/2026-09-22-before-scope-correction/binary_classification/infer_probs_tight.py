@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# Corrected 300 px inference using the original classification checkpoints.
-# Deposited 224 px outputs remain separate; see docs/REPRODUCE.md.
+# ==========================================================================
+# SUPERSEDED BY THE LOCKED RE-ANALYSIS
+# ==========================================================================
+#
+# The 224 px inference path. The locked pipeline runs 300 px at both training
+# and inference. Replaced by analysis/code/export_locked_predictions.py.
+#
+# Retained unmodified as the audit record. Produces no reported result.
+# See README.md and docs/REPRODUCE.md for the active pipeline.
+# ==========================================================================
+#
 """
-Run 300 px inference with the tight ROI 2-channel classifiers and dump probabilities.
+Run inference with the tight ROI 2-channel ResNet-18 model and dump probabilities.
 
 Outputs a TXT per split with: case_id, label, prob_malignant, prob_benign.
 Splits: train, internal_val, external_test1, external_test2.
@@ -40,11 +49,10 @@ ARCHES = [
     "densenet121", "densenet201",
 ]
 SEEDS = [67]
-# Preserve deposited 224 px predictions; corrected inference writes separately.
-OUT_DIR = ROOT / "binary_classification" / "predictions_tight_300"
+OUT_DIR = ROOT / "binary_classification" / "predictions_tight"
 CKPT_ROOT = ROOT / "binary_classification" / "runs"
 
-IMG_SIZE = 300
+IMG_SIZE = 224
 HALO_FRAC = 0.10  # match train.py
 
 SPLITS = {

@@ -20,6 +20,8 @@ release_assets/
 # Generated image outputs and intermediate arrays, regenerable from the scripts
 analysis/masks_locked/
 binary_classification/heatmaps_tight/
+binary_classification/heatmaps_tight_300/
+binary_classification/predictions_tight_300/
 seg-model-training/nnunet/nnUNet_raw*/
 seg-model-training/nnunet/nnUNet_preprocessed/
 seg-model-training/nnunet/nnUNet_cropped_data/
@@ -63,6 +65,7 @@ nnunet-env/**/*.log
 # source data. Regenerate with predict_all_cohorts.sh and run_seg_inference.py.
 analysis/masks_locked_v2/
 seg-model-training/nnunet/predicted_masks_v2/
+seg-model-training/nnunet/predicted_masks_fold_all/
 
 # nnU-Net working directories for the retrained dataset
 seg-model-training/nnunet/nnUNet_raw/Dataset001_lungval/
