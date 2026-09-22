@@ -51,6 +51,12 @@ __pycache__/
 _private_response/
 
 # Local working files
-_private_response/
 test/
 **/*.log
+
+# Revision-era working artifacts. Not part of the reported pipeline; retained
+# on the authors' machine only. See docs/CHANGES_AND_REMOVALS.md.
+protocol/
+analysis/masks_locked_v2/
+seg-model-training/nnunet/predicted_masks_v2/
+seg-model-training/nnunet/nnUNet_results/Dataset001_lungval/

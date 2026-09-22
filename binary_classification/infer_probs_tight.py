@@ -22,7 +22,10 @@ import nibabel as nib
 from sklearn.metrics import roc_auc_score, average_precision_score, roc_curve
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_CROP = ROOT / "new_data"
+# Corrected from `ROOT / "new_data"`. That directory is not present in this
+# repository and never was; the cohort images are under data/, whose layout
+# matches the SPLITS table below exactly. See docs/CHANGES_AND_REMOVALS.md.
+DATA_CROP = ROOT / "data"
 LABEL_DIR = ROOT / "binary_classification" / "labels"
 ARCHES = [
     "inception_v3", "vgg19",
