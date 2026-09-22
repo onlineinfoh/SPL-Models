@@ -73,10 +73,10 @@ One line. Everything else in the tree is byte-identical to `6475d07`.
 
 | File | Change | Reason |
 |---|---|---|
-| `binary_classification/infer_probs_tight.py:25` | ~~`DATA_CROP = ROOT / "new_data"`~~ to `DATA_CROP = ROOT / "data"` | `new_data/` is not in the repository and never was, so the script could not run as deposited. The cohort images are under `data/`, whose layout matches the script's `SPLITS` table exactly: 600 / 257 / 108 / 94 cases. |
+| `binary_classification/infer_probs_tight.py:28` | ~~`DATA_CROP = ROOT / "new_data"`~~ to `DATA_CROP = ROOT / "data"` | `new_data/` is not in the repository and never was, so the script could not run as deposited. The cohort images are under `data/`, whose layout matches the script's `SPLITS` table exactly: 600 / 257 / 108 / 94 cases. |
 
 No other executable line was modified.
-Checkpoint selection (`train.py:690`, internal-validation accuracy), training resolution (`train.py:46`, 300 px), inference resolution (`infer_probs_tight.py:37`, 224 px) and the threshold rule (`_best_threshold_from_rows`) are all exactly as submitted.
+Checkpoint selection (`train.py:690`, internal-validation accuracy), training resolution (`train.py:46`, 300 px), inference resolution (`infer_probs_tight.py:40`, 224 px) and the threshold rule (`_best_threshold_from_rows`) are all exactly as submitted.
 
 The per-epoch external AUC logging in `train.py:652-653` is **retained unmodified**.
 It was left in place deliberately: the reviewer identified it, and removing it now would destroy the evidence rather than address the concern.

@@ -58,7 +58,7 @@ Baseline segmentation models (U-Net, DeepLabv3+) are under `seg-model-training/b
 |---|---|---|
 | Script | `binary_classification/train.py` | |
 | Seed | 67 | `train.py:566` (`--seeds` default `[67]`) |
-| Architectures | 13 | `infer_probs_tight.py:27-33` |
+| Architectures | 13 | `infer_probs_tight.py:30-36` |
 | Training resolution | **300 x 300** | `train.py:46` (`IMG_SIZE = 300`) |
 | Input | 2 channels: image, mask | |
 | ROI crop | lesion bounding box + 10% halo | `HALO_FRAC = 0.10` |
@@ -75,9 +75,9 @@ Those values are monitoring output; they are not read by the checkpoint rule at 
 | Item | Value | Location |
 |---|---|---|
 | Script | `binary_classification/infer_probs_tight.py` | |
-| Inference resolution | **224 x 224** | `infer_probs_tight.py:37` (`IMG_SIZE = 224`) |
-| Mask variants | `gt` (manual), `model` (automatic) | `iter_mask_variants`, `infer_probs_tight.py:162-170` |
-| Operating threshold | accuracy-maximising on internal validation | `_best_threshold_from_rows`, `infer_probs_tight.py:214` |
+| Inference resolution | **224 x 224** | `infer_probs_tight.py:40` (`IMG_SIZE = 224`) |
+| Mask variants | `gt` (manual), `model` (automatic) | `iter_mask_variants`, `infer_probs_tight.py:165-173` |
+| Operating threshold | accuracy-maximising on internal validation | `_best_threshold_from_rows`, `infer_probs_tight.py:217` |
 | DenseNet121 thresholds | 0.5483 manual, 0.5000 automatic | |
 | Outputs | `binary_classification/predictions_tight/<arch>/<split>[_model]_seed67_probs.txt` | |
 | Driver | `binary_classification/run_tight_pipeline.sh` | |
@@ -134,7 +134,7 @@ These are stated so that a reader attempting reproduction is not misled.
    This is the only executable line changed in this revision; it is logged in `docs/CHANGES_AND_REMOVALS.md`.
 
 2. **Training and inference resolution differ.**
-   Training used 300 x 300 (`train.py:46`); inference used 224 x 224 (`infer_probs_tight.py:37`).
+   Training used 300 x 300 (`train.py:46`); inference used 224 x 224 (`infer_probs_tight.py:40`).
    This was not intended and was not noticed before submission.
    All reported classification numbers were produced with 224 x 224 inference, and the manuscript states this.
    No 300 x 300 inference results are reported, and none are deposited.
