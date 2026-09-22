@@ -3,6 +3,8 @@
 Evaluation and statistical analysis for the two-stage segmentation and classification pipeline.
 Scripts here read the locked model outputs and produce the reported tables and figures.
 
+For which script produces which reported table, see [`docs/REPRODUCE.md`](../docs/REPRODUCE.md).
+
 ## Layout
 
 | Path | Contents |

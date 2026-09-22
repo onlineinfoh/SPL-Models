@@ -7,6 +7,9 @@ This repository contains the complete training, model-selection, inference and e
 Patient images, segmentation masks and labels are not redistributable. See [`data/README.md`](data/README.md).
 Trained model weights are available from the authors on reasonable request.
 
+**Where to start.** [`docs/REPRODUCE.md`](docs/REPRODUCE.md) maps every reported table to the exact script, configuration, seed, mask variant and inference resolution that produced it, and lists the known gaps.
+[`docs/CHANGES_AND_REMOVALS.md`](docs/CHANGES_AND_REMOVALS.md) records everything changed or removed during revision, and why.
+
 ## Pipeline
 
 The pipeline is sequential. The two stages are trained and applied independently; there is no joint optimisation between them.
@@ -25,6 +28,7 @@ Cohorts: 1059 patients, one image per patient. Training 600, tuning 257 (Center 
 
 | Path | Contents |
 |---|---|
+| `docs/` | Result-to-code map, revision record, Table 2 FPR derivation |
 | `binary_classification/` | Stage 2: training, model selection, inference, Grad-CAM |
 | `seg-model-training/` | Stage 1: training driver and evaluation for nnU-Net, U-Net, DeepLabv3+ |
 | `analysis/code/` | Evaluation and statistical analysis scripts |
