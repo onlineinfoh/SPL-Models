@@ -17,6 +17,11 @@ The training script uses `NiftiSliceDataset` to slice each 3D volume into 2D sli
 - classes: 2
 - channels: 1
 - batch size: 1
+- input size: 512 x 512 (`--size 512`)
+- image scaling: 1.0 (`--scale`, per-image max normalisation)
+
+`--size` must be passed explicitly; its default is `None`, which leaves slices at
+native resolution.
 
 ## Train
 ```bash
@@ -24,10 +29,13 @@ python train.py \
   --images ../../data/train/imagesTr \
   --masks ../../data/train/labelsTr \
   --epochs 350 \
+  --batch-size 1 \
   --learning-rate 5e-4 \
   --validation 0 \
   --classes 2 \
-  --channels 1
+  --channels 1 \
+  --scale 1.0 \
+  --size 512
 ```
 
 ## Outputs

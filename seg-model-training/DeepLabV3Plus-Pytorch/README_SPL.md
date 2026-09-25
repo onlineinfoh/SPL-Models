@@ -16,8 +16,10 @@ Expected NIfTI layout (relative to repo root):
 - batch size: 4
 - output stride: 16
 - validation interval: 200 iterations
-- total iterations: 30000 (default)
+- total iterations: 30000, which is 200 epochs over the 600 training slices
 - learning rate: 0.01 (default, poly schedule)
+
+`--total_itrs` must be passed explicitly; the script default is 67000.
 
 ## Train
 ```bash
@@ -27,7 +29,8 @@ python main.py --dataset lung \
   --num_classes 2 \
   --crop_size 512 \
   --batch_size 4 \
-  --val_interval 200
+  --val_interval 200 \
+  --total_itrs 30000
 ```
 
 ## Outputs
