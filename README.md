@@ -167,6 +167,17 @@ Every training log from both runs is included unedited under [`analysis/logs/tra
 
 `analysis/code/summarize_training_logs.py` recovers the full per-epoch series from each log and reports which epoch was retained against which epoch each candidate selection rule would have chosen.
 
+## Citation
+
+This repository accompanies the manuscript:
+
+> A Grayscale Ultrasound-Based Two-Stage Deep Learning Framework for Automatic Segmentation and Benign-Malignant Differentiation of Subpleural Pulmonary Lesions.
+> Submitted to *BMC Medical Imaging*.
+
+Repository: <https://github.com/onlineinfoh/SPL-Models>
+
+The author list, volume and DOI are added on acceptance.
+
 ## License
 
 MIT. See [`LICENSE`](LICENSE).
