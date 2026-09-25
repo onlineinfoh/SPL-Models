@@ -11,7 +11,7 @@ together with the sample size that a target half-width would have required.
 Retrospective power is not reported; it is a function of the observed p-value.
 
 Usage:
-    ~/venvs/prism/bin/python analysis/code/subgroup_and_precision.py
+    python3 analysis/code/subgroup_and_precision.py
 """
 
 from __future__ import annotations

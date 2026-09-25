@@ -12,7 +12,7 @@ Existing weights are loaded as-is; nothing is retrained here.
 
 Usage
 -----
-    ~/venvs/prism/bin/python analysis/code/run_seg_inference.py
+    python3 analysis/code/run_seg_inference.py
 """
 
 from __future__ import annotations

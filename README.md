@@ -137,8 +137,10 @@ Third-party frameworks are not vendored. Install from upstream at the pinned ver
 
 ## Reproducing
 
+Create the environment from [`analysis/environment_lock.txt`](analysis/environment_lock.txt) first, then point `PY` at its interpreter.
+
 ```bash
-PY=~/venvs/prism/bin/python
+PY="${PY:-python3}"
 
 # Stage 1: predicted masks, then metrics
 $PY analysis/code/run_seg_inference.py

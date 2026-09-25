@@ -8,7 +8,7 @@
 # Override the interpreter with PY=/path/to/python.
 set -euo pipefail
 
-PY="${PY:-$HOME/venvs/prism/bin/python}"
+PY="${PY:-python3}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$HERE"
 

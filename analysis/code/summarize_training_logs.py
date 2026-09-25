@@ -12,7 +12,7 @@ The logs under runs_locked/ are also scanned for external metric tokens, and the
 distribution of retained epochs across those runs is summarised.
 
 Usage:
-    ~/venvs/prism/bin/python analysis/code/summarize_training_logs.py
+    python3 analysis/code/summarize_training_logs.py
 """
 
 from __future__ import annotations

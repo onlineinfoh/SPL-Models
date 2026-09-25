@@ -23,7 +23,7 @@ note that for a two-class confusion matrix macro-FPR equals 1 - macro-recall.
 
 Usage
 -----
-    ~/venvs/prism/bin/python analysis/code/seg_metrics_engine.py
+    python3 analysis/code/seg_metrics_engine.py
 """
 
 from __future__ import annotations

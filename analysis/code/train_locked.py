@@ -12,8 +12,8 @@ Model, preprocessing, augmentation and optimiser are imported unchanged from
 
 Usage
 -----
-    ~/venvs/prism/bin/python analysis/code/train_locked.py --seeds 67 1234 2025
-    ~/venvs/prism/bin/python analysis/code/train_locked.py --evaluate-winner
+    python3 analysis/code/train_locked.py --seeds 67 1234 2025
+    python3 analysis/code/train_locked.py --evaluate-winner
 """
 
 from __future__ import annotations

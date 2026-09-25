@@ -52,7 +52,7 @@ Training and utilities:
 ## Running
 
 ```bash
-PY=~/venvs/prism/bin/python
+PY="${PY:-python3}"
 
 $PY analysis/code/run_seg_inference.py
 $PY analysis/code/seg_metrics_engine.py

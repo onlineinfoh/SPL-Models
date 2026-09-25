@@ -12,7 +12,7 @@ Per-run logs from the classification stage.
 `analysis/code/summarize_training_logs.py` parses each log, recovers the full per-epoch series, and reports the epoch that was retained alongside the epoch that each candidate selection rule would have chosen.
 
 ```bash
-~/venvs/prism/bin/python analysis/code/summarize_training_logs.py
+python3 analysis/code/summarize_training_logs.py
 ```
 
 Output: `analysis/results/checkpoint_selection_summary.csv` and `.json`.
