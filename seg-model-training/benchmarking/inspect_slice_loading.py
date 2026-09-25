@@ -6,7 +6,7 @@ shape and the first slice shape each loader would feed the U-Net.
 
 Usage example:
   python seg-model-training/benchmarking/inspect_slice_loading.py \
-    --img-dir new_data/train/imagesTr --mask-dir new_data/train/labelsTr \
+    --img-dir data/train/imagesTr --mask-dir data/train/labelsTr \
     --target-size 800
 
 This does not load a model; it only inspects dataset behavior.

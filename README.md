@@ -22,7 +22,8 @@ grayscale ultrasound image (one representative frame per patient)
     -> fixed threshold (derived on the Center 1 tuning cohort) -> benign / malignant
 ```
 
-Cohorts: 1059 patients, one image per patient. Training 600, tuning 257 (Center 1), External Test 1 108 (Center 2), External Test 2 94 (Center 3).
+Cohorts: 1059 patients, one image analysed per patient. Training 600, tuning 257 (Center 1), External Test 1 108 (Center 2), External Test 2 94 (Center 3).
+11 duplicate images were found within the training cohort; there was no overlap with either external cohort. See [`docs/CHANGES_AND_REMOVALS.md`](docs/CHANGES_AND_REMOVALS.md).
 
 ## Repository layout
 
@@ -67,6 +68,7 @@ Evaluation and analysis:
 | `analysis/code/seg_metrics_engine.py` | Segmentation metrics: Dice, IoU, precision, recall, FPR, HD95, ASSD, bootstrap CIs |
 | `analysis/code/run_seg_inference.py` | Regenerates predicted masks at native resolution |
 | `analysis/code/make_table2.py` | Segmentation results table |
+| `analysis/code/make_table2b.py` | Boundary-metric table (HD95, ASSD) |
 | `analysis/code/task1_confidence_intervals.py` | Classification metrics and confidence intervals |
 | `analysis/code/task2_threshold_policy.py` | Threshold-selection comparison |
 | `analysis/code/task3_calibration.py` | Calibration intercept, slope, Brier score, curves |
@@ -146,6 +148,7 @@ PY="${PY:-python3}"
 $PY analysis/code/run_seg_inference.py
 $PY analysis/code/seg_metrics_engine.py
 $PY analysis/code/make_table2.py
+$PY analysis/code/make_table2b.py
 
 # Stage 2: training, then inference with the tuning-set threshold
 $PY binary_classification/train.py

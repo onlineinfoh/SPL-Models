@@ -4,7 +4,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON="${PYTHON:-python3}"
 
-echo "[1/3] Training (train.py)"
+echo "[1/3] Training (train.py) - skipped, the reported numbers come from the"
+echo "      retained checkpoint; uncomment the next line to retrain."
 # "${PYTHON}" "${ROOT}/train.py"
 
 echo "[2/3] Inference (infer_probs_tight.py)"

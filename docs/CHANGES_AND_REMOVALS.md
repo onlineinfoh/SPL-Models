@@ -69,14 +69,34 @@ Ad-hoc scripts that produced no reported result. `test/` is now excluded by `.gi
 
 ## Changed: executable code
 
-One line. Everything else in the tree is byte-identical to `6475d07`.
+Every executable difference from `6475d07` is listed here, so that
+`git diff 6475d07 HEAD -- '*.py' '*.sh'` can be checked against this table.
+None of them affects a reported number.
 
 | File | Change | Reason |
 |---|---|---|
 | `binary_classification/infer_probs_tight.py:28` | ~~`DATA_CROP = ROOT / "new_data"`~~ to `DATA_CROP = ROOT / "data"` | `new_data/` is not in the repository and never was, so the script could not run as deposited. The cohort images are under `data/`, whose layout matches the script's `SPLITS` table exactly: 600 / 257 / 108 / 94 cases. |
+| `binary_classification/build_labels.py:28`, `check_data.py:36` | the same `new_data/` to `data/` correction | The same defect in two further scripts, missed when the first was fixed. `build_labels.py` writes the four label CSVs the classification stage reads, so it could not run either. |
+| `analysis/code/seg_metrics_engine.py` | added an existence check on the nnU-Net mask directories, and a guard on the summary write | Without the cohort images the script previously wrote an all-`NaN` `seg_metrics_summary.json` over the deposited one and exited 0. It now reports that nothing was found and leaves the deposited results in place. |
+| `analysis/code/run_all.sh:11` | `PY` default from a local virtualenv path to `python3` | The documented commands could not run outside the authors' machine. An explicit `PY=/path/to/python` still overrides it. |
+| `analysis/code/run_all.sh:17-25` | added `subgroup_and_precision.py` and `summarize_training_logs.py` to the loop | Both are in the result-to-code map but no documented command ran them. Both read only deposited inputs and reproduce their artifacts byte-identically. |
+| `seg-model-training/model_pipeline.sh` | corrected the commented baseline hyperparameters: U-Net epochs 450 to 350 and batch size 4 to 1; DeepLabv3+ total iterations 100000 to 30000 and batch size 8 to 4 | The values in this script disagreed with `README_SPL.md` in both trees. The deposited training logs settle it: `Pytorch-UNet/checkpoints/train_log.txt` ends at epoch 350 at LR 5e-4, and the retained segment of `DeepLabV3Plus-Pytorch/checkpoints/train_log.txt` runs 200 to 30000 on a 200-iteration validation cadence, which is 150 iterations per epoch over 600 slices and therefore batch size 4. These lines are commented out and were never executed by the driver. |
+| `binary_classification/run_tight_pipeline.sh:7-9` | added the reason the training call is commented out | The script printed `[1/3] Training` and then ran nothing. |
 
-No other executable line was modified.
-Checkpoint selection (`train.py:690`, internal-validation accuracy), training resolution (`train.py:46`, 300 px), inference resolution (`infer_probs_tight.py:40`, 224 px) and the threshold rule (`_best_threshold_from_rows`) are all exactly as submitted.
+Docstring-only changes, no executable effect: the interpreter in the usage
+examples of five `analysis/code/` scripts, from a local virtualenv path to
+`python3`, and the corrected data root in the `build_labels.py` and
+`check_data.py` headers.
+
+Added, not modified: `analysis/code/make_table2b.py`, which regenerates the
+deposited `table2b_boundary_metrics.csv` and `.md` byte-identically from
+`seg_metrics_per_case.csv` and `table2_paired_tests.csv`. Table 2b previously
+had no producer in the repository.
+
+Checkpoint selection (`train.py:690`, internal-validation accuracy), training
+resolution (`train.py:46`, 300 px), inference resolution
+(`infer_probs_tight.py:40`, 224 px) and the threshold rule
+(`_best_threshold_from_rows`) are all exactly as submitted.
 
 The per-epoch external AUC logging in `train.py:652-653` is **retained unmodified**.
 It was left in place deliberately: the reviewer identified it, and removing it now would destroy the evidence rather than address the concern.

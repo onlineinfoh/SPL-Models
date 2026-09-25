@@ -10,8 +10,7 @@ test/benign/
 test/malignant/
 .tmp/
 
-# Model weights. Distributed as release assets; SHA256 in
-# analysis/checkpoint_manifest.json
+# Model weights. Available from the authors on reasonable request; see README.md.
 **/*.pth
 **/*.pt
 **/*.ckpt

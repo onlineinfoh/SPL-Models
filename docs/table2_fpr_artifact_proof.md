@@ -39,7 +39,7 @@ Recall + FPR = 1.0000 exactly.
 ## Proof by reproduction
 
 Re-running DeepLabv3+ inference from the locked checkpoint and deliberately applying
-the class-macro-averaged definition reproduces the PUBLISHED Table 2 values to four
+the class-macro-averaged definition reproduces the PUBLISHED Table 2 values to three
 decimal places, which confirms the diagnosis rather than merely asserting it.
 Applying the correct foreground-only definition to the same masks gives very
 different values.
@@ -58,7 +58,7 @@ are internally more coherent", which implies those two columns could be retained
 
 That is true for the nnU-Net and U-Net rows. It is **not** true for the DeepLabv3+ row.
 
-All five metrics in every DeepLabv3+ row reproduce exactly under class-macro-averaging, not just FPR.
+All five metrics in every DeepLabv3+ row reproduce under class-macro-averaging, not just FPR.
 Dice and mIoU are affected just as much, and in the same direction, because averaging in the
 background class (whose Dice and IoU are both close to 1, since background occupies about 95 percent
 of the image) inflates them.
@@ -87,7 +87,7 @@ published 0.8231 equals its measured macro IoU of 0.8230, whereas its foreground
 
 So one header covered two different definitions, which is the same defect as the FPR column and has
 the same fix. The column should be renamed **"IoU (lesion)"** and populated with foreground-only IoU
-for all three models, as it now is in `table2_corrected.md`.
+for all three models, as it now is in `analysis/results/table2_corrected.md`.
 
 ## Consequences for the manuscript
 

@@ -35,7 +35,6 @@ cuda-bindings==12.9.7
 cuda-pathfinder==1.6.0
 cuda-toolkit==12.6.3
 cycler==0.12.1
-dataclasses==0.8
 dcmrtstruct2nii==5
 debugpy==1.8.21
 defusedxml==0.7.1

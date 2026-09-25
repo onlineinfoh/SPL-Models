@@ -299,6 +299,14 @@ def evaluate_model(model_name: str, pred_dirs: dict[str, str],
         img_dir = REPO / img_rel
 
         cases = sorted({case_id_of(p) for p in img_dir.glob("*.nii.gz")})
+        if not cases:
+            # The cohort images are not redistributable, so a clone of this
+            # repository has nothing to score. Skip rather than emit NaN rows.
+            if verbose:
+                print(f"  {model_name:12s} {cohort:15s} no images under "
+                      f"{img_rel}, skipping")
+            continue
+
         metrics: list[CaseMetrics] = []
         macro_acc: list[dict] = []
         missing = []
@@ -352,8 +360,18 @@ def main() -> None:
     print("=" * 78)
 
     results = {}
-    print("\nnnU-Net (locked predicted masks in data/*/*_model):")
-    results["nnUNet"] = evaluate_model("nnUNet", NNUNET_PRED)
+    nnunet_dirs = {
+        cohort: rel for cohort, rel in NNUNET_PRED.items()
+        if (REPO / rel).exists() and any((REPO / rel).glob("*.nii.gz"))
+    }
+    if nnunet_dirs:
+        print("\nnnU-Net (locked predicted masks in data/*/*_model):")
+        scored = evaluate_model("nnUNet", nnunet_dirs)
+        if scored["summary"]:
+            results["nnUNet"] = scored
+    else:
+        print("\nnnU-Net: predicted masks not found under data/*/*_model, skipping "
+              "(the cohort images are not redistributable, see data/README.md)")
 
     # The other two models are evaluated once run_seg_inference.py has written
     # their masks into analysis/masks_locked/.
@@ -366,10 +384,17 @@ def main() -> None:
                 dirs[cohort] = str(d.relative_to(REPO))
         if dirs:
             print(f"\n{model_name} (locked predicted masks):")
-            results[model_name] = evaluate_model(model_name, dirs)
+            scored = evaluate_model(model_name, dirs)
+            if scored["summary"]:
+                results[model_name] = scored
         else:
             print(f"\n{model_name}: locked masks not found, skipping "
                   f"(run run_seg_inference.py first)")
+
+    if not results:
+        print("\nNo predicted masks were found for any model, so nothing was "
+              "recomputed and the deposited results were left in place.")
+        return
 
     with (OUT_RESULTS / "seg_metrics_summary.json").open("w") as f:
         json.dump({k: v["summary"] for k, v in results.items()}, f, indent=2)

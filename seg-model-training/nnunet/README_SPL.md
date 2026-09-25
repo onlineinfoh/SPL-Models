@@ -18,7 +18,7 @@ From `nnUNet_results/Dataset000_lung/nnUNetTrainer__nnUNetPlans__2d/plans.json`:
 
 ## Train
 ```bash
-nnUNetv2_train Dataset000_lung 2d nnUNetTrainer__nnUNetPlans__2d -f all
+nnUNetv2_train Dataset000_lung 2d all
 ```
 
 ## Outputs

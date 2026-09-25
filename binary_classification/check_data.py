@@ -3,7 +3,7 @@
 Quick sanity checker for the new data at data/.
 
 What it does:
-- Walks all subdirectories under new_data
+- Walks all subdirectories under data/
 - Counts image files (.nii/.nii.gz/.png/.jpg/.jpeg)
 - Prints a few sample shapes per folder (nifti via nibabel; png/jpg via PIL)
 - Lists any label tables (.csv/.xlsx/.json) with their columns and first 3 rows
@@ -33,7 +33,7 @@ except ImportError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_ROOT = ROOT / "new_data"
+DATA_ROOT = ROOT / "data"
 
 
 IMG_EXTS = {".nii", ".nii.gz", ".png", ".jpg", ".jpeg"}

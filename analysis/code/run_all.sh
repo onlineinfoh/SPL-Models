@@ -21,7 +21,9 @@ for s in task0_data_check.py \
          task3_calibration.py \
          task4_dca.py \
          task5_model_selection.py \
-         task6_gt_vs_model_mask.py ; do
+         task6_gt_vs_model_mask.py \
+         subgroup_and_precision.py \
+         summarize_training_logs.py ; do
   echo
   echo "############################################################"
   echo "# $s"

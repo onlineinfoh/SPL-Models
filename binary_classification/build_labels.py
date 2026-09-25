@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-Rebuild label CSVs from new_data without external dependencies.
+Rebuild label CSVs from data/ without external dependencies.
 
 Reads:
-  new_data/train/train.xlsx    (columns: 文件名, 良恶性)
-  new_data/val/validation.xlsx (columns: 序列, 良恶性)
-  new_data/test1/test1.xlsx    (columns: 序号, 良恶性)
-  new_data/test2/test2.xlsx    (columns: 序号, 良恶性)
+  data/train/train.xlsx    (columns: 文件名, 良恶性)
+  data/val/validation.xlsx (columns: 序列, 良恶性)
+  data/test1/test1.xlsx    (columns: 序号, 良恶性)
+  data/test2/test2.xlsx    (columns: 序号, 良恶性)
 
 Writes:
-  binary_classification/labels_train.csv
-  binary_classification/labels_internal_val.csv
-  binary_classification/labels_external_test1.csv
-  binary_classification/labels_external_test2.csv
+  binary_classification/labels/labels_train.csv
+  binary_classification/labels/labels_internal_val.csv
+  binary_classification/labels/labels_external_test1.csv
+  binary_classification/labels/labels_external_test2.csv
 
 Uses a minimal XLSX reader (zip + XML), no pandas/openpyxl required.
 """
@@ -25,7 +25,7 @@ import xml.etree.ElementTree as ET
 import csv
 
 ROOT = Path(__file__).resolve().parents[1]
-NEW_DATA = ROOT / "new_data"
+DATA = ROOT / "data"
 OUT_DIR = ROOT / "binary_classification/labels"
 
 
@@ -99,7 +99,7 @@ def write_csv(path: Path, rows: list[tuple[str, int]]):
 
 
 def build_train():
-    xl = NEW_DATA / "train" / "train.xlsx"
+    xl = DATA / "train" / "train.xlsx"
     rows = read_xlsx_first_sheet(xl)
     header = rows[0]
     try:
@@ -119,7 +119,7 @@ def build_train():
 
 
 def build_internal():
-    xl = NEW_DATA / "val" / "validation.xlsx"
+    xl = DATA / "val" / "validation.xlsx"
     rows = read_xlsx_first_sheet(xl)
     header = rows[0]
     try:
@@ -139,7 +139,7 @@ def build_internal():
 
 
 def build_ext(which: str):
-    xl = NEW_DATA / which / f"{which}.xlsx"
+    xl = DATA / which / f"{which}.xlsx"
     rows = read_xlsx_first_sheet(xl)
     header = rows[0]
     try:

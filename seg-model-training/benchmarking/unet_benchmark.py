@@ -8,10 +8,10 @@ Checkpoint:
   seg-model-training/Pytorch-UNet/checkpoints/checkpoint_best.pth
 
 Datasets:
-  val:   new_data/val/img_v       -> seg_v
-  train: new_data/train/imagesTr  -> labelsTr
-  test1: new_data/test1/img_test1 -> seg_test1 (e.g., 1_seg.nii.gz)
-  test2: new_data/test2/img_test2 -> seg_test2
+  val:   data/val/img_v       -> seg_v
+  train: data/train/imagesTr  -> labelsTr
+  test1: data/test1/img_test1 -> seg_test1 (e.g., 1_seg.nii.gz)
+  test2: data/test2/img_test2 -> seg_test2
 """
 
 from __future__ import annotations

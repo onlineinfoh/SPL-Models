@@ -4,7 +4,7 @@ Benchmark trained DeepLabV3+ (mobilenet) checkpoint on the lung dataset splits.
 
 Uses the same normalization/resize as validation in main.py (resize to crop_size,
 to tensor, ImageNet mean/std), and computes binary metrics (Dice, IoU, Precision,
-Recall, FPR) against ground-truth masks in new_data.
+Recall, FPR) against ground-truth masks in data/.
 """
 
 from __future__ import annotations
