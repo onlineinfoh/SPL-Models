@@ -33,11 +33,14 @@ seg-model-training/nnunet/nnUNet_results/**/*.nii.gz
 seg-model-training/nnunet/nnUNet_results/**/*.pkl
 
 # Third-party framework source trees. Versions pinned in
-# analysis/environment_lock.txt
+# analysis/environment_lock.txt.
+# The two trees carrying an README_SPL.md exclude their contents rather than
+# themselves; git will not descend into an excluded directory, so a negation
+# under a `dir/` pattern never takes effect.
 nnUNet/
 seg-model-training/UNetPlusPlus/
-seg-model-training/Pytorch-UNet/
-seg-model-training/DeepLabV3Plus-Pytorch/
+seg-model-training/Pytorch-UNet/*
+seg-model-training/DeepLabV3Plus-Pytorch/*
 !seg-model-training/*/README_SPL.md
 
 # Environments and caches
