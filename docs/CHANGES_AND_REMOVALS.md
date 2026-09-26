@@ -102,6 +102,29 @@ The per-epoch external AUC logging in `train.py:652-653` is **retained unmodifie
 It was left in place deliberately: the reviewer identified it, and removing it now would destroy the evidence rather than address the concern.
 Its relationship to the checkpoint rule is documented in [`REPRODUCE.md`](REPRODUCE.md#training).
 
+## Changed: documentation only
+
+A pass reconciling the repository documentation against the manuscript and supplement found
+several facts that were true of the code but stated nowhere, and several gaps that were not
+declared. No executable file, result file, figure or environment pin was touched:
+`git diff --stat` for this pass is confined to `README.md` and `docs/`.
+
+| File | Added | Why |
+|---|---|---|
+| `README.md` | Baseline intensity scaling stated explicitly as per-image max with no percentile clipping, and the nnU-Net `CTNormalization` contrast | The supplement describes 1st/99th percentile clipping for the U-Net and DeepLabv3+ baselines. No such clipping exists in either path. Recording what the code does prevents the claim being read back out of this repository. |
+| `README.md` | U-Net and DeepLabv3+ optimiser and scheduler, read from the two training scripts, plus LR, epochs/iterations, batch and crop | The supplement states that both baselines used Adam with a cosine annealing schedule. Neither does. U-Net uses `RMSprop` with `ReduceLROnPlateau` (`Pytorch-UNet/train.py:115`, `:117`); DeepLabv3+ uses `SGD` momentum 0.9 with `PolyLR` power 0.9 (`DeepLabV3Plus-Pytorch/main.py:321`, `:328`). Both are upstream defaults and were not modified. Only the two learning rates in the supplement are correct. |
+| `README.md` | Dropout 0.4 before the classification head; first-convolution adaptation stated as average-then-copy | Both are in `train.py` and neither was documented. |
+| `README.md` | Grad-CAM runs at 224, not at the 300 px training size | `heatmap.py:28`. The supplement states 300 x 300. |
+| `README.md` | Implementation note 5 extended: the 39 sweep runs are 13 architectures x 3 seeds, no segmentation model among them | The supplement attributes part of the 39 to segmentation architectures. |
+| `README.md` | Implementation note 6: the three selection steps do not share a mask variant | Checkpoint selection reads manual masks; ranking and threshold read automatic masks. All three read the Center 1 tuning cohort only. Worth stating precisely, because the distinction is the one a reviewer checks. |
+| `README.md` | Implementation note 7: reported results are seed 67, not a per-architecture best seed | The supplement says results correspond to the best seed per architecture. Seed 67 is the best seed for 5 of 13. |
+| `README.md` | "Not in this repository" table | The reader study, Table 1 statistics, Figure 3 and the interobserver Dice had no producer here and this was not declared anywhere. |
+| `docs/REPRODUCE.md` | Grad-CAM entry and its resolution; note that `task4_dca.py` plots three cohorts, not four | Neither was in the result-to-code map. |
+| `docs/REPRODUCE.md` | Known gaps 9 to 13 | Reader study, Table 1 statistics, Figure 3, Supplementary Table 4 External Test 2 column, interobserver Dice. |
+
+Nothing in this pass changes a reported number. The items it records are inputs to the
+manuscript corrections, not to the pipeline.
+
 ## Changed: `.gitignore`
 
 Added, to prevent 4 GB of local working artifacts from entering the deposit. The files remain on the authors' machine and are not part of the reported pipeline.

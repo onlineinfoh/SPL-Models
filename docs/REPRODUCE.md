@@ -114,6 +114,15 @@ Run from `analysis/code/`. Outputs land in `analysis/results/`.
 
 Shared helpers: `common.py` (paths, cohorts, mask variants, metrics, DeLong), `cached_dataset.py`, `run_all.sh`.
 
+Grad-CAM (Figure 5) is produced by `binary_classification/heatmap.py`, not by a script under `analysis/code/`.
+It runs at the 224 x 224 inference resolution (`heatmap.py:28`), the same resolution as `infer_probs_tight.py`.
+The map is computed at the last convolutional feature map, upsampled to that 224 x 224 ROI, then resized to the
+native lesion crop for overlay (`heatmap.py:454`). It requires the checkpoints, see gap 4.
+
+`task4_dca.py` writes decision-curve figures for three cohorts only, `FIG_SPLITS` at `task4_dca.py:24`:
+internal validation and the two external cohorts. The training cohort is present in `task4_dca_curves.csv`
+but is not plotted. See gap 12.
+
 All three segmentation models are scored by one engine, `seg_metrics_engine.py`, on the lesion class only, at native resolution.
 The derivation of the corrected Table 2 false-positive rates, including the macro-averaging defect in the original DeepLabv3+ evaluation, is in [`table2_fpr_artifact_proof.md`](table2_fpr_artifact_proof.md).
 
@@ -170,6 +179,36 @@ These are stated so that a reader attempting reproduction is not misled.
    `fold_all/debug.json` records `torch 2.9.1+cu128`, whereas the Environment section below pins `torch 2.13.0+cu126`.
    The segmentation model was trained earlier than the classification and analysis stages, and its checkpoint was retained rather than retrained.
    That file is verbatim nnU-Net output, kept unedited as provenance, which is also why it contains absolute paths and a hostname from the training machine.
+
+9. **The reader study has no code or data in this repository.**
+   Table 4, Supplementary Table 8 and Figure 6 report the six-radiologist unaided versus AI-assisted comparison.
+   Neither the per-reader responses nor the analysis that produced those tables is deposited here:
+   there is no case-cluster bootstrap, no McNemar implementation and no reader response file anywhere in the tree.
+   The reader responses are clinician-generated study data and fall under the same restriction as the patient
+   data in gap 5. The analysis code is not restricted and is simply absent.
+
+10. **Table 1 baseline statistics have no producer here.**
+    The one-way ANOVA, chi-square and Fisher exact tests behind the Table 1 P values, including the
+    External Test 2 versus External Test 1 case-mix comparison, are not implemented in this repository.
+    `analysis/code/` contains no ANOVA, chi-square or Fisher routine. Those values cannot be regenerated
+    from the deposit.
+
+11. **Figure 3 has no producer here.**
+    The reported ROC curves are at 224 x 224 inference with DeLong intervals.
+    The only ROC plots the repository generates are `binary_classification/runs/<arch>/roc.png`, written by
+    `train.py` at the 300 x 300 training resolution as monitoring output. They are not Figure 3, and
+    `runs/` contents are excluded from the deposit.
+
+12. **Supplementary Table 4 is only partly backed by a deposited file.**
+    `task5_delong_external_test1_all_vs_densenet121.csv` covers all twelve comparisons on External Test 1.
+    For External Test 2 only the DenseNet121 versus EfficientNet-B1 comparison is deposited, in
+    `task5_delong_densenet121_vs_efficientnetb1.csv`. The remaining eleven External Test 2 comparisons
+    are regenerable by `task5_model_selection.py` but were not written out.
+
+13. **The interobserver Dice has no producer here.**
+    The reported agreement between the two independent annotators, computed before senior adjudication,
+    requires both pre-adjudication annotation sets. Neither those masks nor the agreement calculation is
+    deposited. Only the post-adjudication consensus masks are used by the pipeline in this repository.
 
 ## Environment
 

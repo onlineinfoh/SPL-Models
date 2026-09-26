@@ -99,7 +99,24 @@ Patch 896 x 1792, batch 2, spacing 1.0 x 1.0, `CTNormalization`, `use_mask_for_n
 ### Stage 1 baselines
 
 U-Net (Pytorch-UNet): `n_channels=1`, `n_classes=2`, `bilinear=False`, 512 x 512 input, per-image max scaling.
+350 epochs, batch 1, validation split 0, initial LR 5e-4.
+Optimiser `RMSprop`, scheduler `ReduceLROnPlateau` on max Dice with patience 5, both upstream defaults
+(`Pytorch-UNet/train.py:115` and `:117`).
+
 DeepLabv3+ (DeepLabV3Plus-Pytorch): `deeplabv3plus_mobilenet`, output stride 16, 2 classes, 512 x 512 input, ImageNet normalisation.
+30000 iterations, batch 4, crop 512, initial LR 0.01, validation interval 200.
+Optimiser `SGD` with momentum 0.9, scheduler `PolyLR` with power 0.9, both upstream defaults
+(`DeepLabV3Plus-Pytorch/main.py:321` and `:328`).
+
+Neither baseline uses Adam, and neither uses cosine annealing. Cosine annealing is used only in
+Stage 2 (`train.py:602`); nnU-Net uses its own SGD polynomial schedule.
+
+Both baselines scale intensity by the per-image maximum, `img = img / img.max()`
+(`benchmarking/unet_benchmark.py:137-138`, `benchmarking/deeplab_benchmark.py:127-128`).
+There is no percentile clipping and no minimum subtraction in either baseline path.
+DeepLabv3+ additionally applies ImageNet mean and standard deviation after that scaling.
+Only nnU-Net performs percentile clipping, as part of `CTNormalization`, which clips to the dataset
+0.5th and 99.5th percentiles and then z-scores using dataset-level statistics.
 
 ### Stage 2, classification
 
@@ -107,7 +124,10 @@ Input 2 channels (image, mask), lesion bounding box + 10% halo (`HALO_FRAC=0.10`
 Input size 300 x 300 at training (`train.py`), 224 x 224 at inference (`infer_probs_tight.py`).
 40 epochs, batch 16, AdamW, LR 1e-4, weight decay 5e-4, `CosineAnnealingLR` with `eta_min=1e-6`, early stopping patience 8 on tuning-set accuracy.
 `BCEWithLogitsLoss` weighted per sample by `mask.mean()*0.9 + 0.1` clamped at 0.1, label smoothing 0.1, `WeightedRandomSampler` on inverse class frequency.
-ImageNet pretraining, first convolution adapted to 2 channels by averaging the RGB filters.
+Dropout 0.4 before the single-logit head on every architecture.
+ImageNet pretraining, first convolution adapted to 2 channels by averaging the RGB filters across the input dimension and copying that averaged kernel into both input channels (`_adapt_first_conv`).
+
+Grad-CAM (`heatmap.py`) runs at the same 224 x 224 inference resolution, then resizes the map to the native lesion crop for overlay.
 
 Augmentation, training only: horizontal flip p=0.5; rotation p=0.5, uniform -20 to +20 degrees, reflect padding; gamma p=0.7, uniform 0.6 to 1.4; contrast p=0.7, uniform 0.75 to 1.25; Gaussian noise p=0.5, SD 6.0 on a 0-255 scale.
 
@@ -126,6 +146,9 @@ For DenseNet121 the value is 0.5483 with manual masks and 0.5000 with automatic 
 3. Segmentation metrics are computed on the lesion class only, at native resolution. `analysis/code/seg_metrics_engine.py` is the reference implementation and supersedes the three per-model benchmark scripts, which did not share a metric definition.
 4. In `train.py`, `cv2.warpAffine` on an `(H, W, 1)` array returns `(H, W)`. After a rotation the subsequent `img[..., 0]` therefore indexes a single image column, so the intensity augmentations affect one column in samples where rotation is applied.
 5. Early stopping with patience 8 on 257 tuning cases is unstable: across the 39 sweep runs the retained epoch has median 4 and range 1 to 12, with 13 of 39 runs retaining an epoch 1 or 2 checkpoint.
+   Those 39 runs are 13 classification architectures x 3 seeds. No segmentation model is among them.
+6. The three selection steps do not all use the same mask variant. The architecture ranking and the operating threshold are computed on the automatic-mask (`model`) variant in `infer_probs_tight.py`, matching deployment. The retained checkpoint is chosen on tuning-set accuracy computed with the manual masks, because `train.py` loads `data/val/seg_v` only and has no automatic-mask path. All three read the Center 1 tuning cohort and nothing else; `analysis/results/checkpoint_selection_summary.json` records that the retained epoch equals the internal-validation argmax for 13 of 13 architectures and coincides with the external argmax for only 3.
+7. Reported results are seed 67 throughout, the `--seeds` default at `train.py:566`. They are not a per-architecture best-of-three-seeds selection: across the sweep, seed 67 is the highest-tuning-accuracy seed for 5 of the 13 architectures.
 
 ## Environment
 
@@ -171,6 +194,18 @@ Every training log from both runs is included unedited under [`analysis/logs/tra
 13 logs from the submitted run (seed 67), and 39 logs from the multi-seed sweep.
 
 `analysis/code/summarize_training_logs.py` recovers the full per-epoch series from each log and reports which epoch was retained against which epoch each candidate selection rule would have chosen.
+
+## Not in this repository
+
+Four reported results have no producer here. They are listed with the rest of the known gaps in
+[`docs/REPRODUCE.md`](docs/REPRODUCE.md#known-gaps), gaps 9 to 13.
+
+| Reported result | Status |
+|---|---|
+| Table 4, Supplementary Table 8, Figure 6, reader study | No reader responses and no analysis code. No case-cluster bootstrap or McNemar implementation exists in this tree. |
+| Table 1, baseline characteristics | No ANOVA, chi-square or Fisher exact routine exists in this tree. |
+| Figure 3, ROC curves | Not generated here. The `roc.png` files under `runs/` are 300 px training-time monitoring plots, not Figure 3. |
+| Interobserver Dice | Requires the two pre-adjudication annotation sets, which are not deposited. |
 
 ## Citation
 
