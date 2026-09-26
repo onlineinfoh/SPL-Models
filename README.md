@@ -109,7 +109,7 @@ Optimiser `SGD` with momentum 0.9, scheduler `PolyLR` with power 0.9, both upstr
 (`DeepLabV3Plus-Pytorch/main.py:321` and `:328`).
 
 Neither baseline uses Adam, and neither uses cosine annealing. Cosine annealing is used only in
-Stage 2 (`train.py:602`); nnU-Net uses its own SGD polynomial schedule.
+Stage 2 (`train.py:643`); nnU-Net uses its own SGD polynomial schedule.
 Both optimiser lines are upstream code in the two trees that are not redistributed here, see gap 7
 in [`docs/REPRODUCE.md`](docs/REPRODUCE.md#known-gaps). The values above were read from the working
 checkouts that produced the reported run and cannot be opened from a clone of this repository alone.
@@ -155,7 +155,7 @@ For DenseNet121 the value is 0.5483 with manual masks and 0.5000 with automatic 
 5. Early stopping with patience 8 on 257 tuning cases is unstable: across the 39 sweep runs the retained epoch has median 4 and range 1 to 12, with 13 of 39 runs retaining an epoch 1 or 2 checkpoint.
    Those 39 runs are 13 classification architectures x 3 seeds. No segmentation model is among them.
 6. The three selection steps do not all use the same mask variant. The architecture ranking and the operating threshold are computed on the automatic-mask (`model`) variant in `infer_probs_tight.py`, matching deployment. The retained checkpoint is chosen on tuning-set accuracy computed with the manual masks, because `train.py` loads `data/val/seg_v` only and has no automatic-mask path. All three read the Center 1 tuning cohort and nothing else; `analysis/results/checkpoint_selection_summary.json` records that the retained epoch equals the internal-validation argmax for 13 of 13 architectures and coincides with the external argmax for only 3.
-7. Reported results are seed 67 throughout, the `--seeds` default at `train.py:566`. They are not a per-architecture best-of-three-seeds selection: across the sweep, seed 67 is the highest-tuning-accuracy seed for 5 of the 13 architectures.
+7. Reported results are seed 67 throughout, the `--seeds` default at `train.py:604`. They are not a per-architecture best-of-three-seeds selection: across the sweep, seed 67 is the highest-tuning-accuracy seed for 5 of the 13 architectures.
 
 ## Environment
 

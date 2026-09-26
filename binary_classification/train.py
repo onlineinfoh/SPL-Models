@@ -1,3 +1,36 @@
+"""Stage 2 classification training across the 13 candidate architectures.
+
+ABANDONED PATH: THE EXTERNAL COHORTS
+====================================
+This script loads, evaluates, logs and plots External Test 1 and External Test 2
+at every epoch. **None of that output was used for anything.** It is dead-end
+monitoring, retained only as evidence. Specifically:
+
+  - Model selection reads ``val_metrics["acc"]`` alone. No external quantity is
+    read by any branch that saves a checkpoint, sets ``best_epoch``, or resets
+    the patience counter. See the checkpoint rule further down, marked
+    ``SELECTION RULE``.
+  - Verified over the submitted run: the retained epoch equals the
+    internal-validation argmax for 13 of 13 architectures, and coincides with the
+    external-AUC argmax for only 3 of 13. Following the internal rule gave up a
+    mean of 0.0448 (External Test 1) and 0.0528 (External Test 2) of external AUC
+    that was printed in these very logs and not taken. Produced by
+    ``analysis/code/summarize_training_logs.py`` into
+    ``analysis/results/checkpoint_selection_summary.{csv,json}``.
+  - The reported external results in Table 3 do NOT come from here. They come
+    from ``binary_classification/infer_probs_tight.py``, run once at 224 px after
+    selection was closed.
+  - ``runs/<arch>/auc.png`` and ``runs/<arch>/roc.png`` are likewise monitoring
+    artifacts, drawn at the 300 px training resolution. They are not manuscript
+    Figure 3. See ``docs/REPRODUCE.md`` known gap 11.
+
+These blocks are deliberately NOT deleted. A reviewer identified this logging,
+and removing it now would destroy the evidence rather than address the concern
+(``docs/CHANGES_AND_REMOVALS.md``). The clean re-run, which never loads external
+data inside the training loop at all, is ``analysis/code/train_locked.py``.
+
+Every external-facing block below carries an ``ABANDONED`` marker.
+"""
 from __future__ import annotations
 
 import argparse
@@ -30,6 +63,10 @@ TRAIN_IMG_DIR = DATA_CROP / "train" / "imagesTr"
 TRAIN_MASK_DIR = DATA_CROP / "train" / "labelsTr"
 INT_IMG_DIR = DATA_CROP / "val" / "img_v"
 INT_MASK_DIR = DATA_CROP / "val" / "seg_v"
+# --- ABANDONED (monitoring only): external cohort paths -------------------
+# Loaded so the training loop can print external AUC per epoch. Nothing
+# downstream of model selection reads these. Reported external numbers come
+# from infer_probs_tight.py, not from here.
 EXT1_IMG_DIR = DATA_CROP / "test1" / "img_test1"
 EXT1_MASK_DIR = DATA_CROP / "test1" / "seg_test1"
 EXT2_IMG_DIR = DATA_CROP / "test2" / "img_test2"
@@ -38,6 +75,7 @@ EXT2_MASK_DIR = DATA_CROP / "test2" / "seg_test2"
 LABEL_FILES = {
     "train": LABELS_DIR / "labels_train.csv",
     "internal": LABELS_DIR / "labels_internal_val.csv",
+    # ABANDONED (monitoring only): consumed solely by the per-epoch print below.
     "external1": LABELS_DIR / "labels_external_test1.csv",
     "external2": LABELS_DIR / "labels_external_test2.csv",
 }
@@ -571,6 +609,7 @@ def main():
                  
     lbl_train = load_labels(LABEL_FILES["train"])
     lbl_int = load_labels(LABEL_FILES["internal"])
+    # ABANDONED (monitoring only): never reaches the selection rule.
     lbl_ext1 = load_labels(LABEL_FILES["external1"])
     lbl_ext2 = load_labels(LABEL_FILES["external2"])
 
@@ -593,6 +632,8 @@ def main():
 
             train_loader, _ = build_loader(TRAIN_IMG_DIR, TRAIN_MASK_DIR, train_map, args.batch_size, is_train=True)
             val_loader, _ = build_loader(INT_IMG_DIR, INT_MASK_DIR, lbl_int, args.batch_size, is_train=False)
+            # ABANDONED (monitoring only): these two loaders feed printing and
+            # plotting exclusively. train_locked.py omits them entirely.
             ext1_loader, _ = build_loader(EXT1_IMG_DIR, EXT1_MASK_DIR, lbl_ext1, args.batch_size, is_train=False)
             ext2_loader, _ = build_loader(EXT2_IMG_DIR, EXT2_MASK_DIR, lbl_ext2, args.batch_size, is_train=False)
 
@@ -641,6 +682,9 @@ def main():
                     last_train_pair = (y_train, p_train)
 
                     val_metrics, (y_val, p_val) = eval_model(model, val_loader, device, return_arrays=True)
+                    # ABANDONED (monitoring only) -- the next two lines score the
+                    # held-out cohorts every epoch. Their results are printed,
+                    # logged and plotted, and read by nothing else.
                     ext1_metrics, (y_e1, p_e1) = eval_model(model, ext1_loader, device, return_arrays=True)
                     ext2_metrics, (y_e2, p_e2) = eval_model(model, ext2_loader, device, return_arrays=True)
                     last_val_pair = (y_val, p_val)
@@ -649,6 +693,8 @@ def main():
 
                     history["train_auc"].append(train_auc)
                     history["val_auc"].append(val_metrics["auc"])
+                    # ABANDONED (monitoring only): history["ext*_auc"] is consumed
+                    # by plot_auc() below and by nothing else.
                     history["ext1_auc"].append(ext1_metrics["auc"])
                     history["ext2_auc"].append(ext2_metrics["auc"])
 
@@ -686,6 +732,9 @@ def main():
                     logf.flush()
 
                                                     
+                    # === SELECTION RULE ===================================
+                    # Internal-validation accuracy only. No external quantity
+                    # appears in this block or in anything it reads.
                     val_acc = val_metrics["acc"]
                     if not np.isnan(val_acc) and val_acc > best_val_acc + 1e-6:
                         best_val_acc = val_acc
@@ -710,6 +759,8 @@ def main():
                 )
                 best_metrics["train"] = eval_model(model, train_eval_loader, device)
                 best_metrics["val"] = eval_model(model, val_loader, device)
+                # ABANDONED (monitoring only): rescoring the already-chosen
+                # checkpoint. Selection closed above; this cannot influence it.
                 best_metrics["ext1"] = eval_model(model, ext1_loader, device)
                 best_metrics["ext2"] = eval_model(model, ext2_loader, device)
 
@@ -734,6 +785,8 @@ def main():
                 best_line,
                 _fmt_summary("train", best_metrics["train"]),
                 _fmt_summary("internal_val", best_metrics["val"]),
+                # ABANDONED (monitoring only): log text, superseded for reporting
+                # by infer_probs_tight.py.
                 _fmt_summary("external_test1", best_metrics["ext1"]),
                 _fmt_summary("external_test2", best_metrics["ext2"]),
             ]
@@ -746,6 +799,7 @@ def main():
             plot_auc({
                 "train (train set)": history["train_auc"],
                 "internal (val)": history["val_auc"],
+                # ABANDONED (monitoring only): auc.png is not a manuscript figure.
                 "external_test1": history["ext1_auc"],
                 "external_test2": history["ext2_auc"],
             }, seed_dir / "auc.png")
@@ -758,6 +812,8 @@ def main():
                 return roc_curve(y, p)
             fpr, tpr, thr = _roc(*last_train_pair); curves["train (train set)"] = (fpr, tpr, thr)
             fpr, tpr, thr = _roc(*last_val_pair); curves["internal (val)"] = (fpr, tpr, thr)
+            # ABANDONED (monitoring only): roc.png is drawn at the 300 px training
+            # resolution and is NOT manuscript Figure 3. See REPRODUCE.md gap 11.
             fpr, tpr, thr = _roc(*last_ext1_pair); curves["external_test1"] = (fpr, tpr, thr)
             fpr, tpr, thr = _roc(*last_ext2_pair); curves["external_test2"] = (fpr, tpr, thr)
             plot_roc_curves(curves, seed_dir / "roc.png")

@@ -19,7 +19,7 @@ The re-analysis is not deleted from history. It remains reachable at `322770f` a
 
 This machinery implemented a different pipeline from the one reported. It produced no manuscript result.
 
-- ~~`protocol/analysis_plan_v1.yaml`~~ - pre-committed plan. Declared internal-validation **AUC** as the selection criterion; the reported run used internal **accuracy** (`train.py:690`).
+- ~~`protocol/analysis_plan_v1.yaml`~~ - pre-committed plan. Declared internal-validation **AUC** as the selection criterion; the reported run used internal **accuracy** (`train.py:738`).
 - ~~`protocol/gate.py`, `protocol/test_gate.py`, `protocol/gate_audit.jsonl`~~ - runtime hold-out guard on the external cohorts.
 - ~~`protocol/run_protocol.py`, `protocol/__init__.py`~~ - phase runner for the gated re-analysis.
 - ~~`protocol/locked_pipeline.json`, `protocol/locked_pipeline.commit`~~ - lock record. Selected **EfficientNet-B0**, not the reported architecture.
@@ -93,14 +93,24 @@ deposited `table2b_boundary_metrics.csv` and `.md` byte-identically from
 `seg_metrics_per_case.csv` and `table2_paired_tests.csv`. Table 2b previously
 had no producer in the repository.
 
-Checkpoint selection (`train.py:690`, internal-validation accuracy), training
-resolution (`train.py:46`, 300 px), inference resolution
+Checkpoint selection (`train.py:738`, internal-validation accuracy), training
+resolution (`train.py:84`, 300 px), inference resolution
 (`infer_probs_tight.py:40`, 224 px) and the threshold rule
 (`_best_threshold_from_rows`) are all exactly as submitted.
 
-The per-epoch external AUC logging in `train.py:652-653` is **retained unmodified**.
+The per-epoch external AUC logging in `train.py:698-699` is **retained unmodified**.
 It was left in place deliberately: the reviewer identified it, and removing it now would destroy the evidence rather than address the concern.
 Its relationship to the checkpoint rule is documented in [`REPRODUCE.md`](REPRODUCE.md#training).
+
+**Comment-only change to `binary_classification/train.py`.**
+Every block that loads, evaluates, logs or plots the two external cohorts is now marked
+`ABANDONED (monitoring only)`, and the checkpoint rule is marked `SELECTION RULE`, with a
+module docstring stating that none of the external output feeds model selection.
+This is annotation, not a behaviour change: the abstract syntax tree of the file is
+identical to the previous version once the added module docstring is removed, the diff is
+56 insertions and 0 deletions, and no reported number moves.
+The line-number citations in this file and in `REPRODUCE.md` and `README.md` were remapped
+to match the shifted lines in the same commit.
 
 ## Changed: documentation only
 

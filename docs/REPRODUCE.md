@@ -57,18 +57,37 @@ Baseline segmentation models (U-Net, DeepLabv3+) are under `seg-model-training/b
 | Item | Value | Location |
 |---|---|---|
 | Script | `binary_classification/train.py` | |
-| Seed | 67 | `train.py:566` (`--seeds` default `[67]`) |
+| Seed | 67 | `train.py:604` (`--seeds` default `[67]`) |
 | Architectures | 13 | `infer_probs_tight.py:30-35` |
-| Training resolution | **300 x 300** | `train.py:46` (`IMG_SIZE = 300`) |
+| Training resolution | **300 x 300** | `train.py:84` (`IMG_SIZE = 300`) |
 | Input | 2 channels: image, mask | |
 | ROI crop | lesion bounding box + 10% halo | `HALO_FRAC = 0.10` |
-| Checkpoint rule | highest **internal-validation accuracy** | `train.py:690` |
+| Checkpoint rule | highest **internal-validation accuracy** | `train.py:738` |
 | Checkpoints | `binary_classification/runs/<arch>/best.pth` | not deposited, see gap 4 |
 | Logs | `binary_classification/runs/<arch>/train_log.txt`, `analysis/logs/training_logs/` | |
 
 The checkpoint rule is accuracy on the internal-validation cohort, not AUC.
-`train.py` also evaluates both external cohorts inside the per-epoch loop and writes their AUCs to the training log (`train.py:658`).
-Those values are monitoring output; they are not read by the checkpoint rule at `train.py:690`, which compares `val_acc` only.
+`train.py` also evaluates both external cohorts inside the per-epoch loop and writes their AUCs to the training log (`train.py:704`).
+Those values are monitoring output; they are not read by the checkpoint rule at `train.py:738`, which compares `val_acc` only.
+
+**The external path in `train.py` is marked in the source.**
+Every block that loads, evaluates, logs or plots External Test 1 and External Test 2 carries an
+`ABANDONED (monitoring only)` comment, the checkpoint rule carries a `SELECTION RULE` comment, and the
+module docstring states the same at the top of the file.
+Nothing downstream of selection reads that output:
+
+| Claim | Evidence |
+|---|---|
+| Selection reads internal accuracy alone | `train.py:738`, `val_acc = val_metrics["acc"]`. No external quantity appears in the branch that saves a checkpoint, sets `best_epoch` or resets patience |
+| Retained epoch follows the internal rule, not the external one | internal-validation argmax in **13 of 13** architectures; external-AUC argmax in only **3 of 13** |
+| The internal rule cost external performance rather than exploiting it | mean external AUC forgone **0.0448** (External Test 1) and **0.0528** (External Test 2), printed in these logs and not taken |
+| Reported external results come from elsewhere | `infer_probs_tight.py` at 224 px, run once after selection closed |
+| `runs/<arch>/auc.png` and `roc.png` are not manuscript figures | drawn at the 300 px training resolution; see gap 11 |
+
+Source for the first three rows: `analysis/results/checkpoint_selection_summary.{csv,json}`, produced by
+`analysis/code/summarize_training_logs.py`.
+The clean re-run that never loads external data inside the training loop at all is
+`analysis/code/train_locked.py`.
 
 ### Inference
 
@@ -139,7 +158,7 @@ The derivation of the corrected Table 2 false-positive rates, including the macr
 
 ### Architecture selection
 
-DenseNet121 was selected on **internal-validation accuracy**, the rule implemented at `train.py:690`.
+DenseNet121 was selected on **internal-validation accuracy**, the rule implemented at `train.py:738`.
 On that criterion it ranks **first of the 13 architectures**.
 The supporting table is `analysis/results/task5_architecture_ranking.csv`, column `internal_val_accuracy`, produced by `task5_model_selection.py`.
 
@@ -158,7 +177,7 @@ These are stated so that a reader attempting reproduction is not misled.
    Every executable change made after submission is logged in `docs/CHANGES_AND_REMOVALS.md`.
 
 2. **Training and inference resolution differ.**
-   Training used 300 x 300 (`train.py:46`); inference used 224 x 224 (`infer_probs_tight.py:40`).
+   Training used 300 x 300 (`train.py:84`); inference used 224 x 224 (`infer_probs_tight.py:40`).
    This was not intended and was not noticed before submission.
    All reported classification numbers were produced with 224 x 224 inference, and the manuscript states this.
    No 300 x 300 inference results are reported, and none are deposited.
