@@ -114,6 +114,17 @@ Run from `analysis/code/`. Outputs land in `analysis/results/`.
 
 Shared helpers: `common.py` (paths, cohorts, mask variants, metrics, DeLong), `cached_dataset.py`, `run_all.sh`.
 
+**PR-AUC estimator.** `task1_confidence_intervals.py:162` reports PR-AUC as the **average precision**
+(`sklearn.metrics.average_precision_score`) with a **stratified** patient-level bootstrap, 2000 resamples,
+seed 20260904. The Table 3 PR-AUC column as originally submitted did not come from this path: its point
+estimates reproduce exactly under **trapezoidal** integration of the precision-recall curve
+(`sklearn.metrics.auc(recall, precision)`), and its intervals match a **non-stratified** bootstrap to
+within seed noise. The two estimators differ by up to 0.001 here (External Test 1: 0.9096 average
+precision versus 0.9087 trapezoidal; External Test 2: 0.9449 versus 0.9445). Average precision is the
+estimator scikit-learn recommends, because trapezoidal interpolation of a precision-recall curve is
+optimistically biased. The deposited CSV is therefore the reference, and the manuscript table was
+corrected to match it rather than the reverse.
+
 Grad-CAM (Figure 5) is produced by `binary_classification/heatmap.py`, not by a script under `analysis/code/`.
 It runs at the 224 x 224 inference resolution (`heatmap.py:28`), the same resolution as `infer_probs_tight.py`.
 The map is computed at the last convolutional feature map, upsampled to that 224 x 224 ROI, then resized to the
