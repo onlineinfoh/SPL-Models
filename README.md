@@ -110,11 +110,18 @@ Optimiser `SGD` with momentum 0.9, scheduler `PolyLR` with power 0.9, both upstr
 
 Neither baseline uses Adam, and neither uses cosine annealing. Cosine annealing is used only in
 Stage 2 (`train.py:602`); nnU-Net uses its own SGD polynomial schedule.
+Both optimiser lines are upstream code in the two trees that are not redistributed here, see gap 7
+in [`docs/REPRODUCE.md`](docs/REPRODUCE.md#known-gaps). The values above were read from the working
+checkouts that produced the reported run and cannot be opened from a clone of this repository alone.
 
-Both baselines scale intensity by the per-image maximum, `img = img / img.max()`
-(`benchmarking/unet_benchmark.py:137-138`, `benchmarking/deeplab_benchmark.py:127-128`).
-There is no percentile clipping and no minimum subtraction in either baseline path.
-DeepLabv3+ additionally applies ImageNet mean and standard deviation after that scaling.
+Baseline intensity scaling differs between the two, and neither performs percentile clipping:
+
+- U-Net divides by the per-image maximum only, with no minimum subtraction
+  (`benchmarking/unet_benchmark.py:137-138`).
+- DeepLabv3+ applies a full per-image min-max rescale to [0, 1], then quantises to 8-bit and applies
+  ImageNet mean and standard deviation (`benchmarking/deeplab_benchmark.py:126-129`; the same three
+  lines appear in its training loader, `DeepLabV3Plus-Pytorch/datasets/lung_ct.py:91-93`).
+
 Only nnU-Net performs percentile clipping, as part of `CTNormalization`, which clips to the dataset
 0.5th and 99.5th percentiles and then z-scores using dataset-level statistics.
 
